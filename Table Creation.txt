@@ -1,0 +1,62 @@
+CREATE SEQUENCE aluno_id_seq;
+CREATE TABLE aluno
+(
+  nome text NOT NULL,
+  cpf bigint NOT NULL,
+  endereco text NOT NULL,
+  sexo char,
+  Atestado boolean,
+  dataNascimento date NOT NULL,
+  email text,
+  codigo integer NOT NULL DEFAULT nextval('aluno_id_seq'::regclass),
+  CONSTRAINT aluno_pkey PRIMARY KEY (codigo)
+);
+
+CREATE SEQUENCE professor_id_seq;
+CREATE TABLE professor
+(
+  nome text NOT NULL,
+  email text,
+  cpf bigint NOT NULL,
+  codigo integer NOT NULL DEFAULT nextval('professor_id_seq'::regclass),
+  CONSTRAINT professor_pkey PRIMARY KEY (codigo)
+);
+
+
+CREATE SEQUENCE exercicio_id_seq;
+CREATE TABLE exercicio
+(
+  descricao text NOT NULL,
+  musculo text NOT NULL,
+  codigo integer NOT NULL DEFAULT nextval('exercicio_id_seq'::regclass),
+  CONSTRAINT produto_pkey PRIMARY KEY (codigo)
+)
+
+CREATE SEQUENCE ficha_id_seq;
+CREATE TABLE ficha
+(
+  descricao text NOT NULL,
+  codigo integer NOT NULL DEFAULT nextval('ficha_id_seq'::regclass),
+  codigo_aluno integer NOT NULL,
+  codigo_professor integer NOT NULL,	
+  CONSTRAINT ficha_pkey PRIMARY KEY (codigo),
+  CONSTRAINT aluno_codigo_fkey FOREIGN KEY(codigo_aluno)
+	  REFERENCES aluno (codigo) MATCH SIMPLE
+	  ON UPDATE NO ACTION ON DELETE CASCADE,
+  CONSTRAINT professor_codigo_fkey FOREIGN KEY(codigo_professor)
+	  REFERENCES professor (codigo) MATCH SIMPLE
+	  ON UPDATE NO ACTION ON DELETE SET NULL
+);
+
+CREATE TABLE exerciciosFicha
+(
+  codigo_ficha integer NOT NULL,
+  codigo_exercicio integer NOT NULL,
+  CONSTRAINT ficha_codigo_fkey FOREIGN KEY(codigo_ficha)
+	  REFERENCES ficha (codigo) MATCH SIMPLE
+	  ON UPDATE NO ACTION ON DELETE CASCADE,
+  CONSTRAINT exercicio_codigo_fkey FOREIGN KEY(codigo_exercicio)
+	  REFERENCES exercicio (codigo) MATCH SIMPLE
+	  ON UPDATE NO ACTION ON DELETE CASCADE,
+  CONSTRAINT exerciciosFicha_pkey PRIMARY KEY (codigo_exercicio, codigo_ficha)
+);
