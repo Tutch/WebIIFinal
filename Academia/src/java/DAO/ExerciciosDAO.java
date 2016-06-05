@@ -21,24 +21,10 @@ import org.hibernate.cfg.Configuration;
  * @author Yuri
  */
 public class ExerciciosDAO {
-    public Session openSession(){
-        try {
-            Configuration configuration = new Configuration();
-            configuration.configure();
-            StandardServiceRegistry standardRegistry= new StandardServiceRegistryBuilder()
-                .configure("hibernate.cfg.xml")
-                .build();
-            SessionFactory sessionFactory = configuration.buildSessionFactory(standardRegistry);
-            Session session = sessionFactory.openSession();
-            return session;
-        } catch (Exception e) {
-        }
-        return null;
-    }
     
     public void create(Exercicios a){
         try {
-            Session session = openSession();
+            Session session = BaseDAO.openSession();
             if(session !=null){
                 Transaction trans = session.beginTransaction();
                 session.save(a);
@@ -52,7 +38,7 @@ public class ExerciciosDAO {
     public List<Exercicios> read(){
         List <Exercicios> resultado;
         try {
-            Session session = openSession();
+            Session session = BaseDAO.openSession();
             if(session !=null){
                 Query query =session.createQuery("from Exercicios");
                 resultado = query.list();
@@ -65,7 +51,7 @@ public class ExerciciosDAO {
     
     public void update(Exercicios a){
         try {
-            Session session = openSession();
+            Session session = BaseDAO.openSession();
             if(session !=null){
                 Exercicios up = session.get(Exercicios.class, a.getCodigo());
                 up.setDescricao(a.getDescricao());
@@ -81,7 +67,7 @@ public class ExerciciosDAO {
     
     public void delete(Long codigo){
         try {
-            Session session = openSession();
+            Session session = BaseDAO.openSession();
             if(session != null){
                 Transaction tx = session.beginTransaction();
                 Exercicios a = session.get(Exercicios.class, codigo);

@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -22,7 +24,11 @@ public class Ficha {
     @SequenceGenerator(name = "ficha_sequence_generator", sequenceName = "ficha_id_seq", allocationSize = 1)
     private Long codigo;
     private String descricao;
+    @ManyToOne
+    @JoinColumn(name="codigo")
     private Long codigo_aluno;
+    @ManyToOne
+    @JoinColumn(name="codigo")
     private Long codigo_professor;
 
     public Long getCodigo() {

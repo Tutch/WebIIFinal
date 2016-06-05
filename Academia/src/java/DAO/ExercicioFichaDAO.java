@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Entidades.Aluno;
+import Entidades.ExercicioFicha;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -15,14 +15,14 @@ import org.hibernate.Transaction;
  *
  * @author Yuri
  */
-public class AlunoDAO {
+public class ExercicioFichaDAO {
     
-    public void create(Aluno a){
+    public void create(ExercicioFicha ef){
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
                 Transaction trans = session.beginTransaction();
-                session.save(a);
+                session.save(ef);
                 trans.commit();
             }
         } catch (Exception e) {
@@ -30,8 +30,8 @@ public class AlunoDAO {
         }
     }
     
-    public List<Aluno> read(){
-        List <Aluno> resultado;
+    public List<ExercicioFicha> read(){
+        List <ExercicioFicha> resultado;
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
@@ -44,16 +44,13 @@ public class AlunoDAO {
         return null;
     }
     
-    public void update(Aluno a){
+    public void update(ExercicioFicha ef){
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
-                Aluno up = session.get(Aluno.class, a.getCodigo());
-                up.setCpf(a.getCpf());
-                up.setNome(a.getNome());
-                up.setEndereco(a.getEndereco());
-                up.setEmail(a.getEmail());
-                up.setAtestado(a.isAtestado());
+                ExercicioFicha up = session.get(ExercicioFicha.class, ef.getCodigo());
+                up.setCodigoExercicio(ef.getCodigoExercicio());
+                up.setCodigoFicha(ef.getCodigoFicha());
                 Transaction trans = session.beginTransaction();
                 session.saveOrUpdate(up);
                 trans.commit();
@@ -68,8 +65,8 @@ public class AlunoDAO {
             Session session = BaseDAO.openSession();
             if(session != null){
                 Transaction tx = session.beginTransaction();
-                Aluno a = session.get(Aluno.class, codigo);
-                session.delete(a);
+                ExercicioFicha ef = session.get(ExercicioFicha.class, codigo);
+                session.delete(ef);
                 tx.commit();
             }
         } catch (Exception e) {

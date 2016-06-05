@@ -6,39 +6,20 @@
 package DAO;
 
 import Entidades.Ficha;
-import Entidades.Professor;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 
 /**
  *
  * @author Yuri
  */
 public class FichaDAO {
-    public Session openSession(){
-        try {
-            Configuration configuration = new Configuration();
-            configuration.configure();
-            StandardServiceRegistry standardRegistry= new StandardServiceRegistryBuilder()
-                .configure("hibernate.cfg.xml")
-                .build();
-            SessionFactory sessionFactory = configuration.buildSessionFactory(standardRegistry);
-            Session session = sessionFactory.openSession();
-            return session;
-        } catch (Exception e) {
-        }
-        return null;
-    }
     
     public void create(Ficha a){
         try {
-            Session session = openSession();
+            Session session = BaseDAO.openSession();
             if(session !=null){
                 Transaction trans = session.beginTransaction();
                 session.save(a);
@@ -52,7 +33,7 @@ public class FichaDAO {
     public List<Ficha> read(){
         List <Ficha> resultado;
         try {
-            Session session = openSession();
+            Session session = BaseDAO.openSession();
             if(session !=null){
                 Query query =session.createQuery("from Professor");
                 resultado = query.list();
@@ -65,7 +46,7 @@ public class FichaDAO {
     
     public void update(Ficha a){
         try {
-            Session session = openSession();
+            Session session = BaseDAO.openSession();
             if(session !=null){
                 Ficha up = session.get(Ficha.class, a.getCodigo());
                 up.setCodigo_aluno(a.getCodigo_aluno());
@@ -81,7 +62,7 @@ public class FichaDAO {
     
     public void delete(Long codigo){
         try {
-            Session session = openSession();
+            Session session = BaseDAO.openSession();
             if(session != null){
                 Transaction tx = session.beginTransaction();
                 Ficha a = session.get(Ficha.class, codigo);
