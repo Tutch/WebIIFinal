@@ -24,6 +24,16 @@ public class Professor {
     private String nome;
     private Long cpf;
     private String email;
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
     public Long getCodigo() {
         return codigo;

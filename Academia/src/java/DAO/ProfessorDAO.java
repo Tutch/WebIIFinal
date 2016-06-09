@@ -53,6 +53,7 @@ public class ProfessorDAO {
                 up.setCpf(a.getCpf());
                 up.setNome(a.getNome());
                 up.setEmail(a.getEmail());
+                up.setPassword(a.getPassword());
                 Transaction trans = session.beginTransaction();
                 session.saveOrUpdate(up);
                 trans.commit();

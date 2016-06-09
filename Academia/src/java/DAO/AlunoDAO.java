@@ -54,6 +54,7 @@ public class AlunoDAO {
                 up.setEndereco(a.getEndereco());
                 up.setEmail(a.getEmail());
                 up.setAtestado(a.isAtestado());
+                up.setPassword(a.getPassword());
                 Transaction trans = session.beginTransaction();
                 session.saveOrUpdate(up);
                 trans.commit();

@@ -4,6 +4,7 @@ CREATE TABLE aluno
   nome text NOT NULL,
   cpf bigint NOT NULL,
   endereco text NOT NULL,
+  password text NOT NULL,
   sexo char,
   Atestado boolean,
   dataNascimento date NOT NULL,
@@ -18,6 +19,7 @@ CREATE TABLE professor
   nome text NOT NULL,
   email text,
   cpf bigint NOT NULL,
+  password text NOT NULL,
   codigo integer NOT NULL DEFAULT nextval('professor_id_seq'::regclass),
   CONSTRAINT professor_pkey PRIMARY KEY (codigo)
 );
