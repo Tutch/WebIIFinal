@@ -30,8 +30,7 @@ public class XMLAluno {
     @Temporal(TemporalType.DATE)
     private java.util.Date nascimento;
     private String email;
-    private String password;
-
+    
     public Long getCodigo() {
         return codigo;
     }
@@ -95,14 +94,6 @@ public class XMLAluno {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    
+  
     
 }
