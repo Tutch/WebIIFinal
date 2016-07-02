@@ -1,17 +1,4 @@
-CREATE SEQUENCE aluno_id_seq;
-CREATE TABLE aluno
-(
-  nome text NOT NULL,
-  cpf bigint NOT NULL,
-  endereco text NOT NULL,
-  password text NOT NULL,
-  sexo char,
-  Atestado boolean,
-  dataNascimento date NOT NULL,
-  email text,
-  codigo integer NOT NULL DEFAULT nextval('aluno_id_seq'::regclass),
-  CONSTRAINT aluno_pkey PRIMARY KEY (codigo)
-);
+
 
 CREATE SEQUENCE professor_id_seq;
 CREATE TABLE professor
@@ -24,6 +11,24 @@ CREATE TABLE professor
   CONSTRAINT professor_pkey PRIMARY KEY (codigo)
 );
 
+CREATE SEQUENCE aluno_id_seq;
+CREATE TABLE aluno
+(
+  nome text NOT NULL,
+  cpf bigint NOT NULL,
+  endereco text NOT NULL,
+  password text NOT NULL,
+  sexo char,
+  Atestado boolean,
+  dataNascimento date NOT NULL,
+  email text,
+  codigo_professor integer,
+  CONSTRAINT professor_aluno_codigo_fkey FOREIGN KEY(codigo_professor)
+	  REFERENCES professor (codigo) MATCH SIMPLE
+	  ON UPDATE NO ACTION ON DELETE CASCADE,
+  codigo integer NOT NULL DEFAULT nextval('aluno_id_seq'::regclass),
+  CONSTRAINT aluno_pkey PRIMARY KEY (codigo)
+);
 
 CREATE SEQUENCE exercicio_id_seq;
 CREATE TABLE exercicio
@@ -32,7 +37,7 @@ CREATE TABLE exercicio
   musculo text NOT NULL,
   codigo integer NOT NULL DEFAULT nextval('exercicio_id_seq'::regclass),
   CONSTRAINT produto_pkey PRIMARY KEY (codigo)
-)
+);
 
 CREATE SEQUENCE ficha_id_seq;
 CREATE TABLE ficha

@@ -11,7 +11,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -28,7 +31,11 @@ public class Aluno {
     private char sexo;
     private boolean atestado;
     private String endereco;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date nascimento;
+    
+    @ManyToOne
+    private Professor instrutor;
     private String email;
     private String password;
 
@@ -104,6 +111,15 @@ public class Aluno {
     public void setEmail(String email) {
         this.email = email;
     } 
+
+    public Professor getInstrutor() {
+        return instrutor;
+    }
+
+    public void setInstrutor(Professor instrutor) {
+        this.instrutor = instrutor;
+    }
+    
     public Aluno(){
         
     }
@@ -115,6 +131,8 @@ public class Aluno {
         this.endereco = endereco;
         this.nascimento = nascimento;
         this.email = email;
+        this.password = null;
+        this.instrutor = null;
     }
     
     
