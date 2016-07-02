@@ -33,6 +33,7 @@ public class Aluno {
     private String endereco;
     private Date nascimento;
     
+    @ManyToOne
     private Professor instrutor;
     private String email;
     private String password;
