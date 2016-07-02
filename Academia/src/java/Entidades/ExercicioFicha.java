@@ -6,12 +6,10 @@
 package Entidades;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 
 
 /**
@@ -20,27 +18,16 @@ import javax.persistence.SequenceGenerator;
  */
 
 @Entity
+@IdClass(ExercicioFichaPK.class)
 public class ExercicioFicha {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "exercicioficha_sequence_generator")
-    @SequenceGenerator(name = "exercicioficha_sequence_generator", sequenceName = "exercicioficha_id_seq", allocationSize = 1)
-    private Long codigo;
-    
     @ManyToOne
-    @JoinColumn(name="codigo")
+    @JoinColumn(name="codigo_ficha")
     private Ficha codigoFicha;
-    
+    @Id
     @ManyToOne
-    @JoinColumn(name="codigo")
+    @JoinColumn(name="codigo_exercicio")
     private Exercicios codigoExercicio;  
-
-    public Long getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
-    }
 
     public Ficha getCodigoFicha() {
         return codigoFicha;
@@ -61,3 +48,4 @@ public class ExercicioFicha {
     
     
 }
+

@@ -49,8 +49,8 @@ public class FichaDAO {
             Session session = BaseDAO.openSession();
             if(session !=null){
                 Ficha up = session.get(Ficha.class, a.getCodigo());
-                up.setCodigo_aluno(a.getCodigo_aluno());
-                up.setCodigo_professor(a.getCodigo_professor());
+                up.setAluno(a.getAluno());
+                up.setInstrutor(a.getInstrutor());
                 Transaction trans = session.beginTransaction();
                 session.saveOrUpdate(up);
                 trans.commit();

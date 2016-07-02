@@ -1,3 +1,5 @@
+insertable = false, updatable = false
+
 
 
 CREATE SEQUENCE professor_id_seq;
@@ -20,7 +22,7 @@ CREATE TABLE aluno
   password text NOT NULL,
   sexo char,
   Atestado boolean,
-  dataNascimento date NOT NULL,
+  nascimento date NOT NULL,
   email text,
   codigo_professor integer,
   CONSTRAINT professor_aluno_codigo_fkey FOREIGN KEY(codigo_professor)
@@ -31,7 +33,7 @@ CREATE TABLE aluno
 );
 
 CREATE SEQUENCE exercicio_id_seq;
-CREATE TABLE exercicio
+CREATE TABLE exercicios
 (
   descricao text NOT NULL,
   musculo text NOT NULL,
@@ -55,7 +57,7 @@ CREATE TABLE ficha
 	  ON UPDATE NO ACTION ON DELETE SET NULL
 );
 
-CREATE TABLE exerciciosFicha
+CREATE TABLE exercicioFicha
 (
   codigo_ficha integer NOT NULL,
   codigo_exercicio integer NOT NULL,
@@ -63,7 +65,7 @@ CREATE TABLE exerciciosFicha
 	  REFERENCES ficha (codigo) MATCH SIMPLE
 	  ON UPDATE NO ACTION ON DELETE CASCADE,
   CONSTRAINT exercicio_codigo_fkey FOREIGN KEY(codigo_exercicio)
-	  REFERENCES exercicio (codigo) MATCH SIMPLE
+	  REFERENCES exercicios (codigo) MATCH SIMPLE
 	  ON UPDATE NO ACTION ON DELETE CASCADE,
   CONSTRAINT exerciciosFicha_pkey PRIMARY KEY (codigo_exercicio, codigo_ficha)
 );

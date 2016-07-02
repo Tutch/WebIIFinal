@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -34,6 +35,7 @@ public class Aluno {
     private Date nascimento;
     
     @ManyToOne
+    @JoinColumn(name="codigo_professor")
     private Professor instrutor;
     private String email;
     private String password;
@@ -122,7 +124,7 @@ public class Aluno {
     public Aluno(){
         
     }
-    public Aluno(String nome, long cpf, char sexo, boolean atestado, String endereco, Date nascimento, String email) {
+    public Aluno(String nome, long cpf, char sexo, boolean atestado, String endereco, Date nascimento, String email, String password) {
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;
@@ -130,7 +132,7 @@ public class Aluno {
         this.endereco = endereco;
         this.nascimento = nascimento;
         this.email = email;
-        this.password = null;
+        this.password = password;
         this.instrutor = null;
     }
     

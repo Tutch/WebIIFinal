@@ -19,8 +19,8 @@ public class XMLFichaParser {
         Ficha ficha = new Ficha();
         
         ficha.setCodigo(xml.getCodigo());
-        ficha.setCodigo_aluno(xml.getCodigo_aluno());
-        ficha.setCodigo_professor(xml.getCodigo_professor());
+        ficha.setAluno(xml.getAluno());
+        ficha.setInstrutor(xml.getInstrutor());
         ficha.setDescricao(xml.getDescricao());
         
         return ficha;
@@ -30,8 +30,8 @@ public class XMLFichaParser {
         XMLFicha xml = new XMLFicha();
         
         xml.setCodigo(ficha.getCodigo());
-        xml.setCodigo_aluno(ficha.getCodigo_aluno());
-        xml.setCodigo_professor(ficha.getCodigo_professor());
+        xml.setAluno(ficha.getAluno());
+        xml.setInstrutor(ficha.getInstrutor());
         xml.setDescricao(ficha.getDescricao());
         
         return xml;

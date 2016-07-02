@@ -25,11 +25,11 @@ public class Ficha {
     private Long codigo;
     private String descricao;
     @ManyToOne
-    @JoinColumn(name="codigo")
-    private Long codigo_aluno;
+    @JoinColumn(name="codigo_aluno")
+    private Aluno aluno;
     @ManyToOne
-    @JoinColumn(name="codigo")
-    private Long codigo_professor;
+    @JoinColumn(name="codigo_professor")
+    private Professor instrutor;
 
     public Long getCodigo() {
         return codigo;
@@ -47,26 +47,28 @@ public class Ficha {
         this.descricao = descricao;
     }
 
-    public Long getCodigo_aluno() {
-        return codigo_aluno;
+    public Aluno getAluno() {
+        return aluno;
     }
 
-    public void setCodigo_aluno(Long codigo_aluno) {
-        this.codigo_aluno = codigo_aluno;
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 
-    public Long getCodigo_professor() {
-        return codigo_professor;
+    public Professor getInstrutor() {
+        return instrutor;
     }
 
-    public void setCodigo_professor(Long codigo_professor) {
-        this.codigo_professor = codigo_professor;
+    public void setInstrutor(Professor instrutor) {
+        this.instrutor = instrutor;
     }
 
-    public Ficha(String descricao, Long codigo_aluno, Long codigo_professor) {
+    
+
+    public Ficha(String descricao, Aluno aluno, Professor professor) {
         this.descricao = descricao;
-        this.codigo_aluno = codigo_aluno;
-        this.codigo_professor = codigo_professor;
+        this.aluno = aluno;
+        this.instrutor = professor;
     }
     
     public Ficha(){

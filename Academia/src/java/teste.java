@@ -18,7 +18,7 @@ public class teste {
     public static void main(String[] args) {
         Date nasc = Date.valueOf(LocalDate.now());
         Aluno a;
-        a = new Aluno("Teste", 04345674241l, 'M', false, "Rua do teste", nasc, "Email Teste");
+        a = new Aluno("Teste", 04345674241l, 'M', false, "Rua do teste", nasc, "Email Teste", "teste");
         
         AlunoDAO dao = new AlunoDAO();
         dao.create(a);

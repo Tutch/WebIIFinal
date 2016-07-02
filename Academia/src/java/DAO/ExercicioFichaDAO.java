@@ -43,8 +43,8 @@ public class ExercicioFichaDAO {
         }
         return null;
     }
-    
-    public void update(ExercicioFicha ef){
+    /*
+    public void update(ExercicioFicha ef){;
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
@@ -72,5 +72,5 @@ public class ExercicioFichaDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }

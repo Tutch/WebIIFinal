@@ -5,6 +5,8 @@
  */
 package xml;
 
+import Entidades.Aluno;
+import Entidades.Professor;
 import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,8 +25,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class XMLFicha {
     private Long codigo;
     private String descricao;
-    private Long codigo_aluno;
-    private Long codigo_professor;
+    private Aluno aluno;
+    private Professor instrutor;
 
     public Long getCodigo() {
         return codigo;
@@ -42,21 +44,23 @@ public class XMLFicha {
         this.descricao = descricao;
     }
 
-    public Long getCodigo_aluno() {
-        return codigo_aluno;
+    public Aluno getAluno() {
+        return aluno;
     }
 
-    public void setCodigo_aluno(Long codigo_aluno) {
-        this.codigo_aluno = codigo_aluno;
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 
-    public Long getCodigo_professor() {
-        return codigo_professor;
+    public Professor getInstrutor() {
+        return instrutor;
     }
 
-    public void setCodigo_professor(Long codigo_professor) {
-        this.codigo_professor = codigo_professor;
+    public void setInstrutor(Professor instrutor) {
+        this.instrutor = instrutor;
     }
+
+    
     
     
 }
