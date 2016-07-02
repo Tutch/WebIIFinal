@@ -5,7 +5,7 @@
  */
 package xml;
 
-import java.util.Date;
+import java.sql.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -28,7 +28,7 @@ public class XMLAluno {
     private boolean atestado;
     private String endereco;
     @Temporal(TemporalType.DATE)
-    private java.util.Date nascimento;
+    private java.sql.Date nascimento;
     private String email;
     
     public Long getCodigo() {

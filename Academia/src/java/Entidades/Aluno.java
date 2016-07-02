@@ -5,7 +5,7 @@
  */
 package Entidades;
 
-import java.util.Date;
+import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,16 +25,14 @@ public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "aluno_sequence_generator")
     @SequenceGenerator(name = "aluno_sequence_generator", sequenceName = "aluno_id_seq", allocationSize = 1)
-    private Long codigo;
+    private long codigo;
     private String nome;
-    private Long cpf;
+    private long cpf;
     private char sexo;
     private boolean atestado;
     private String endereco;
-    @Temporal(javax.persistence.TemporalType.DATE)
     private Date nascimento;
     
-    @ManyToOne
     private Professor instrutor;
     private String email;
     private String password;
@@ -64,11 +62,11 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public Long getCpf() {
+    public long getCpf() {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(long cpf) {
         this.cpf = cpf;
     }
 
@@ -123,7 +121,7 @@ public class Aluno {
     public Aluno(){
         
     }
-    public Aluno(String nome, Long cpf, char sexo, boolean atestado, String endereco, Date nascimento, String email) {
+    public Aluno(String nome, long cpf, char sexo, boolean atestado, String endereco, Date nascimento, String email) {
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;

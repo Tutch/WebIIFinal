@@ -18,14 +18,18 @@ import org.hibernate.Transaction;
 public class AlunoDAO {
     
     public void create(Aluno a){
+        System.out.println("entrei");
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
                 Transaction trans = session.beginTransaction();
                 session.save(a);
                 trans.commit();
+                System.out.println("hi!");
             }
+            System.out.println("nem foi");
         } catch (Exception e) {
+            System.out.println("deu ruim");
             e.printStackTrace();
         }
     }

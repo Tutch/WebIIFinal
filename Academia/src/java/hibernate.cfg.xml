@@ -13,10 +13,10 @@
   <property name="hibernate.format_sql">true</property>
  
  
-  <mapping class="Entidade.Aluno" />
-  <mapping class="Entidade.Exercicios" />
-  <mapping class="Entidade.Ficha" />
-  <mapping class="Entidade.Professor" />
-  <mapping class="Entidade.ExercicioFicha" />
+  <mapping class="Entidades.Aluno" />
+  <mapping class="Entidades.Exercicios" />
+  <mapping class="Entidades.Ficha" />
+  <mapping class="Entidades.Professor" />
+  <mapping class="Entidades.ExercicioFicha" />
  </session-factory>
 </hibernate-configuration>
