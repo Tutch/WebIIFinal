@@ -13,16 +13,16 @@ public class FilterInput {
    
     // Alerta sobre a existencia de caracteres que podem ser usados
     // para um ataque XSS
-    static boolean identifyDangerousCharacters(String conteudo){
+    public static boolean noDangerousCharacters(String conteudo){
         for(int i = 0; i<conteudo.length(); i++){
             char c = conteudo.charAt(i);
             
             if( c == '/' || c == '%' || c == '>'){
-                return true;
+                return false;
             }
         }
         
-        return false;
+        return true;
     }
     
 }

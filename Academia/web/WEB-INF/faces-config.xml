@@ -31,6 +31,14 @@
         <from-outcome>CadastrarExercicio</from-outcome>
         <to-view-id>cadastrarExercicio.xhtml</to-view-id>
     </navigation-case>
+    <navigation-case>
+        <from-outcome>ExercicioCadastrado</from-outcome>
+        <to-view-id>../home.xhtml</to-view-id>
+    </navigation-case>
     
+    <navigation-case>
+        <from-outcome>caracteresInvalidos</from-outcome>
+        <to-view-id>../caracteresInvalidos.xhtml</to-view-id>
+    </navigation-case>
 </navigation-rule>
 </faces-config>

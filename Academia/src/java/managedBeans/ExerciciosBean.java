@@ -10,6 +10,7 @@ import Entidades.Exercicios;
 import java.util.ArrayList;
 import javax.annotation.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import util.FilterInput;
 
 /**
  *
@@ -66,17 +67,22 @@ public class ExerciciosBean {
     public String cadastrar(){
         System.out.println("Musculo " + getMusculo());
         System.out.println("Desc " + getDescricao());
-        try{
+        
+        if(FilterInput.noDangerousCharacters(nome) && FilterInput.noDangerousCharacters(descricao)){
+            
             Exercicios ex = new Exercicios();
             ex.setNome(nome);
             ex.setMusculo(musculo);
             ex.setDescricao(descricao);
             
-            //ExerciciosDAO.create(ex);
-            return "Cadastrado";
-        }catch(Exception e){
-            return "Falha";
+            try{
+                ExerciciosDAO.create(ex);
+                return "ExercicioCadastrado";
+            }catch(Exception e){
+                return "Failed";
+            }
         }
         
+        return "caracteresInvalidos";
     }
 }

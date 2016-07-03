@@ -28,7 +28,15 @@ public class teste {
         Date nasc = Date.valueOf(LocalDate.now());
         Aluno a;
         a = new Aluno("Cara pequeno 2", 02322344241l, 'M', false, "Rua do teste", nasc, "Email Teste", "teste");
-//        AlunoDAO.create(a);
+        AlunoDAO.create(a);
+        
+        Exercicios b = new Exercicios();
+        b.setNome("Supino");
+        b.setDescricao("biiiirl");
+        b.setMusculo("Biceps");
+        
+        ExerciciosDAO.create(b);
+        
 //        
 //        Professor p = new Professor("Teste prof", 484654654l,"sadsda", "1234");
 //        ProfessorDAO.create(p);
@@ -41,7 +49,7 @@ public class teste {
 //        f = new Ficha("Crescer pra carai", a, p);
 //        FichaDAO.create(f);
         
-        List<Aluno> alunos = AlunoDAO.read();
+        /*List<Aluno> alunos = AlunoDAO.read();
 //        
         for(Aluno aluno: alunos){
             System.out.println(aluno.getNome());
@@ -51,7 +59,7 @@ public class teste {
         
         for(Ficha ficha:fichas){
             System.out.println(ficha.getDescricao());
-        }
+        }*/
         
 //        System.out.println(AlunoDAO.authenticateUser("Cara pequeno", "teste"));
 //        System.out.println(ProfessorDAO.authenticateUser("Teste prof", "1234"));
@@ -78,9 +86,9 @@ public class teste {
 //         ExercicioFicha es = new ExercicioFicha(fichas.get(0), s);
 //         ExercicioFichaDAO.create(es);
          
-         List<Exercicios> exercicios = FichaDAO.getAllExercicios(fichas.get(0));
+         /*<Exercicios> exercicios = FichaDAO.getAllExercicios(fichas.get(0));
          for(Exercicios exercicio:exercicios){
              System.out.println(exercicio.getDescricao());
-         }
+         }*/
     }
 }
