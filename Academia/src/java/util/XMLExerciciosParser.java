@@ -20,6 +20,7 @@ public class XMLExerciciosParser {
     public static Exercicios parseXMLparaFicha(XMLExercicios xml){
         Exercicios exercicios = new Exercicios();
         
+        exercicios.setNome(xml.getNome());
         exercicios.setCodigo(xml.getCodigo());
         exercicios.setDescricao(xml.getDescricao());
         exercicios.setMusculo(xml.getMusculo());
@@ -30,6 +31,7 @@ public class XMLExerciciosParser {
     public static XMLExercicios parseXMLparaFicha(Exercicios exercicios){
         XMLExercicios xml = new XMLExercicios();
         
+        xml.setNome(exercicios.getNome());
         xml.setCodigo(exercicios.getCodigo());
         xml.setDescricao(exercicios.getDescricao());
         xml.setMusculo(exercicios.getMusculo());

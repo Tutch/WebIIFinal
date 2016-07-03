@@ -5,6 +5,7 @@
  */
 package Entidades;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,8 +22,18 @@ public class Exercicios {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "exercicio_sequence_generator")
     @SequenceGenerator(name = "exercicio_sequence_generator", sequenceName = "exercicio_id_seq", allocationSize = 1)
     private long codigo;
+    @Column(name="nome",unique=true)
+    private String nome;
     private String descricao;
     private String musculo;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     public long getCodigo() {
         return codigo;

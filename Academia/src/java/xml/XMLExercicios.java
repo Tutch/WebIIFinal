@@ -22,8 +22,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class XMLExercicios {
     private Long codigo;
+    private String nome;
     private String descricao;
     private String musculo;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     public Long getCodigo() {
         return codigo;
