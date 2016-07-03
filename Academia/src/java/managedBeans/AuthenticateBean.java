@@ -51,7 +51,7 @@ public class AuthenticateBean {
             return "Authenticated";
         }else{
             if(ProfessorDAO.authenticateUser(login, password) == true){
-                return "Authenticated";
+                return "AuthenticatedProfessor";
             }else{
                 return "Failed";
             }

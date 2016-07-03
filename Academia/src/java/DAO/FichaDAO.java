@@ -5,7 +5,10 @@
  */
 package DAO;
 
+import Entidades.ExercicioFicha;
+import Entidades.Exercicios;
 import Entidades.Ficha;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -60,17 +63,38 @@ public class FichaDAO {
         }
     }
     
-    static public void delete(Long codigo){
+    static public void delete(Ficha a){
         try {
             Session session = BaseDAO.openSession();
             if(session != null){
                 Transaction tx = session.beginTransaction();
-                Ficha a = session.get(Ficha.class, codigo);
                 session.delete(a);
                 tx.commit();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    static public List<Exercicios> getAllExercicios(Ficha a){
+        List <Exercicios> exercicios = new ArrayList<Exercicios>();
+        try {
+            Session session = BaseDAO.openSession();
+            if(session != null){
+                Transaction tx = session.beginTransaction();
+                System.out.println("entrei!!!!!!!!!!!!!!" );
+                Query query = session.createQuery("from ExercicioFicha E WHERE E.codigoFicha=:codigo")
+                        .setParameter("codigo", a);
+                System.out.println(query);
+                List<ExercicioFicha> exerciciosCode = query.list();
+                System.out.println(exerciciosCode.size());
+                for(ExercicioFicha ef:exerciciosCode){
+                    exercicios.add(ef.getCodigoExercicio());
+                }
+                return exercicios;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       return null;
     }
 }

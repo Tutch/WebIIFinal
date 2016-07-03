@@ -44,6 +44,13 @@ public class ExercicioFicha {
     public void setCodigoExercicio(Exercicios codigoExercicio) {
         this.codigoExercicio = codigoExercicio;
     }
+    public ExercicioFicha(){
+        
+    }
+    public ExercicioFicha(Ficha codigoFicha, Exercicios codigoExercicio) {
+        this.codigoFicha = codigoFicha;
+        this.codigoExercicio = codigoExercicio;
+    }
     
     
     

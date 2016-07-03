@@ -20,15 +20,15 @@ public class Exercicios {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "exercicio_sequence_generator")
     @SequenceGenerator(name = "exercicio_sequence_generator", sequenceName = "exercicio_id_seq", allocationSize = 1)
-    private Long codigo;
+    private long codigo;
     private String descricao;
     private String musculo;
 
-    public Long getCodigo() {
+    public long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Long codigo) {
+    public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
 

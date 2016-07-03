@@ -10,11 +10,7 @@ import Entidades.Exercicios;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 
 /**
  *
@@ -22,7 +18,7 @@ import org.hibernate.cfg.Configuration;
  */
 public class ExerciciosDAO {
     
-    public void create(Exercicios a){
+    static public void create(Exercicios a){
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
@@ -35,7 +31,7 @@ public class ExerciciosDAO {
         }
     }
     
-    public List<Exercicios> read(){
+    static public List<Exercicios> read(){
         List <Exercicios> resultado;
         try {
             Session session = BaseDAO.openSession();
@@ -49,15 +45,12 @@ public class ExerciciosDAO {
         return null;
     }
     
-    public void update(Exercicios a){
+    static  public void update(Exercicios a){
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
-                Exercicios up = session.get(Exercicios.class, a.getCodigo());
-                up.setDescricao(a.getDescricao());
-                up.setMusculo(a.getMusculo());
                 Transaction trans = session.beginTransaction();
-                session.saveOrUpdate(up);
+                session.saveOrUpdate(a);
                 trans.commit();
             }
         } catch (Exception e) {
@@ -65,12 +58,11 @@ public class ExerciciosDAO {
         }
     }
     
-    public void delete(Long codigo){
+    public void delete(Exercicios a){
         try {
             Session session = BaseDAO.openSession();
             if(session != null){
                 Transaction tx = session.beginTransaction();
-                Exercicios a = session.get(Exercicios.class, codigo);
                 session.delete(a);
                 tx.commit();
             }

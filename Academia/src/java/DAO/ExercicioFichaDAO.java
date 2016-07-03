@@ -17,7 +17,7 @@ import org.hibernate.Transaction;
  */
 public class ExercicioFichaDAO {
     
-    public void create(ExercicioFicha ef){
+    static public void create(ExercicioFicha ef){
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
@@ -30,7 +30,7 @@ public class ExercicioFichaDAO {
         }
     }
     
-    public List<ExercicioFicha> read(){
+    static public List<ExercicioFicha> read(){
         List <ExercicioFicha> resultado;
         try {
             Session session = BaseDAO.openSession();
@@ -43,16 +43,13 @@ public class ExercicioFichaDAO {
         }
         return null;
     }
-    /*
-    public void update(ExercicioFicha ef){;
+    
+    static public void update(ExercicioFicha ef){;
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
-                ExercicioFicha up = session.get(ExercicioFicha.class, ef.getCodigo());
-                up.setCodigoExercicio(ef.getCodigoExercicio());
-                up.setCodigoFicha(ef.getCodigoFicha());
                 Transaction trans = session.beginTransaction();
-                session.saveOrUpdate(up);
+                session.saveOrUpdate(ef);
                 trans.commit();
             }
         } catch (Exception e) {
@@ -60,17 +57,16 @@ public class ExercicioFichaDAO {
         }
     }
     
-    public void delete(Long codigo){
+    static public void delete(ExercicioFicha ef){
         try {
             Session session = BaseDAO.openSession();
             if(session != null){
                 Transaction tx = session.beginTransaction();
-                ExercicioFicha ef = session.get(ExercicioFicha.class, codigo);
                 session.delete(ef);
                 tx.commit();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }*/
+    }
 }
