@@ -22,7 +22,7 @@ public class Professor {
     @SequenceGenerator(name = "professor_sequence_generator", sequenceName = "professor_id_seq", allocationSize = 1)
     private Long codigo;
     private String nome;
-    private Long cpf;
+    private long cpf;
     private String email;
     private String password;
 
@@ -51,11 +51,11 @@ public class Professor {
         this.nome = nome;
     }
 
-    public Long getCpf() {
+    public long getCpf() {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(long cpf) {
         this.cpf = cpf;
     }
 
@@ -67,10 +67,11 @@ public class Professor {
         this.email = email;
     }
 
-    public Professor(String nome, Long cpf, String email) {
+    public Professor(String nome, long cpf, String email, String password) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
+        this.password = password;
     }
     
     public Professor(){

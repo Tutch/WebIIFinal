@@ -6,7 +6,9 @@
 package DAO;
 
 
+import Entidades.Aluno;
 import Entidades.Professor;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -18,7 +20,7 @@ import org.hibernate.Transaction;
  */
 public class ProfessorDAO {
     
-    public void create(Professor a){
+    static public void create(Professor a){
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
@@ -31,7 +33,7 @@ public class ProfessorDAO {
         }
     }
     
-    public List<Professor> read(){
+    static public List<Professor> read(){
         List <Professor> resultado;
         try {
             Session session = BaseDAO.openSession();
@@ -45,17 +47,17 @@ public class ProfessorDAO {
         return null;
     }
     
-    public void update(Professor a){
+    static public void update(Professor a){
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
-                Professor up = session.get(Professor.class, a.getCodigo());
-                up.setCpf(a.getCpf());
-                up.setNome(a.getNome());
-                up.setEmail(a.getEmail());
-                up.setPassword(a.getPassword());
+//                Professor up = session.get(Professor.class, a.getCodigo());
+//                up.setCpf(a.getCpf());
+//                up.setNome(a.getNome());
+//                up.setEmail(a.getEmail());
+//                up.setPassword(a.getPassword());
                 Transaction trans = session.beginTransaction();
-                session.saveOrUpdate(up);
+                session.saveOrUpdate(a);
                 trans.commit();
             }
         } catch (Exception e) {
@@ -63,17 +65,50 @@ public class ProfessorDAO {
         }
     }
     
-    public void delete(Long codigo){
+    static public void delete(Professor a){
         try {
             Session session = BaseDAO.openSession();
             if(session != null){
                 Transaction tx = session.beginTransaction();
-                Professor a = session.get(Professor.class, codigo);
                 session.delete(a);
                 tx.commit();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    static public List<Aluno> getAllAlunos(Professor a){
+       List<Aluno> alunos;
+        try {
+            Session session = BaseDAO.openSession();
+            if(session != null){
+                Transaction tx = session.beginTransaction();
+                Query query = session.createQuery("from Aluno A WHERE A.instrutor=" + a.getCodigo());
+                alunos = query.list();
+                return alunos;
+            }
+        } catch (Exception e) {
+        }
+       return null;
+    }
+    static public boolean authenticateUser(String nome, String password){
+        try {
+            Session session = BaseDAO.openSession();
+            if(session != null){
+                Transaction tx = session.beginTransaction();
+                Query query = session.createQuery("from Professor p WHERE p.nome=:nome")
+                .setParameter("nome", nome);
+                List<Professor> professores = query.list();
+                for(Professor professor:professores){
+                    if(professor.getPassword().hashCode() == password.hashCode()){
+                        return true;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

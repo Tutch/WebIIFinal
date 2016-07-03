@@ -17,7 +17,7 @@ import org.hibernate.Transaction;
  */
 public class FichaDAO {
     
-    public void create(Ficha a){
+    static public void create(Ficha a){
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
@@ -30,7 +30,7 @@ public class FichaDAO {
         }
     }
     
-    public List<Ficha> read(){
+    static public List<Ficha> read(){
         List <Ficha> resultado;
         try {
             Session session = BaseDAO.openSession();
@@ -44,7 +44,7 @@ public class FichaDAO {
         return null;
     }
     
-    public void update(Ficha a){
+    static public void update(Ficha a){
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
@@ -60,7 +60,7 @@ public class FichaDAO {
         }
     }
     
-    public void delete(Long codigo){
+    static public void delete(Long codigo){
         try {
             Session session = BaseDAO.openSession();
             if(session != null){
