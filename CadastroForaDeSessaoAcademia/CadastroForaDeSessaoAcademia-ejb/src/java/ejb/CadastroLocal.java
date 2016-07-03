@@ -14,5 +14,5 @@ import javax.ejb.Local;
  */
 @Local
 public interface CadastroLocal {
-    public boolean cadastraAluno();
+    public boolean cadastraAluno(Aluno a);
 }

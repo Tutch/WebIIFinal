@@ -27,6 +27,7 @@ public class BaseDAO {
             Session session = sessionFactory.openSession();
             return session;
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }

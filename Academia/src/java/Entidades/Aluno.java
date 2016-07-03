@@ -28,6 +28,7 @@ public class Aluno {
     @SequenceGenerator(name = "aluno_sequence_generator", sequenceName = "aluno_id_seq", allocationSize = 1)
     private long codigo;
     private String nome;
+    @Column(unique=true)
     private long cpf;
     private char sexo;
     private boolean atestado;

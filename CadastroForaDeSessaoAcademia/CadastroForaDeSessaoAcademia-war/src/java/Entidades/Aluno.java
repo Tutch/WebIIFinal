@@ -5,22 +5,31 @@
  */
 package Entidades;
 
-import java.util.Date;
+import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
 
+/**
+ *
+ * @author Yuri
+ */
 @Entity
 public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "aluno_sequence_generator")
     @SequenceGenerator(name = "aluno_sequence_generator", sequenceName = "aluno_id_seq", allocationSize = 1)
-    private Long codigo;
+    private long codigo;
     private String nome;
-    private Long cpf;
+    @Column(unique=true)
+    private long cpf;
     private char sexo;
     private boolean atestado;
     private String endereco;
@@ -53,11 +62,11 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public Long getCpf() {
+    public long getCpf() {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(long cpf) {
         this.cpf = cpf;
     }
 
@@ -100,10 +109,11 @@ public class Aluno {
     public void setEmail(String email) {
         this.email = email;
     } 
+    
     public Aluno(){
         
     }
-    public Aluno(String nome, Long cpf, char sexo, boolean atestado, String endereco, Date nascimento, String email) {
+    public Aluno(String nome, long cpf, char sexo, boolean atestado, String endereco, Date nascimento, String email, String password) {
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;
@@ -111,6 +121,7 @@ public class Aluno {
         this.endereco = endereco;
         this.nascimento = nascimento;
         this.email = email;
+        this.password = password;
     }
     
     

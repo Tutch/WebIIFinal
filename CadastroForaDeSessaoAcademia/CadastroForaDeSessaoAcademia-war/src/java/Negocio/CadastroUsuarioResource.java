@@ -9,6 +9,7 @@ import Entidades.Aluno;
 import ejb.CadastroLocal;
 import ejb.CadastroLocal;
 import ejb.CadastroLocal;
+import java.sql.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -54,14 +55,57 @@ public class CadastroUsuarioResource {
     @Consumes("application/x-www-form-urlencoded")
     @Path("cadastrar")
     public String casdastrarUsuario(@FormParam("nome") String nome,@FormParam("cpf") String cpf,@FormParam("endereco") String endereco,@FormParam("password") String password,@FormParam("sexo") String sexo,@FormParam("nascimento") String nascimento,@FormParam("email") String email){     
-        return "";
+        if(nome==null || nome.trim().equalsIgnoreCase("")){
+            return "<raiz><msg>false</msg></raiz>";
+        }
+        if(cpf==null || cpf.trim().equalsIgnoreCase("")){
+            return "<raiz><msg>false</msg></raiz>";
+        }
+        if(endereco==null || endereco.trim().equalsIgnoreCase("")){
+            return "<raiz><msg>false</msg></raiz>";
+        }
+        if(password==null || password.trim().equalsIgnoreCase("")){
+            return "<raiz><msg>false</msg></raiz>";
+        }
+        if(sexo==null || sexo.trim().equalsIgnoreCase("") || (sexo.charAt(0)!='M' && sexo.charAt(0)!='F')){
+            return "<raiz><msg>false</msg></raiz>";
+        }
+        if(nascimento==null || nascimento.trim().equalsIgnoreCase("")){
+            return "<raiz><msg>false</msg></raiz>";
+        }
+        if(email==null || email.trim().equalsIgnoreCase("")){
+            return "<raiz><msg>false</msg></raiz>";
+        }
+        nome=retiraXSS(nome);
+        endereco=retiraXSS(endereco);
+        email=retiraXSS(email);
+        //password nao precisa checar xss
+        int dia=0;
+        int mes=0;
+        int ano=0;
+        long cpfLong=0;
+        char sexoChar = sexo.charAt(0);
+        try{
+            dia = Integer.parseInt(nascimento.substring(0, 2));
+            mes = Integer.parseInt(nascimento.substring(2, 4));
+            ano = Integer.parseInt(nascimento.substring(4));
+            cpfLong=Long.parseLong(cpf);
+        }catch(Exception e){
+            return "<raiz><msg>false</msg></raiz>";
+        }
+        Date data = new Date(ano, mes, dia);
+        Aluno a = new Aluno(nome, cpfLong, sexoChar, false, endereco, data, email, password);
+        boolean result=cadastro1.cadastraAluno(a);
+        return "<raiz><msg>"+result+"</msg></raiz>";
     }
     
     @GET
     @Produces(MediaType.APPLICATION_XML)
     @Path("testa")
     public String testa(){
-        return "<raiz><msg>"+cadastro1.cadastraAluno()+"</msg></raiz>";
+        java.sql.Date data = new Date(1994, 12, 22);
+        Aluno a = new Aluno("yuriboy", 0, 'M', false, "casa do caralho", data, "meninoyuri@gmail.com", "242424");
+        return "<raiz><msg>"+cadastro1.cadastraAluno(a)+"</msg></raiz>";
     }
     
     
@@ -79,6 +123,14 @@ public class CadastroUsuarioResource {
     @PUT
     @Consumes(MediaType.APPLICATION_XML)
     public void putXml(String content) {
+    }
+    
+    public String retiraXSS(String a){
+        String b = a.replace("<script>", "");
+        b=b.replace("</script>", "");
+        b=b.replace("<", "");
+        b=b.replace(">", "");
+        return b;
     }
 
     private CadastroLocal lookupCadastroLocal() {

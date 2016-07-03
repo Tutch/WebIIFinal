@@ -806,8 +806,8 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.javassist-3.20.0-GA.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.javax.inject-1.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar}" todir="${build.classes.dir}"/>
-        <copyfiles files="${file.reference.jboss-logging-3.3.0.Final.jar}" todir="${build.classes.dir}"/>
         <copyfiles files="${file.reference.jsr250-api-1.0.jar}" todir="${build.classes.dir}"/>
+        <copyfiles files="${file.reference.postgresql-9.4.1207.jre6.jar}" todir="${build.classes.dir}"/>
     </target>
     <target if="is.server.weblogic" name="-library-inclusion-in-archive-weblogic">
         <basename file="${file.reference.antlr-2.7.7.jar}" property="manifest.file.reference.antlr-2.7.7.jar"/>
@@ -823,8 +823,8 @@ exists or setup the property manually. For example like this:
         <basename file="${file.reference.javassist-3.20.0-GA.jar}" property="manifest.file.reference.javassist-3.20.0-GA.jar"/>
         <basename file="${file.reference.javax.inject-1.jar}" property="manifest.file.reference.javax.inject-1.jar"/>
         <basename file="${file.reference.jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar}" property="manifest.file.reference.jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar"/>
-        <basename file="${file.reference.jboss-logging-3.3.0.Final.jar}" property="manifest.file.reference.jboss-logging-3.3.0.Final.jar"/>
         <basename file="${file.reference.jsr250-api-1.0.jar}" property="manifest.file.reference.jsr250-api-1.0.jar"/>
+        <basename file="${file.reference.postgresql-9.4.1207.jre6.jar}" property="manifest.file.reference.postgresql-9.4.1207.jre6.jar"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
             <attribute name="Extension-List" value="jar-1 jar-2 jar-3 jar-4 jar-5 jar-6 jar-7 jar-8 jar-9 jar-10 jar-11 jar-12 jar-13 jar-14 jar-15 "/>
             <attribute name="jar-1-Extension-Name" value="${manifest.file.reference.antlr-2.7.7.jar}"/>
@@ -840,8 +840,8 @@ exists or setup the property manually. For example like this:
             <attribute name="jar-11-Extension-Name" value="${manifest.file.reference.javassist-3.20.0-GA.jar}"/>
             <attribute name="jar-12-Extension-Name" value="${manifest.file.reference.javax.inject-1.jar}"/>
             <attribute name="jar-13-Extension-Name" value="${manifest.file.reference.jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar}"/>
-            <attribute name="jar-14-Extension-Name" value="${manifest.file.reference.jboss-logging-3.3.0.Final.jar}"/>
-            <attribute name="jar-15-Extension-Name" value="${manifest.file.reference.jsr250-api-1.0.jar}"/>
+            <attribute name="jar-14-Extension-Name" value="${manifest.file.reference.jsr250-api-1.0.jar}"/>
+            <attribute name="jar-15-Extension-Name" value="${manifest.file.reference.postgresql-9.4.1207.jre6.jar}"/>
         </manifest>
     </target>
     <target depends="compile" name="library-inclusion-in-manifest">
@@ -858,8 +858,8 @@ exists or setup the property manually. For example like this:
         <copyfiles files="${file.reference.javassist-3.20.0-GA.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.javax.inject-1.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar}" todir="${dist.ear.dir}/lib"/>
-        <copyfiles files="${file.reference.jboss-logging-3.3.0.Final.jar}" todir="${dist.ear.dir}/lib"/>
         <copyfiles files="${file.reference.jsr250-api-1.0.jar}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${file.reference.postgresql-9.4.1207.jre6.jar}" todir="${dist.ear.dir}/lib"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
     <target name="-copy-meta-inf">

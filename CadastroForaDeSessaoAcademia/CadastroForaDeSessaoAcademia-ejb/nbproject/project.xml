@@ -18,8 +18,8 @@
             <included-library dirs="200">file.reference.javassist-3.20.0-GA.jar</included-library>
             <included-library dirs="200">file.reference.javax.inject-1.jar</included-library>
             <included-library dirs="200">file.reference.jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar</included-library>
-            <included-library dirs="200">file.reference.jboss-logging-3.3.0.Final.jar</included-library>
             <included-library dirs="200">file.reference.jsr250-api-1.0.jar</included-library>
+            <included-library dirs="200">file.reference.postgresql-9.4.1207.jre6.jar</included-library>
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>

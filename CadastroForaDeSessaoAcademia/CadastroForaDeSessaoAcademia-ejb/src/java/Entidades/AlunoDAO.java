@@ -17,16 +17,16 @@ import org.hibernate.Transaction;
  */
 public class AlunoDAO {
     
-    public void create(Aluno a) throws Exception{
-        Session session = BaseDAO.openSession();
-        if(session !=null){
-            Transaction trans = session.beginTransaction();
-            session.save(a);
-            trans.commit();
-        }
+    static public void create(Aluno a) throws Exception{
+            Session session = BaseDAO.openSession();
+            if(session !=null){
+                Transaction trans = session.beginTransaction();
+                session.save(a);
+                trans.commit();
+            }
     }
     
-    public List<Aluno> read(){
+    static public List<Aluno> read(){
         List <Aluno> resultado;
         try {
             Session session = BaseDAO.openSession();
@@ -40,19 +40,12 @@ public class AlunoDAO {
         return null;
     }
     
-    public void update(Aluno a){
+    static public void update(Aluno a){
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
-                Aluno up = session.get(Aluno.class, a.getCodigo());
-                up.setCpf(a.getCpf());
-                up.setNome(a.getNome());
-                up.setEndereco(a.getEndereco());
-                up.setEmail(a.getEmail());
-                up.setAtestado(a.isAtestado());
-                up.setPassword(a.getPassword());
                 Transaction trans = session.beginTransaction();
-                session.saveOrUpdate(up);
+                session.saveOrUpdate(a);
                 trans.commit();
             }
         } catch (Exception e) {
@@ -60,17 +53,36 @@ public class AlunoDAO {
         }
     }
     
-    public void delete(Long codigo){
+    static public void delete(Aluno a){
         try {
             Session session = BaseDAO.openSession();
             if(session != null){
                 Transaction tx = session.beginTransaction();
-                Aluno a = session.get(Aluno.class, codigo);
                 session.delete(a);
                 tx.commit();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    static public boolean authenticateUser(String nome, String password){
+        try {
+            Session session = BaseDAO.openSession();
+            if(session != null){
+                Transaction tx = session.beginTransaction();
+                Query query = session.createQuery("from Aluno a WHERE a.nome=:nome")
+                .setParameter("nome", nome);
+                List<Aluno> alunos = query.list();
+                for(Aluno aluno:alunos){
+                    if(aluno.getPassword().hashCode() == password.hashCode()){
+                        return true;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

@@ -5,6 +5,7 @@
  */
 package Entidades;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,7 @@ public class Professor {
     @SequenceGenerator(name = "professor_sequence_generator", sequenceName = "professor_id_seq", allocationSize = 1)
     private Long codigo;
     private String nome;
+    @Column(unique=true)
     private long cpf;
     private String email;
     private String password;

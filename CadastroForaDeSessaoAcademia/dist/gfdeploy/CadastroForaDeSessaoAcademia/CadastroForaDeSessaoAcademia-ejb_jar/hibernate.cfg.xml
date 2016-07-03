@@ -12,5 +12,7 @@
   <property name="hibernate.show_sql">true</property>
   <property name="hibernate.format_sql">true</property>
  
+ 
+  <mapping class="Entidades.Aluno" />
  </session-factory>
 </hibernate-configuration>

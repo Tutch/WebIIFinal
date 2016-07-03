@@ -7,7 +7,7 @@ package ejb;
 
 import Entidades.AlunoDAO;
 import Entidades.Aluno;
-import java.util.Date;
+import java.sql.Date;
 import javax.ejb.Stateless;
 /**
  *
@@ -17,15 +17,12 @@ import javax.ejb.Stateless;
 public class Cadastro implements CadastroLocal {
     
     @Override
-    public boolean cadastraAluno(){
-        Aluno aluno = new Aluno("eas", Long.MIN_VALUE, 'c', true, "egas", new Date(), "ehas");
-        AlunoDAO dao = new AlunoDAO();
+    public boolean cadastraAluno(Aluno aluno){
         try{
-            dao.create(aluno);
+            AlunoDAO.create(aluno);
         }catch(Exception e){
             return false;
         }
-        System.out.println("ta aqui");
         return true;
     }
     // Add business logic below. (Right-click in editor and choose
