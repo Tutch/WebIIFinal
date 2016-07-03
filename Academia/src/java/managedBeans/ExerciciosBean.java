@@ -26,6 +26,7 @@ public class ExerciciosBean {
         gruposMusculo = new ArrayList<>();
         gruposMusculo.add("Biceps");
         gruposMusculo.add("Triceps");
+        gruposMusculo.add("Peito");
         gruposMusculo.add("Pernas");
         gruposMusculo.add("Abdominal");
         gruposMusculo.add("Costas Superior");

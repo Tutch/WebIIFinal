@@ -9,6 +9,7 @@ import DAO.AlunoDAO;
 import DAO.ProfessorDAO;
 import javax.annotation.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import util.FilterInput;
 
 /**
  *
@@ -47,14 +48,19 @@ public class AuthenticateBean {
     public String authenticate(){
         System.out.println("Login " + getLogin() + "/" + login);
         System.out.println("PW " + getPassword() + "/" + password);
-        if(AlunoDAO.authenticateUser(login, password) == true){
-            return "Authenticated";
-        }else{
-            if(ProfessorDAO.authenticateUser(login, password) == true){
-                return "AuthenticatedProfessor";
+        
+        if(FilterInput.noDangerousCharacters(login) && FilterInput.noDangerousCharacters(password)){
+            if(AlunoDAO.authenticateUser(login, password) == true){
+                return "Authenticated";
             }else{
-                return "Failed";
+                if(ProfessorDAO.authenticateUser(login, password) == true){
+                    return "AuthenticatedProfessor";
+                }else{
+                    return "Failed";
+                }
             }
         }
+        
+        return "Failed";
     }
 }
