@@ -7,7 +7,7 @@
    <package name="helloworld" extends="struts-default">
      
       <action name="verificaLogin" class="Actions.ActionVerificaLogin" method="execute">
-            <result name="sucesso">/cadastro/cadastroUsuario.jsp</result>
+            <result name="sucesso">../</result>
             <result name="erro">/cadastro/cadastroUsuario.jsp</result>
       </action>
 
