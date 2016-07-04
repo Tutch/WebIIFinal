@@ -27,11 +27,11 @@ public class teste {
     public static void main(String[] args) {
         Date nasc = Date.valueOf(LocalDate.now());
         Aluno a;
-        a = new Aluno("Cara pequeno 2", 02322344241l, 'M', false, "Rua do teste", nasc, "Email Teste", "teste");
+        a = new Aluno("Cara pequeno 2", 02231112141l, 'M', false, "Rua do teste", nasc, "Email Teste", "teste");
         AlunoDAO.create(a);
         
         Exercicios b = new Exercicios();
-        b.setNome("Supino");
+        b.setNome("Supino Birl2");
         b.setDescricao("biiiirl");
         b.setMusculo("Biceps");
         
