@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-<<<<<<< HEAD
  <session-factory>
   <property name="hibernate.connection.username">postgres</property>
   <property name="hibernate.connection.password">222610</property>
   <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-  <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/academia2</property>
+  <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/academia</property>
   <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
   <property name="hibernate.hbm2ddl.auto">update</property>
   <property name="hibernate.show_sql">true</property>
@@ -20,21 +19,3 @@
   <mapping class="Entidades.ExercicioFicha" />
  </session-factory>
 </hibernate-configuration>
-=======
-  <session-factory>
-    <property name="hibernate.connection.username">postgres</property>
-    <property name="hibernate.connection.password">admin0101</property>
-    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/academia</property>
-    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-    <property name="hibernate.hbm2ddl.auto">update</property>
-    <property name="hibernate.show_sql">true</property>
-    <property name="hibernate.format_sql">true</property>
-    <mapping class="Entidades.Aluno"/>
-    <mapping class="Entidades.Exercicios"/>
-    <mapping class="Entidades.Ficha"/>
-    <mapping class="Entidades.Professor"/>
-    <mapping class="Entidades.ExercicioFicha"/>
-  </session-factory>
-</hibernate-configuration>
->>>>>>> a61ef069d6fea225c114db1a2eb7efbee7fadba7
