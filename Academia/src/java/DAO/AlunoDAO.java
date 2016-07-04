@@ -85,13 +85,13 @@ public class AlunoDAO {
         return null;
     }
     
-    static public boolean authenticateUser(String nome, String password){
+    static public boolean authenticateUser(String cpf, String password){
         try {
             Session session = BaseDAO.openSession();
             if(session != null){
                 Transaction tx = session.beginTransaction();
-                Query query = session.createQuery("from Aluno a WHERE a.nome=:nome")
-                .setParameter("nome", nome);
+                Query query = session.createQuery("from Aluno a WHERE a.cpf=:cpf")
+                .setParameter("cpf", cpf);
                 List<Aluno> alunos = query.list();
                 for(Aluno aluno:alunos){
                     if(aluno.getPassword().hashCode() == password.hashCode()){

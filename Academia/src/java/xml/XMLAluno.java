@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class XMLAluno {
     private Long codigo;
     private String nome;
-    private Long cpf;
+    private String cpf;
     private char sexo;
     private boolean atestado;
     private String endereco;
@@ -47,11 +47,11 @@ public class XMLAluno {
         this.nome = nome;
     }
 
-    public Long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

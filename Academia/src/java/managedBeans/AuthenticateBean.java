@@ -45,10 +45,7 @@ public class AuthenticateBean {
         this.password = password;
     }
     
-    public String authenticate(){
-        System.out.println("Login " + getLogin() + "/" + login);
-        System.out.println("PW " + getPassword() + "/" + password);
-        
+    public String authenticate(){        
         if(FilterInput.noDangerousCharacters(login) && FilterInput.noDangerousCharacters(password)){
             if(AlunoDAO.authenticateUser(login, password) == true){
                 return "Authenticated";

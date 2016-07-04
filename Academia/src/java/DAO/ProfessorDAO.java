@@ -92,13 +92,13 @@ public class ProfessorDAO {
         }
        return null;
     }
-    static public boolean authenticateUser(String nome, String password){
+    static public boolean authenticateUser(String cpf, String password){
         try {
             Session session = BaseDAO.openSession();
             if(session != null){
                 Transaction tx = session.beginTransaction();
-                Query query = session.createQuery("from Professor p WHERE p.nome=:nome")
-                .setParameter("nome", nome);
+                Query query = session.createQuery("from Professor p WHERE p.cpf=:cpf")
+                .setParameter("cpf", cpf);
                 List<Professor> professores = query.list();
                 for(Professor professor:professores){
                     if(professor.getPassword().hashCode() == password.hashCode()){

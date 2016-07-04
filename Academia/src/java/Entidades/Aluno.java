@@ -29,7 +29,7 @@ public class Aluno {
     private long codigo;
     private String nome;
     @Column(unique=true)
-    private long cpf;
+    private String cpf;
     private char sexo;
     private boolean atestado;
     private String endereco;
@@ -66,11 +66,11 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -125,7 +125,7 @@ public class Aluno {
     public Aluno(){
         
     }
-    public Aluno(String nome, long cpf, char sexo, boolean atestado, String endereco, Date nascimento, String email, String password) {
+    public Aluno(String nome, String cpf, char sexo, boolean atestado, String endereco, Date nascimento, String email, String password) {
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;
