@@ -1,0 +1,25 @@
+CREATE SEQUENCE ITEM_id_seq;
+
+CREATE TABLE "item"
+(
+name text,
+description text,
+id integer NOT NULL DEFAULT nextval('ITEM_id_seq'::regclass),
+CONSTRAINT "PK_ITEM" PRIMARY KEY (id)
+)
+WITH (
+OIDS=FALSE
+);
+
+CREATE SEQUENCE USER_id_seq;
+
+CREATE TABLE "usuario"
+(
+name text,
+password text,
+id integer NOT NULL DEFAULT nextval('USER_id_seq'::regclass),
+CONSTRAINT "PK" PRIMARY KEY (id)
+)
+WITH (
+OIDS=FALSE
+);
