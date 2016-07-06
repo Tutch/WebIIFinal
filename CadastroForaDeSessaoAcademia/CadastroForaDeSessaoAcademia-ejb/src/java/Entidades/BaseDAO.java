@@ -16,8 +16,7 @@ import org.hibernate.cfg.Configuration;
  * @author Yuri
  */
 public class BaseDAO {
-     public static Session openSession(){
-        try {
+     public static Session openSession() throws Exception{
             Configuration configuration = new Configuration();
             configuration.configure();
             StandardServiceRegistry standardRegistry= new StandardServiceRegistryBuilder()
@@ -26,9 +25,5 @@ public class BaseDAO {
             SessionFactory sessionFactory = configuration.buildSessionFactory(standardRegistry);
             Session session = sessionFactory.openSession();
             return session;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 }
