@@ -20,17 +20,19 @@ import org.hibernate.Transaction;
  */
 public class ProfessorDAO {
     
-    static public void create(Professor a){
+    static public boolean create(Professor a){
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
                 Transaction trans = session.beginTransaction();
                 session.save(a);
                 trans.commit();
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
     
     static public List<Professor> read(){
@@ -47,7 +49,7 @@ public class ProfessorDAO {
         return null;
     }
     
-    static public void update(Professor a){
+    static public boolean update(Professor a){
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
@@ -59,23 +61,27 @@ public class ProfessorDAO {
                 Transaction trans = session.beginTransaction();
                 session.saveOrUpdate(a);
                 trans.commit();
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
     
-    static public void delete(Professor a){
+    static public boolean delete(Professor a){
         try {
             Session session = BaseDAO.openSession();
             if(session != null){
                 Transaction tx = session.beginTransaction();
                 session.delete(a);
                 tx.commit();
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
     
     static public List<Aluno> getAllAlunos(Professor a){

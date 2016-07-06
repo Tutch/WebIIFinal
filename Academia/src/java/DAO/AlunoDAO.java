@@ -18,17 +18,20 @@ import org.hibernate.Transaction;
  */
 public class AlunoDAO {
     
-    static public void create(Aluno a){
+    static public boolean create(Aluno a){
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
                 Transaction trans = session.beginTransaction();
                 session.save(a);
                 trans.commit();
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
+        return false;
     }
     
     static public List<Aluno> read(){
@@ -45,30 +48,34 @@ public class AlunoDAO {
         return null;
     }
     
-    static public void update(Aluno a){
+    static public boolean update(Aluno a){
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
                 Transaction trans = session.beginTransaction();
                 session.saveOrUpdate(a);
                 trans.commit();
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
     
-    static public void delete(Aluno a){
+    static public boolean delete(Aluno a){
         try {
             Session session = BaseDAO.openSession();
             if(session != null){
                 Transaction tx = session.beginTransaction();
                 session.delete(a);
                 tx.commit();
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
     static public List<Ficha> getFicha(Aluno a){
         try {
