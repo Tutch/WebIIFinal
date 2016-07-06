@@ -3,17 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Sergio%20Marinho/Documents/NetBeansProjects/WebIIFinal/Seguranca%20v3/Seguranca/src/java/Util/Seguranca.java</file>
-            <file>file:/C:/Users/Sergio%20Marinho/Documents/NetBeansProjects/WebIIFinal/Seguranca%20v3/Seguranca/src/java/DAO/UserDAO.java</file>
-            <file>file:/C:/Users/Sergio%20Marinho/Documents/NetBeansProjects/WebIIFinal/Seguranca%20v3/Seguranca/web/erroOperation.jsp</file>
-            <file>file:/C:/Users/Sergio%20Marinho/Documents/NetBeansProjects/WebIIFinal/Seguranca%20v3/Seguranca/web/WEB-INF/paginaProduto.jsp</file>
-            <file>file:/C:/Users/Sergio%20Marinho/Documents/NetBeansProjects/WebIIFinal/Seguranca%20v3/Seguranca/web/index.jsp</file>
-            <file>file:/C:/Users/Sergio%20Marinho/Documents/NetBeansProjects/WebIIFinal/Seguranca%20v3/Seguranca/web/erroUser.jsp</file>
-            <file>file:/C:/Users/Sergio%20Marinho/Documents/NetBeansProjects/WebIIFinal/Seguranca%20v3/Seguranca/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Sergio%20Marinho/Documents/NetBeansProjects/WebIIFinal/Seguranca%20v3/Seguranca/src/java/DAO/ItemDAO.java</file>
-            <file>file:/C:/Users/Sergio%20Marinho/Documents/NetBeansProjects/WebIIFinal/Seguranca%20v3/Seguranca/web/WEB-INF/buscarProduto.jsp</file>
-            <file>file:/C:/Users/Sergio%20Marinho/Documents/NetBeansProjects/WebIIFinal/Seguranca%20v3/Seguranca/src/java/Servlet/buscarProdutoServlet.java</file>
-            <file>file:/C:/Users/Sergio%20Marinho/Documents/NetBeansProjects/WebIIFinal/Seguranca%20v3/Seguranca/src/java/Servlet/buscarProdutosServlet.java</file>
+            <file>file:/C:/Users/John%20Doe/Documents/NetBeansProjects/helpme/WebIIFinal/Seguranca%20v3/Seguranca/web/WEB-INF/atualizarUsuario.jsp</file>
+            <file>file:/C:/Users/John%20Doe/Documents/NetBeansProjects/helpme/WebIIFinal/Seguranca%20v3/Seguranca/web/WEB-INF/cadastrarUsuario.jsp</file>
+            <file>file:/C:/Users/John%20Doe/Documents/NetBeansProjects/helpme/WebIIFinal/Seguranca%20v3/Seguranca/web/WEB-INF/deletarUsuario.jsp</file>
+            <file>file:/C:/Users/John%20Doe/Documents/NetBeansProjects/helpme/WebIIFinal/Seguranca%20v3/Seguranca/web/index.jsp</file>
+            <file>file:/C:/Users/John%20Doe/Documents/NetBeansProjects/helpme/WebIIFinal/Seguranca%20v3/Seguranca/web/WEB-INF/atualizarProduto.jsp</file>
+            <file>file:/C:/Users/John%20Doe/Documents/NetBeansProjects/helpme/WebIIFinal/Seguranca%20v3/Seguranca/web/WEB-INF/cadastroProduto.jsp</file>
+            <file>file:/C:/Users/John%20Doe/Documents/NetBeansProjects/helpme/WebIIFinal/Seguranca%20v3/Seguranca/web/WEB-INF/deletarProduto.jsp</file>
+            <file>file:/C:/Users/John%20Doe/Documents/NetBeansProjects/helpme/WebIIFinal/Seguranca%20v3/Seguranca/web/WEB-INF/buscarProduto.jsp</file>
+            <file>file:/C:/Users/John%20Doe/Documents/NetBeansProjects/helpme/WebIIFinal/Seguranca%20v3/Seguranca/web/WEB-INF/menuInicial.jsp</file>
         </group>
     </open-files>
 </project-private>

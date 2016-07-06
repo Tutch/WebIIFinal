@@ -8,20 +8,6 @@ and open the template in the editor.
     Author     : Yuri
 */
 
-.button {
-  font: bold 11px Arial;
-  text-decoration: none;
-  background-color: #EEEEEE;
-  color: #333333;
-  padding: 2px 6px 2px 6px;
-  border-top: 1px solid #CCCCCC;
-  border-right: 1px solid #333333;
-  border-bottom: 1px solid #333333;
-  border-left: 1px solid #CCCCCC;
-  border-radius: 10px;
-  display: block;
-  width: 100px;
-}
 
 body{
 	font-family: 'Lato', sans-serif;
@@ -54,12 +40,6 @@ body{
 	padding: 28px;
 }
 
-#mainPageForm input{
-	font-size: 16px;
-  border-radius: 2px;
-	display:block; width:100%;padding:0;border-width:0;
-}
-
 ::-webkit-input-placeholder {
    font-weight: bold;
    color: #5c5c5c;
@@ -89,19 +69,27 @@ body{
 	margin-bottom: 22px;
 }
 
-#mainPageForm input[type="text"]{
+input[type="text"]{
+
+  font-size: 16px;
+  border-radius: 2px;
+  display:block; width:100%;
+
   border:0;
   padding:0;
   margin:0;
 }
 
-#mainPageForm input[type="password"]{
+input[type="password"]{
+  font-size: 16px;
+  border-radius: 2px;
+  display:block; width:100%;
   border:0;
   padding:0;
   margin:0;
 }
 
-#formLogin div{
+form div{
   padding: 8px 0px 8px 10px;
   border:1px solid LightGrey;
   margin-bottom: 16px;
@@ -109,14 +97,20 @@ body{
   outline: red;
 }
 
-#mainPageForm input:focus{
+input[type="text"]:focus{
+  margin: -8px 0px -8px -10px;
+  padding: 8px 0px 8px 10px;
+  outline-color: #42a7ab;
+}
+
+input[type="password"]:focus{
   margin: -8px 0px -8px -10px;
   padding: 8px 0px 8px 10px;
   outline-color: #42a7ab;
 }
 
 
-#mainPageForm input[type="submit"]{
+input[type="submit"]{
 	font-size: 16px;
   font-weight: 300;
 	background-color: #4ebec2;
@@ -125,9 +119,70 @@ body{
 	border-color: transparent;
   border-radius: 4px;
   padding: 8px 0px 8px 0px;
+  margin-top: 8px;
 }
 
-#mainPageForm input[type="submit"]:hover{
+.button{
+  display: block;
+  font-size: 16px;
+  width: 100%;
+  font-weight: 300;
+  background-color: #e0a053;
+  color: white;
+  border-color: transparent;
+  border-radius: 4px;
+  padding: 8px 0px 8px 0px;
+  text-align: center;
+  margin-top: 8px;
+}
+
+
+a{
+  text-decoration: none;
+}
+
+.button:hover{
+  background-color: #f9b04e;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover{
   background-color: #42a7ab;
   cursor: pointer;
+}
+
+#menuInicial{
+  background-color: white;
+  width: 340px;
+  margin: 0 auto;
+  margin-top: 280px;
+  border-radius: 6px;
+  padding: 28px;
+}
+
+#menuInicial p:last-child{
+  margin-top: 40px;
+}
+
+#menuInicial form{
+  position:relative;
+  width: 0;
+  padding:0;
+  margin:0;
+  width:100%;
+  text-align: right;
+}
+
+#menuInicial input[type="submit"]{
+  margin-top: 50px;
+}
+
+
+form{
+  background-color: white;
+  width: 340px;
+  margin: 0 auto;
+  margin-top: 280px;
+  border-radius: 6px;
+  padding: 28px;
 }
