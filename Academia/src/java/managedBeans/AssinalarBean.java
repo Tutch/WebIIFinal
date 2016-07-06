@@ -57,11 +57,18 @@ public class AssinalarBean {
     public void setProfessores(List<Professor> professores) {
         this.professores = professores;
     }
-    
-    public void cadastrarProfessor(){
+    public void merda(){
+        System.out.println("merda");
+    }
+    public String cadastrarProfessor(){
         System.out.println("entrei");
-        aluno.setInstrutor(professor);
-        AlunoDAO.update(aluno);
+        try {
+            aluno.setInstrutor(professor);
+            AlunoDAO.update(aluno);
+            return "sucesso";
+        } catch (Exception e) {
+            return "erro";
+        }
     }
     
 }
