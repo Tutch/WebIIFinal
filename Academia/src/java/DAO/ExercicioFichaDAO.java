@@ -17,17 +17,19 @@ import org.hibernate.Transaction;
  */
 public class ExercicioFichaDAO {
     
-    static public void create(ExercicioFicha ef){
+    static public boolean create(ExercicioFicha ef){
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
                 Transaction trans = session.beginTransaction();
                 session.save(ef);
                 trans.commit();
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
     
     static public List<ExercicioFicha> read(){
@@ -44,29 +46,33 @@ public class ExercicioFichaDAO {
         return null;
     }
     
-    static public void update(ExercicioFicha ef){;
+    static public boolean update(ExercicioFicha ef){;
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
                 Transaction trans = session.beginTransaction();
                 session.saveOrUpdate(ef);
                 trans.commit();
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
     
-    static public void delete(ExercicioFicha ef){
+    static public boolean delete(ExercicioFicha ef){
         try {
             Session session = BaseDAO.openSession();
             if(session != null){
                 Transaction tx = session.beginTransaction();
                 session.delete(ef);
                 tx.commit();
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
 }

@@ -18,17 +18,19 @@ import org.hibernate.Transaction;
  */
 public class ExerciciosDAO {
     
-    static public void create(Exercicios a){
+    static public boolean create(Exercicios a){
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
                 Transaction trans = session.beginTransaction();
                 session.save(a);
                 trans.commit();
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
     
     static public List<Exercicios> read(){
@@ -45,29 +47,33 @@ public class ExerciciosDAO {
         return null;
     }
     
-    static  public void update(Exercicios a){
+    static  public boolean update(Exercicios a){
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
                 Transaction trans = session.beginTransaction();
                 session.saveOrUpdate(a);
                 trans.commit();
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
     
-    public void delete(Exercicios a){
+    public boolean delete(Exercicios a){
         try {
             Session session = BaseDAO.openSession();
             if(session != null){
                 Transaction tx = session.beginTransaction();
                 session.delete(a);
                 tx.commit();
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
 }
