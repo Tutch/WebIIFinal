@@ -14,14 +14,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Deletar Produto</title>
+        <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
     </head>
     <body>
         <form action="deletarProdutoServlet" method="post" accept-charset="utf-8">
-            <div id="formLogin">
+            <div>
                 <input type="text" name="id" id="vNome" placeholder="ID">
-                <br>
-                <input type="submit" name="buscar" value="Deletar" id="login">
             </div>
+            <input type="submit" name="buscar" value="Deletar" id="login">        
 	</form>
     </body>
 </html>
