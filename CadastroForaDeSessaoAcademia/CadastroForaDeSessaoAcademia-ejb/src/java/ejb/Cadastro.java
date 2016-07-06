@@ -21,7 +21,7 @@ public class Cadastro implements CadastroLocal {
         try{
             AlunoDAO.create(aluno);
         }catch(Exception e){
-            System.out.println("execao é: "+e.getClass().getSimpleName());
+            e.printStackTrace();
             return false;
         }
         return true;

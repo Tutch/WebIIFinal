@@ -6,6 +6,7 @@
 package Entidades;
 
 import Entidades.Aluno;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -24,6 +25,8 @@ public class AlunoDAO {
                 session.save(a);
                 trans.commit();
             }
+            ArrayList<Aluno> al = (ArrayList<Aluno>) AlunoDAO.read();
+            Aluno alu = al.get(0);
     }
     
     static public List<Aluno> read(){
