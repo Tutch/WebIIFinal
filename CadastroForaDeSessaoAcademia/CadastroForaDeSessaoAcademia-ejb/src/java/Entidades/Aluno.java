@@ -5,6 +5,7 @@
  */
 package Entidades;
 
+import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,25 +17,28 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
-import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author Yuri
  */
 @Entity
-public class Aluno {
+public class Aluno implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "aluno_sequence_generator")
     @SequenceGenerator(name = "aluno_sequence_generator", sequenceName = "aluno_id_seq", allocationSize = 1)
     private long codigo;
     private String nome;
     @Column(unique=true)
-    private long cpf;
+    private String cpf;
     private char sexo;
     private boolean atestado;
     private String endereco;
     private Date nascimento;
+    
+    @ManyToOne(targetEntity = Professor.class)
+    @JoinColumn(name="codigo_professor")
+    private Professor instrutor;
     private String email;
     private String password;
 
@@ -63,11 +67,11 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -110,11 +114,19 @@ public class Aluno {
     public void setEmail(String email) {
         this.email = email;
     } 
+
+    public Professor getInstrutor() {
+        return instrutor;
+    }
+
+    public void setInstrutor(Professor instrutor) {
+        this.instrutor = instrutor;
+    }
     
     public Aluno(){
         
     }
-    public Aluno(String nome, long cpf, char sexo, boolean atestado, String endereco, Date nascimento, String email, String password) {
+    public Aluno(String nome, String cpf, char sexo, boolean atestado, String endereco, Date nascimento, String email, String password) {
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;
@@ -123,8 +135,12 @@ public class Aluno {
         this.nascimento = nascimento;
         this.email = email;
         this.password = password;
+        this.instrutor = null;
     }
     
-    
+    @Override
+    public String toString(){
+        return this.nome + " - " + this.cpf;
+    }
     
 }
