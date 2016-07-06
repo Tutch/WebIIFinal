@@ -58,7 +58,7 @@ public class CadastroUsuarioResource {
         if(nome==null || nome.trim().equalsIgnoreCase("")){
             return "<raiz><msg>false</msg></raiz>";
         }
-        if(cpf==null || cpf.trim().equalsIgnoreCase("")){
+        if(cpf==null || cpf.trim().equalsIgnoreCase("") || cpf.length()!=11){
             return "<raiz><msg>false</msg></raiz>";
         }
         if(endereco==null || endereco.trim().equalsIgnoreCase("")){
@@ -83,18 +83,16 @@ public class CadastroUsuarioResource {
         int dia=0;
         int mes=0;
         int ano=0;
-        long cpfLong=0;
         char sexoChar = sexo.charAt(0);
         try{
             dia = Integer.parseInt(nascimento.substring(0, 2));
             mes = Integer.parseInt(nascimento.substring(2, 4));
             ano = Integer.parseInt(nascimento.substring(4));
-            cpfLong=Long.parseLong(cpf);
         }catch(Exception e){
             return "<raiz><msg>false</msg></raiz>";
         }
         Date data = new Date(ano, mes, dia);
-        Aluno a = new Aluno(nome, cpfLong, sexoChar, false, endereco, data, email, password);
+        Aluno a = new Aluno(nome, cpf, sexoChar, false, endereco, data, email, password);
         boolean result=cadastro1.cadastraAluno(a);
         return "<raiz><msg>"+result+"</msg></raiz>";
     }
@@ -104,7 +102,7 @@ public class CadastroUsuarioResource {
     @Path("testa")
     public String testa(){
         java.sql.Date data = new Date(1994, 12, 22);
-        Aluno a = new Aluno("yuriboy", 0, 'M', false, "casa do caralho", data, "meninoyuri@gmail.com", "242424");
+        Aluno a = new Aluno("yuriboy", "04785014596", 'M', false, "casa do caralho", data, "meninoyuri@gmail.com", "242424");
         return "<raiz><msg>"+cadastro1.cadastraAluno(a)+"</msg></raiz>";
     }
     

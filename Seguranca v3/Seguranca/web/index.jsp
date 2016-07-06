@@ -19,7 +19,6 @@
     </head>
     <body>
         <form id="mainPageForm" action="Autentication" method="post" accept-charset="utf-8">
-            <div id="formLogin">
                 <div>
                     <input type="text" name="login" id="vNome" placeholder="Usuário" tabindex="0">
                 </div>
@@ -27,8 +26,7 @@
                     <input type="password" name="senha" id="vSenha" placeholder="Senha">
                 </div>
                 <br>
-                <input type="submit" name="entrar" value="ENTRAR" id="login">
-            </div>
+                <input type="submit" name="entrar" value="Entrar" id="login">
 	</form>
     </body>
 </html>

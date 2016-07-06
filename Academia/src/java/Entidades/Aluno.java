@@ -5,6 +5,7 @@
  */
 package Entidades;
 
+import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +23,7 @@ import javax.persistence.Temporal;
  * @author Yuri
  */
 @Entity
-public class Aluno {
+public class Aluno implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "aluno_sequence_generator")
     @SequenceGenerator(name = "aluno_sequence_generator", sequenceName = "aluno_id_seq", allocationSize = 1)
@@ -35,7 +36,7 @@ public class Aluno {
     private String endereco;
     private Date nascimento;
     
-    @ManyToOne
+    @ManyToOne(targetEntity = Professor.class)
     @JoinColumn(name="codigo_professor")
     private Professor instrutor;
     private String email;
