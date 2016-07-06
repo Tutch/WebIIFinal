@@ -24,7 +24,7 @@ public class Professor {
     private Long codigo;
     private String nome;
     @Column(unique=true)
-    private long cpf;
+    private String cpf;
     private String email;
     private String password;
 
@@ -53,11 +53,11 @@ public class Professor {
         this.nome = nome;
     }
 
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -69,7 +69,7 @@ public class Professor {
         this.email = email;
     }
 
-    public Professor(String nome, long cpf, String email, String password) {
+    public Professor(String nome, String cpf, String email, String password) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
@@ -78,5 +78,10 @@ public class Professor {
     
     public Professor(){
         
+    }
+    
+    @Override
+    public String toString(){
+        return this.nome + " - " + this.cpf;
     }
 }

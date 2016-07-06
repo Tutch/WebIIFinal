@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class XMLProfessor {
     private Long codigo;
     private String nome;
-    private long cpf;
+    private String cpf;
     private String email;
 
     public Long getCodigo() {
@@ -42,11 +42,11 @@ public class XMLProfessor {
         this.nome = nome;
     }
 
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
