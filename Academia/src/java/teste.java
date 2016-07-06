@@ -27,8 +27,10 @@ public class teste {
     public static void main(String[] args) {
         Date nasc = Date.valueOf(LocalDate.now());
         Aluno a;
-        a = new Aluno("cpf teste", "123456", 'M', false, "Rua do teste", nasc, "Email Teste", "teste");
+        a = new Aluno("Marcos Teste", "123456789", 'M', false, "Rua do teste", nasc, "Email Teste", "teste");
         AlunoDAO.create(a);
+        Aluno c = new Aluno("Marcos Teste", "1234567789", 'M', false, "Rua do teste", nasc, "Email Teste", "teste");
+        AlunoDAO.create(c);
         
         Exercicios b = new Exercicios();
         b.setNome("Supino Birl2");
@@ -38,8 +40,11 @@ public class teste {
         ExerciciosDAO.create(b);
         
 //        
-//        Professor p = new Professor("Teste prof", 484654654l,"sadsda", "1234");
-//        ProfessorDAO.create(p);
+        Professor p = new Professor("Teste prof", "484654654l","sadsda", "1234");
+        ProfessorDAO.create(p);
+        
+        Professor x = new Professor("Sergio Boy", "484658654l","sadsda", "1234");
+        ProfessorDAO.create(x);
 //        
 //        a.setAtestado(true);
 //        a.setInstrutor(p);

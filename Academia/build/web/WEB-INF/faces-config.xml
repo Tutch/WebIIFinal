@@ -9,6 +9,11 @@
         <managed-bean-scope>session</managed-bean-scope>
 </managed-bean>
 <managed-bean>
+        <managed-bean-name>AssinalarBean</managed-bean-name>
+        <managed-bean-class>managedBeans.AssinalarBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+</managed-bean>
+<managed-bean>
         <managed-bean-name>ExerciciosBean</managed-bean-name>
         <managed-bean-class>managedBeans.ExerciciosBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>

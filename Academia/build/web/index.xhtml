@@ -5,6 +5,8 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Login</title>
+        <h:outputStylesheet library="css" name="custom.css"  />
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>
             $('#alerta').ready(function() {
@@ -17,14 +19,17 @@
     </h:head>
     <h:body>
         <h:outputText  id="alerta" value="#{requestScope['msg']}" style="display:none"/>
-        <h:form>
+        <h:form id="mainPageForm">
+            <h2>Efetuar Login</h2>
+
             <p:inputText placeholder="Login" required="true" value="#{AuthenticateBean.login}">
                 
-            </p:inputText>
+            </p:inputText><br/>
+
             <p:password placeholder="Senha" required="password" value="#{AuthenticateBean.password}">
                 
-            </p:password>
-            <p:commandButton value="Entrar" action="#{AuthenticateBean.authenticate}"></p:commandButton>
+            </p:password><br/>
+            <p:commandButton value="Login" action="#{AuthenticateBean.authenticate}"></p:commandButton>
         </h:form>
     </h:body>
 </html>

@@ -137,6 +137,9 @@ public class Aluno {
         this.instrutor = null;
     }
     
-    
+    @Override
+    public String toString(){
+        return this.nome + " - " + this.cpf;
+    }
     
 }
