@@ -35,6 +35,10 @@
         <to-view-id>/homeProfessor.xhtml</to-view-id>
     </navigation-case>
     <navigation-case>
+        <from-outcome>index</from-outcome>
+        <to-view-id>index.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
         <from-outcome>Failed</from-outcome>
         <to-view-id>erroLogin.xhtml</to-view-id>
     </navigation-case>

@@ -92,7 +92,7 @@ public class AlunoDAO {
         return null;
     }
     
-    static public boolean authenticateUser(String cpf, String password){
+    static public Aluno authenticateUser(String cpf, String password){
         try {
             Session session = BaseDAO.openSession();
             if(session != null){
@@ -102,13 +102,13 @@ public class AlunoDAO {
                 List<Aluno> alunos = query.list();
                 for(Aluno aluno:alunos){
                     if(aluno.getPassword().hashCode() == password.hashCode()){
-                        return true;
+                        return aluno;
                     }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 }

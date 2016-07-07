@@ -12,7 +12,6 @@ import java.io.StringWriter;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -105,6 +104,7 @@ public class FiltroGeral implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
+        
         //ServletRequest requisicao;
         //requisicao = request;
         //HttpServletRequest req = (HttpServletRequest) requisicao;
@@ -117,7 +117,9 @@ public class FiltroGeral implements Filter {
             chain.doFilter(request, response);
         }else{
             HttpSession session = req.getSession(false);
-            if (null == session) {
+            boolean loggedIn = session != null && session.getAttribute("user") != null;
+            boolean loginRequest = ((HttpServletRequest)request).getRequestURI().equals("/Academia/faces/index.xhtml");
+            if (loggedIn == false) {
                 System.out.println("sessao nula, vai pro !");
                 res.sendRedirect("../faces/index.xhtml");
                 return;

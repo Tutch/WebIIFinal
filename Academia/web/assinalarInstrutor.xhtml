@@ -8,13 +8,15 @@
         <title>Assinalar Instrutor</title>
     </h:head>
     <h:body>
-        <h:selectOneMenu value="#{AssinalarBean.aluno}">
-            <f:selectItems value="#{AssinalarBean.alunos}"/>
-            </h:selectOneMenu>
-        <h:selectOneMenu value="#{AssinalarBean.professor}">
-            <f:selectItems value="#{AssinalarBean.professores}"/>
-         </h:selectOneMenu>
-         <p:commandButton value="Cadastrar" action="#{AssinalarBean.merda}"></p:commandButton>
+        <h:form>
+            <h:selectOneMenu value="#{AssinalarBean.aluno}">
+                <f:selectItems value="#{AssinalarBean.alunos}"/>
+                </h:selectOneMenu>
+            <h:selectOneMenu value="#{AssinalarBean.professor}">
+                <f:selectItems value="#{AssinalarBean.professores}"/>
+             </h:selectOneMenu>
+            <h:commandButton value="Cadastrar" immediate="true" action="#{AssinalarBean.cadastrarProfessor(AssinalarBean.professor,AssinalarBean.aluno)}"></h:commandButton>
+        </h:form>
     </h:body>
 </html>
 

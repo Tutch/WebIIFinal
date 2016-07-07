@@ -9,13 +9,14 @@ import DAO.AlunoDAO;
 import DAO.ProfessorDAO;
 import Entidades.Aluno;
 import Entidades.Professor;
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author Yuri
  */
-public class AssinalarBean {
+public class AssinalarBean implements Serializable{
     private Aluno aluno;
     private Professor professor;
     private List<Aluno> alunos;
@@ -60,11 +61,12 @@ public class AssinalarBean {
     public void merda(){
         System.out.println("merda");
     }
-    public String cadastrarProfessor(){
-        System.out.println("entrei");
+    public String cadastrarProfessor(Professor professor, Aluno aluno){
+        System.out.println("entrei antes do try " + professor.getNome() );
         try {
             aluno.setInstrutor(professor);
             AlunoDAO.update(aluno);
+            System.out.println("entrei");
             return "sucesso";
         } catch (Exception e) {
             return "erro";

@@ -7,17 +7,23 @@ package managedBeans;
 
 import DAO.AlunoDAO;
 import DAO.ProfessorDAO;
-import javax.annotation.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import Entidades.Aluno;
+import Entidades.Professor;
+import java.io.IOException;
+import javax.faces.context.FacesContext;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import util.FilterInput;
 
 /**
  *
  * @author Yuri
  */
-//@ManagedBean
-//@SessionScoped
 public class AuthenticateBean {
+    private Aluno aluno;
+    private Professor professor;
     private boolean isAuthenticated;
     private String login, password;
 
@@ -45,19 +51,29 @@ public class AuthenticateBean {
         this.password = password;
     }
     
+    public String logout(){
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+            System.out.println("Invalidou");
+            return "index";
+    }
+    
     public String authenticate(){        
         if(FilterInput.noDangerousCharacters(login) && FilterInput.noDangerousCharacters(password)){
-            if(AlunoDAO.authenticateUser(login, password) == true){
+            FacesContext context = FacesContext.getCurrentInstance();
+            aluno = AlunoDAO.authenticateUser(login, password);
+            if( aluno != null){
+                context.getExternalContext().getSessionMap().put("user", aluno);
                 return "Authenticated";
             }else{
-                if(ProfessorDAO.authenticateUser(login, password) == true){
+                professor = ProfessorDAO.authenticateUser(login, password);
+                if(professor != null){
+                    context.getExternalContext().getSessionMap().put("user", professor);
                     return "AuthenticatedProfessor";
                 }else{
                     return "Failed";
                 }
             }
         }
-        
         return "Failed";
     }
 }

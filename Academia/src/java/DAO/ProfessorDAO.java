@@ -98,7 +98,7 @@ public class ProfessorDAO {
         }
        return null;
     }
-    static public boolean authenticateUser(String cpf, String password){
+    static public Professor authenticateUser(String cpf, String password){
         try {
             Session session = BaseDAO.openSession();
             if(session != null){
@@ -108,13 +108,13 @@ public class ProfessorDAO {
                 List<Professor> professores = query.list();
                 for(Professor professor:professores){
                     if(professor.getPassword().hashCode() == password.hashCode()){
-                        return true;
+                        return professor;
                     }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 }
