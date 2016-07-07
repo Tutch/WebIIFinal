@@ -12,6 +12,14 @@
         <param-name>javax.faces.CONFIG_FILES</param-name>
         <param-value>/WEB-INF/libs/faces-config.xml</param-value>
     </context-param>
+    <filter-mapping>
+        <filter-name>FiltroGeral</filter-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/cadastro/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -25,10 +33,10 @@
         <filter-name>struts2</filter-name>
         <filter-class> org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
     </filter>
-    <filter-mapping>
-        <filter-name>struts2</filter-name>
-        <url-pattern>/cadastro/*</url-pattern>
-    </filter-mapping>
+    <filter>
+        <filter-name>FiltroGeral</filter-name>
+        <filter-class>Filtros.FiltroGeral</filter-class>
+    </filter>
     <session-config>
         <session-timeout>
             30
