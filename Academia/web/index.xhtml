@@ -9,16 +9,20 @@
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>
-            $('#alerta').ready(function() {
-                textou = $('#alerta').text();
-                if(textou!=null){
+            $('document').ready(function() {
+                var a = $('#alerta').length;
+                var b = Number(a);
+                if(b==0){
+                    return;
+                }else{
+                    textou = $('#alerta').text();
                     alert(textou);
                 }
             });
         </script>
     </h:head>
     <h:body>
-        <h:outputText  id="alerta" value="#{requestScope['msg']}" style="display:none"/>
+        <h:outputText  id="alerta" value="#{requestScope['msg']}" rendered="#{requestScope['msg']!=null}" style="display:none"/>
         <h:form id="mainPageForm">
             <h2>Efetuar Login</h2>
 
