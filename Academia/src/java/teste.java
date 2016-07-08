@@ -55,7 +55,12 @@ public class teste {
 //        FichaDAO.create(f);
         
         List<Aluno> alunos = AlunoDAO.read();
-//        List<Professor> professores = ProfessorDAO.read();
+        List<Professor> professores = ProfessorDAO.read();
+        
+        for (Aluno aluno:alunos){
+            aluno.setInstrutor(professores.get(0));
+            AlunoDAO.update(aluno);
+        }
 //        List<Exercicios> exercicios = ExerciciosDAO.read();
 //        
 //        for(Aluno aluno: alunos){
@@ -66,13 +71,13 @@ public class teste {
 //        f = new Ficha("Crescer pra carai", alunos.get(0), professores.get(0));
 //        FichaDAO.create(f);
         
-        List <Ficha> fichas = AlunoDAO.getFicha(alunos.get(0));
-        
-        List <Exercicios> exercicios = FichaDAO.getAllExercicios(fichas.get(0));
-        
-        for(Exercicios exercicio: exercicios){
-            System.out.println(exercicio.getDescricao());
-        }
+//        List <Ficha> fichas = AlunoDAO.getFicha(alunos.get(0));
+//        
+//        List <Exercicios> exercicios = FichaDAO.getAllExercicios(fichas.get(0));
+//        
+//        for(Exercicios exercicio: exercicios){
+//            System.out.println(exercicio.getDescricao());
+//        }
 //        for(Exercicios exercicio: exercicios){
 //            ExercicioFicha ef = new ExercicioFicha(fichas.get(0), exercicio);
 //            ExercicioFichaDAO.create(ef);
