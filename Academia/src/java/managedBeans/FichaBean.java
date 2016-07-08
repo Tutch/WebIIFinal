@@ -16,13 +16,36 @@ import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import java.io.FileOutputStream;
+import com.itextpdf.text.Anchor;
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chapter;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.ListItem;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Section;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import others.pdfWriter;
+
+
+
+
+
+
 /**
  *
  * @author Yuri
  */
 public class FichaBean implements Serializable{
     String fichaSelecionada;
-    Ficha fichaObj;
     List<String> fichasNomes = new ArrayList<String>();
     List<Ficha> fichas;
 
@@ -64,21 +87,33 @@ public class FichaBean implements Serializable{
         }
     }
     
-    public void getFichaFromString(){
+    public Ficha getFichaFromString(){
         for(Ficha ficha:fichas){
             if(ficha.getDescricao().hashCode() == fichaSelecionada.hashCode()){
-                fichaObj = ficha;
+               return ficha;
             }
         }
+        return null;
     }
     public void printFicha(){
-       getFichaFromString();
-       List<Exercicios> exercicios = FichaDAO.getAllExercicios(fichaObj);
-        System.out.println(fichaSelecionada);
-       for(Exercicios exercicio : exercicios){
-           System.out.println(exercicio.getDescricao());
-       }
-       
+       FacesContext context = FacesContext.getCurrentInstance();
+       HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest(); 
+       Aluno aluno = (Aluno)request.getSession().getAttribute("user"); 
+       Ficha fichaEscolhida = getFichaFromString();
+       List<Exercicios> exercicios = FichaDAO.getAllExercicios(fichaEscolhida);
+        System.out.println(System.getProperty("user.home"));
+       String File = System.getProperty("user.home") + "\\Desktop\\ficha" + aluno.getNome() +" "+ fichaEscolhida.getDescricao() + ".pdf" ;
+        try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(File));
+            document.open();
+            pdfWriter.addTitlePage(document, fichaEscolhida.getDescricao(), aluno.getNome());
+            document.add(Chunk.NEWLINE);
+            pdfWriter.createTableExercicios(document, exercicios);
+            document.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
        
     }
     
