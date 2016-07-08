@@ -34,6 +34,49 @@
         <managed-bean-scope>request</managed-bean-scope>
 </managed-bean>
 
+<managed-bean>
+        <managed-bean-name>AceitarAlunoBean</managed-bean-name>
+        <managed-bean-class>managedBeans.AceitarAlunoBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
+
+<managed-bean>
+        <managed-bean-name>AceitarAlunoBean</managed-bean-name>
+        <managed-bean-class>managedBeans.AceitarAlunoBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
+
+<managed-bean>
+        <managed-bean-name>RelatorioGeralBean</managed-bean-name>
+        <managed-bean-class>managedBeans.RelatorioGeralBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
+
+
+<navigation-rule>
+    <from-view-id>/professorAlterarDados.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>sucesso</from-outcome>
+        <to-view-id>sucessoCadastroProfessor.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+        <from-outcome>falhou</from-outcome>
+        <to-view-id>erroCadastroProfessor.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
+<navigation-rule>
+    <from-view-id>/alunosPendentes.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>alunoAceito</from-outcome>
+        <to-view-id>alunoAceito.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+        <from-outcome>erroAlunoAceito</from-outcome>
+        <to-view-id>erroAlunoAceito.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
+
 <navigation-rule>
     <from-view-id>/index.xhtml</from-view-id>
     <navigation-case>

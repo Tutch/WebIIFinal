@@ -28,7 +28,6 @@ public class ListarAlunosBean {
     private List<Aluno> listaAlunos;
 
     public ListarAlunosBean(){
-        System.out.println("fui criado");
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest(); 
         Professor professor = (Professor)request.getSession().getAttribute("user");

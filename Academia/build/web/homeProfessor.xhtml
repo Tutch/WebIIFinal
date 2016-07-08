@@ -6,7 +6,21 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello meu professor
+        <h:link outcome="listarAlunosProfessor" value ="Ver alunos"></h:link>
+           <br/>
+           <h:link outcome="professorAlterarDados" value ="Alterar Dados Cadastrais"></h:link>
+           <br/>
+           <h:link outcome="alunosPendentes" value ="Aceitar alunos pendentes"></h:link>
+           <br/>
+           <h:link outcome="cadastrarExercicio" value ="Cadastrar Exercicios"></h:link>
+           <br/>
+           <h:link outcome="cadastroProfessor" value ="Cadastrar Novo Professor"></h:link>
+           <br/>
+           <h:link outcome="fichaAluno" value ="Cadastrar Nova Ficha"></h:link>
+           <br/>
+           <h:link outcome="relatorioGeral" value ="Gerar Relatório Geral"></h:link>
+           <br/>
+           <h:commandButton value="logout" action="#{AuthenticateBean.logout}"></h:commandButton>
     </h:body>
 </html>
 

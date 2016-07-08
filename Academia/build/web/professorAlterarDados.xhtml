@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+            $('document').ready(function() {
+                var a = $('#alerta').length;
+                var b = Number(a);
+                if(b==0){
+                    return;
+                }else{
+                    textou = $('#alerta').text();
+                    alert(textou);
+                }
+            });
+            
+            function valida(){
+                var elementos = document.getElementsByTagName("INPUT"); 
+                if(elementos[1].value.trim()=="" || elementos[2].value.trim()=="" || elementos[3].value.trim()=="" || elementos[4].value.trim()=="") {
+                    alert("Preencha todos os campos!");
+                    return false;
+                }
+                if(elementos[4].value!=elementos[5].value){
+                    alert("A senha e a confirmação não conferem!");
+                    return false
+                }
+                if(elementos[2].value.length!=11){
+                    alert("Insira um CPF válido!");
+                    return false;
+                }
+                if(elementos[2].value.indexOf("@")==-1 || elementos[3].value.indexOf(".com")==-1){
+                    alert("Insira um E-mail válido!")
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </h:head>
+    <h:body>
+         <h:outputText  id="alerta" value="#{requestScope['msg']}" rendered="#{requestScope['msg']!=null}"/>
+        <h:form id="formCadastroProfessor">
+            
+            <h2>Alterar Dados</h2>
+
+            <p:inputText id="nome" required="true" value="#{AlterarProfessorBean.nome}">
+            </p:inputText><br/>
+                        
+            <p:inputText id="email" required="true" value="#{AlterarProfessorBean.email}" >
+            </p:inputText><br/>
+
+            <p:password placeholder="Nova Senha" id="senha" required="password" value="#{AlterarProfessorBean.password}">    
+            </p:password><br/>
+            
+            <p:password placeholder="Senha novamente" id="confirmaSenha" required="password" value="#{AlterarProfessorBean.confirmaSenha}">
+            </p:password><br/>
+            
+            <p:commandButton value="Cadastrar" onclick="return valida();" action="#{AlterarProfessorBean.enviar}"></p:commandButton>
+        </h:form>
+    </h:body>
+</html>
+

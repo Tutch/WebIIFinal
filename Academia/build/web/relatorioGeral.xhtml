@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Relatorio Geral</title>
+        <h:outputStylesheet library="css" name="custom.css"  />
+    </h:head>
+    <h:body>
+        
+        <h:dataTable value="#{RelatorioGeralBean.listaAlunos}" var = "l" styleClass="order-Table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
+            <h:column>
+                <!-- column header -->
+                <f:facet name="header">Aluno</f:facet>
+                <!-- row record -->
+                #{l.getNome()}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Email Aluno</f:facet>
+                    #{l.getEmail()}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Professor</f:facet>
+                    #{l.getInstrutor().getNome()}
+            </h:column>
+        </h:dataTable>
+        <p:chart type="bar" model="#{RelatorioGeralBean.barModel}" style="height:300px"/>
+        <h:form>
+            <p:commandButton value="Gerar PDF" immediate="true" action="#{RelatorioGeralBean.printToPDF}"/>
+        </h:form>
+    </h:body>
+</html>
+
