@@ -19,6 +19,8 @@ import util.FilterInput;
 //@ManagedBean
 //@SessionScoped
 public class ExerciciosBean {
+    private Exercicios exercicioSelecionado;
+
     private ArrayList<String> gruposMusculo;
     private String nome, descricao, musculo;
 
@@ -33,6 +35,14 @@ public class ExerciciosBean {
         gruposMusculo.add("Costas Inferior");
     }
 
+    public Exercicios getExercicioSelecionado() {
+        return exercicioSelecionado;
+    }
+
+    public void setExercicioSelecionado(Exercicios exercicioSelecionado) {
+        this.exercicioSelecionado = exercicioSelecionado;
+    }
+    
     public String getNome() {
         return nome;
     }

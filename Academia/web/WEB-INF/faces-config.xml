@@ -9,6 +9,11 @@
         <managed-bean-scope>session</managed-bean-scope>
 </managed-bean>
 <managed-bean>
+        <managed-bean-name>FichaBean</managed-bean-name>
+        <managed-bean-class>managedBeans.FichaBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+</managed-bean>
+<managed-bean>
         <managed-bean-name>AssinalarBean</managed-bean-name>
         <managed-bean-class>managedBeans.AssinalarBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
@@ -69,4 +74,11 @@
     </navigation-case>
 </navigation-rule>
 
+<navigation-rule>
+    <from-view-id>/alunoVerFicha.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>index</from-outcome>
+        <to-view-id>index.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
 </faces-config>

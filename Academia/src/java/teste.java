@@ -25,26 +25,26 @@ import java.util.List;
  */
 public class teste {
     public static void main(String[] args) {
-        Date nasc = Date.valueOf(LocalDate.now());
-        Aluno a;
-        a = new Aluno("Marcos Teste", "123456789", 'M', false, "Rua do teste", nasc, "Email Teste", "teste");
-        AlunoDAO.create(a);
-        Aluno c = new Aluno("Marcos Teste", "1234567789", 'M', false, "Rua do teste", nasc, "Email Teste", "teste");
-        AlunoDAO.create(c);
+//        Date nasc = Date.valueOf(LocalDate.now());
+//        Aluno a;
+//        a = new Aluno("Marcos Teste", "123456789", 'M', false, "Rua do teste", nasc, "Email Teste", "teste");
+//        AlunoDAO.create(a);
+//        Aluno c = new Aluno("Marcos Teste", "1234567789", 'M', false, "Rua do teste", nasc, "Email Teste", "teste");
+//        AlunoDAO.create(c);
         
-        Exercicios b = new Exercicios();
-        b.setNome("Supino Birl2");
-        b.setDescricao("biiiirl");
-        b.setMusculo("Biceps");
-        
-        ExerciciosDAO.create(b);
+//        Exercicios b = new Exercicios();
+//        b.setNome("Supino Birl2");
+//        b.setDescricao("biiiirl");
+//        b.setMusculo("Biceps");
+//        
+//        ExerciciosDAO.create(b);
         
 //        
-        Professor p = new Professor("Teste prof", "484654654l","sadsda", "1234");
-        ProfessorDAO.create(p);
-        
-        Professor x = new Professor("Sergio Boy", "484658654l","sadsda", "1234");
-        ProfessorDAO.create(x);
+//        Professor p = new Professor("Teste prof", "484654654l","sadsda", "1234");
+//        ProfessorDAO.create(p);
+//        
+//        Professor x = new Professor("Sergio Boy", "484658654l","sadsda", "1234");
+//        ProfessorDAO.create(x);
 //        
 //        a.setAtestado(true);
 //        a.setInstrutor(p);
@@ -54,17 +54,29 @@ public class teste {
 //        f = new Ficha("Crescer pra carai", a, p);
 //        FichaDAO.create(f);
         
-        /*List<Aluno> alunos = AlunoDAO.read();
+        List<Aluno> alunos = AlunoDAO.read();
+//        List<Professor> professores = ProfessorDAO.read();
+//        List<Exercicios> exercicios = ExerciciosDAO.read();
 //        
-        for(Aluno aluno: alunos){
-            System.out.println(aluno.getNome());
-        }
-        System.out.println(alunos.get(2).getNome());
-        List <Ficha> fichas = AlunoDAO.getFicha(alunos.get(2));
+//        for(Aluno aluno: alunos){
+//            System.out.println(aluno.getNome());
+//        }
+//        
+//        Ficha f;
+//        f = new Ficha("Crescer pra carai", alunos.get(0), professores.get(0));
+//        FichaDAO.create(f);
         
-        for(Ficha ficha:fichas){
-            System.out.println(ficha.getDescricao());
-        }*/
+        List <Ficha> fichas = AlunoDAO.getFicha(alunos.get(0));
+        
+        List <Exercicios> exercicios = FichaDAO.getAllExercicios(fichas.get(0));
+        
+        for(Exercicios exercicio: exercicios){
+            System.out.println(exercicio.getDescricao());
+        }
+//        for(Exercicios exercicio: exercicios){
+//            ExercicioFicha ef = new ExercicioFicha(fichas.get(0), exercicio);
+//            ExercicioFichaDAO.create(ef);
+//        }
         
 //        System.out.println(AlunoDAO.authenticateUser("Cara pequeno", "teste"));
 //        System.out.println(ProfessorDAO.authenticateUser("Teste prof", "1234"));

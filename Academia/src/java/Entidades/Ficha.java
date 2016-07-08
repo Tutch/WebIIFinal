@@ -74,4 +74,9 @@ public class Ficha {
     public Ficha(){
         
     }
+    
+    @Override
+    public String toString(){
+        return this.descricao;
+    }
 }
