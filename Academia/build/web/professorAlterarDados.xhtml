@@ -24,15 +24,11 @@
                     alert("Preencha todos os campos!");
                     return false;
                 }
-                if(elementos[4].value!=elementos[5].value){
+                if(elementos[3].value!=elementos[4].value){
                     alert("A senha e a confirmação não conferem!");
                     return false
                 }
-                if(elementos[2].value.length!=11){
-                    alert("Insira um CPF válido!");
-                    return false;
-                }
-                if(elementos[2].value.indexOf("@")==-1 || elementos[3].value.indexOf(".com")==-1){
+                if(elementos[2].value.indexOf("@")==-1 || elementos[2].value.indexOf(".com")==-1){
                     alert("Insira um E-mail válido!")
                     return false;
                 }

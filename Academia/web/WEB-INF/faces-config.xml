@@ -41,8 +41,14 @@
 </managed-bean>
 
 <managed-bean>
-        <managed-bean-name>AceitarAlunoBean</managed-bean-name>
-        <managed-bean-class>managedBeans.AceitarAlunoBean</managed-bean-class>
+        <managed-bean-name>AlterarProfessorBean</managed-bean-name>
+        <managed-bean-class>managedBeans.AlterarProfessorBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
+
+<managed-bean>
+        <managed-bean-name>AlterarAlunoBean</managed-bean-name>
+        <managed-bean-class>managedBeans.AlterarAlunoBean</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
 </managed-bean>
 
@@ -64,7 +70,17 @@
         <to-view-id>erroCadastroProfessor.xhtml</to-view-id>
     </navigation-case>
 </navigation-rule>
-
+<navigation-rule>
+    <from-view-id>/alunoAlterarDados.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>sucesso</from-outcome>
+        <to-view-id>sucessoCadastroProfessor.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+        <from-outcome>falhou</from-outcome>
+        <to-view-id>erroCadastroProfessor.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>
 <navigation-rule>
     <from-view-id>/alunosPendentes.xhtml</from-view-id>
     <navigation-case>
