@@ -20,7 +20,7 @@ import util.FilterInput;
  *
  * @author Sergio Marinho
  */
-public class CadastrarProfessorBean implements Serializable{
+public class CadastrarProfessorBean extends BeanChecadorProfessor implements Serializable{
     private String nome;
     private String cpf;
     private String email;
@@ -29,7 +29,7 @@ public class CadastrarProfessorBean implements Serializable{
     private String msg;
 
     public CadastrarProfessorBean() {
-        
+        super();
     }
     
     

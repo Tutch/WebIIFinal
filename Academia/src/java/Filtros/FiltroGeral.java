@@ -5,6 +5,7 @@
  */
 package Filtros;
 
+import Entidades.Aluno;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -31,6 +32,34 @@ public class FiltroGeral implements Filter {
     // this value is null, this filter instance is not currently
     // configured. 
     private FilterConfig filterConfig = null;
+    private String[] paginasRaiz = {"/Academia/","/Academia/faces/index.xhtml","/Academia/faces/erroLogin.xhtml"};
+    private String[] paginasAluno = {"/Academia/faces/alunoVerFicha.xhtml","/Academia/faces/alunoAlterarDados.xhtml","/Academia/faces/home.xhtml"};
+    private String[] paginasProfessor = {"/Academia/faces/cadastrarExercicio.xhtml","/Academia/faces/cadastroProfessor.xhtml","/Academia/faces/erroCadastroProfessor.xhtml","/Academia/faces/homeProfessor.xhtml","/Academia/faces/sucessoCadastroProfessor.xhtml"};
+    
+    public boolean ehPaginaRaiz(String a){
+        for(String b:paginasRaiz){
+            if(a.contains(b)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean ehPaginaAluno(String a){
+        for(String b:paginasAluno){
+            if(a.contains(b)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean ehPaginaProfessor(String a){
+        for(String b:paginasProfessor){
+            if(a.contains(b)){
+                return true;
+            }
+        }
+        return false;
+    }
     
     public FiltroGeral() {
     }    
@@ -41,26 +70,6 @@ public class FiltroGeral implements Filter {
             log("FiltroGeral:DoBeforeProcessing");
         }
 
-        // Write code here to process the request and/or response before
-        // the rest of the filter chain is invoked.
-        // For example, a logging filter might log items on the request object,
-        // such as the parameters.
-        /*
-	for (Enumeration en = request.getParameterNames(); en.hasMoreElements(); ) {
-	    String name = (String)en.nextElement();
-	    String values[] = request.getParameterValues(name);
-	    int n = values.length;
-	    StringBuffer buf = new StringBuffer();
-	    buf.append(name);
-	    buf.append("=");
-	    for(int i=0; i < n; i++) {
-	        buf.append(values[i]);
-	        if (i < n-1)
-	            buf.append(",");
-	    }
-	    log(buf.toString());
-	}
-         */
     }    
     
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
@@ -68,24 +77,6 @@ public class FiltroGeral implements Filter {
         if (debug) {
             log("FiltroGeral:DoAfterProcessing");
         }
-
-        // Write code here to process the request and/or response after
-        // the rest of the filter chain is invoked.
-        // For example, a logging filter might log the attributes on the
-        // request object after the request has been processed. 
-        /*
-	for (Enumeration en = request.getAttributeNames(); en.hasMoreElements(); ) {
-	    String name = (String)en.nextElement();
-	    Object value = request.getAttribute(name);
-	    log("attribute: " + name + "=" + value.toString());
-
-	}
-         */
-        // For example, a filter might append something to the response.
-        /*
-	PrintWriter respOut = new PrintWriter(response.getWriter());
-	respOut.println("<P><B>This has been appended by an intrusive filter.</B>");
-         */
     }
 
     /**
@@ -97,22 +88,63 @@ public class FiltroGeral implements Filter {
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet error occurs
      */
-    public void doFilter(ServletRequest request, ServletResponse response,
-            FilterChain chain)
-            throws IOException, ServletException {
-        String uri="";
+    public void doFilter(ServletRequest request, ServletResponse response,FilterChain chain)throws IOException, ServletException {   
+        /*String uri="";
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-
-        
-        //ServletRequest requisicao;
-        //requisicao = request;
-        //HttpServletRequest req = (HttpServletRequest) requisicao;
         if (request instanceof HttpServletRequest) {
             uri = ((HttpServletRequest)request).getRequestURI();
             System.out.println(" --------------------------- filtro ativado para a seguinte página: "+uri);
         }
-        if(uri.equals("/Academia/") || uri.equals("/Academia/faces/index.xhtml") || uri.equals("/Academia/faces/erroLogin.xhtml")){
+        
+        if(request.getAttribute("msg")!=null){
+            return;
+        }
+        
+        //para 0=nulo; 1=aluno; 2=professor
+        int tipoUsuario = 0;
+        
+        HttpSession sessao = req.getSession(false);
+        if(sessao!=null && sessao.getAttribute("user")!=null){
+            Object o = sessao.getAttribute("user");
+            if(o instanceof Aluno){
+                tipoUsuario = 1;
+            }
+            else if(o instanceof Entidades.Professor){
+                tipoUsuario = 2;
+            }else{
+                tipoUsuario = 0;
+            }
+        }else{
+            tipoUsuario = 0;
+        }
+
+        if(tipoUsuario==1){
+            if(ehPaginaRaiz(uri) || ehPaginaProfessor(uri)){
+                request.setAttribute("msg", uri);
+                res.sendRedirect("../faces/home.xhtml");
+            }else{
+                request.setAttribute("msg", uri);
+                chain.doFilter(request, response);
+            }
+        }else if(tipoUsuario==2){
+            if(ehPaginaRaiz(uri) || ehPaginaAluno(uri)){
+                request.setAttribute("msg", uri);
+                res.sendRedirect("../faces/homeProfessor.xhtml");
+            }else{
+                request.setAttribute("msg", uri);
+                chain.doFilter(request, response);
+            }
+        }else{
+            if(ehPaginaRaiz(uri)){
+                request.setAttribute("msg", uri);
+                chain.doFilter(request, response);
+            }else{
+                request.setAttribute("msg", uri);
+                res.sendRedirect("../faces/index.xhtml");
+            }
+        }
+        /*if(uri.contains("/Academia/") || uri.contains("/Academia/faces/index.xhtml") || uri.contains("/Academia/faces/erroLogin.xhtml")){
             System.out.println("paginas root!");
             chain.doFilter(request, response);
         }else{
@@ -120,7 +152,7 @@ public class FiltroGeral implements Filter {
             boolean loggedIn = session != null && session.getAttribute("user") != null;
             boolean loginRequest = ((HttpServletRequest)request).getRequestURI().equals("/Academia/faces/index.xhtml");
             if (loggedIn == false) {
-                System.out.println("sessao nula, vai pro !");
+                System.out.println("sessao nula, vai pro index!");
                 res.sendRedirect("../faces/index.xhtml");
                 return;
             }
@@ -128,37 +160,8 @@ public class FiltroGeral implements Filter {
                 System.out.println("tem sessao, entao passou!");
                 chain.doFilter(request, response);
             }
-        }
-        /*if (debug) {
-            log("FiltroGeral:doFilter()");
-        }
-        
-        doBeforeProcessing(request, response);
-        
-        Throwable problem = null;
-        try {
-            chain.doFilter(request, response);
-        } catch (Throwable t) {
-            // If an exception is thrown somewhere down the filter chain,
-            // we still want to execute our after processing, and then
-            // rethrow the problem after that.
-            problem = t;
-            t.printStackTrace();
-        }
-        
-        doAfterProcessing(request, response);
-
-        // If there was a problem, we want to rethrow it if it is
-        // a known type, otherwise log it.
-        if (problem != null) {
-            if (problem instanceof ServletException) {
-                throw (ServletException) problem;
-            }
-            if (problem instanceof IOException) {
-                throw (IOException) problem;
-            }
-            sendProcessingError(problem, response);
         }*/
+        chain.doFilter(request, response);
     }
 
     /**
