@@ -16,13 +16,19 @@ import Entidades.Professor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
@@ -71,21 +77,50 @@ public class RelatorioGeralBean {
     }
     
     public void printToPDF(){
-        FacesContext context = FacesContext.getCurrentInstance();
-       HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest(); 
+       ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+       HttpServletRequest request = (HttpServletRequest)context.getRequest(); 
        Professor professor = (Professor)request.getSession().getAttribute("user");
        DateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
        Date date = new Date();
-       String File = System.getProperty("user.home") + "\\Desktop\\RelatorioGeral" + dateFormat.format(date) + ".pdf" ;
+       String filePath = System.getProperty("user.home") + "\\Desktop\\RelatorioGeral" + dateFormat.format(date) + ".pdf" ;
         try {
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream(File));
+            PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
             pdfWriter.addTitlePageProfessor(document, "Relatorio Geral", professor.getNome());
             document.add(Chunk.NEWLINE);
             pdfWriter.createTableGeral(document, listaAlunos);
             pdfWriter.addNumbers(document, listaAlunos.size(),listaProfessores.size(), listaExercicios.size(), listaFichas.size());
             document.close();
+            
+            File file = new File(filePath);
+            HttpServletResponse response = (HttpServletResponse) context.getResponse();
+            
+            response.reset();
+            response.setHeader("Content-Disposition", "attachment;filename=RelatorioGeral.pdf");
+            response.setContentLength((int) file.length());
+            ServletOutputStream out = null;
+            try {
+                FileInputStream input = new FileInputStream(file);
+                byte[] buffer = new byte[1024];
+                out = response.getOutputStream();
+                int i = 0;
+                while ((i = input.read(buffer)) != -1) {
+                    out.write(buffer);
+                    out.flush();
+                }
+                FacesContext.getCurrentInstance().getResponseComplete();
+            } catch (IOException err) {
+                err.printStackTrace();
+            } finally {
+                try {
+                    if (out != null) {
+                        out.close();
+                    }
+                } catch (IOException err) {
+                    err.printStackTrace();
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

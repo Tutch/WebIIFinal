@@ -17,22 +17,15 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
 import java.io.FileOutputStream;
-import com.itextpdf.text.Anchor;
-import com.itextpdf.text.BadElementException;
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.ListItem;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Section;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import javax.faces.context.ExternalContext;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import others.pdfWriter;
 
 
@@ -95,25 +88,58 @@ public class FichaBean implements Serializable{
         }
         return null;
     }
+
     public void printFicha(){
-       FacesContext context = FacesContext.getCurrentInstance();
-       HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest(); 
-       Aluno aluno = (Aluno)request.getSession().getAttribute("user"); 
-       Ficha fichaEscolhida = getFichaFromString();
-       List<Exercicios> exercicios = FichaDAO.getAllExercicios(fichaEscolhida);
-        System.out.println(System.getProperty("user.home"));
-       String File = System.getProperty("user.home") + "\\Desktop\\ficha" + aluno.getNome() +" "+ fichaEscolhida.getDescricao() + ".pdf" ;
         try {
-            Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream(File));
-            document.open();
-            pdfWriter.addTitlePage(document, fichaEscolhida.getDescricao(), aluno.getNome());
-            document.add(Chunk.NEWLINE);
-            pdfWriter.createTableExercicios(document, exercicios);
-            document.close();
+            ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+            HttpServletRequest request = (HttpServletRequest)context.getRequest();
+            Aluno aluno = (Aluno)request.getSession().getAttribute("user");
+            Ficha fichaEscolhida = getFichaFromString();
+            List<Exercicios> exercicios = FichaDAO.getAllExercicios(fichaEscolhida);
+            String filePath = System.getProperty("user.home") + "\\Desktop\\ficha" + aluno.getNome() +" "+ fichaEscolhida.getDescricao() + ".pdf" ;
+            try {
+                Document document = new Document();
+                PdfWriter.getInstance(document, new FileOutputStream(filePath));
+                document.open();
+                pdfWriter.addTitlePage(document, fichaEscolhida.getDescricao(), aluno.getNome());
+                document.add(Chunk.NEWLINE);
+                pdfWriter.createTableExercicios(document, exercicios);
+                document.close();
+                
+                File file = new File(filePath);
+                HttpServletResponse response = (HttpServletResponse) context.getResponse();
+                
+                response.reset();
+                response.setHeader("Content-Disposition", "attachment;filename=Ficha.pdf");
+                response.setContentLength((int) file.length());
+                ServletOutputStream out = null;
+                try {
+                    FileInputStream input = new FileInputStream(file);
+                    byte[] buffer = new byte[1024];
+                    out = response.getOutputStream();
+                    int i = 0;
+                    while ((i = input.read(buffer)) != -1) {
+                        out.write(buffer);
+                        out.flush();
+                    }
+                    FacesContext.getCurrentInstance().getResponseComplete();
+                } catch (IOException err) {
+                    err.printStackTrace();
+                } finally {
+                    try {
+                        if (out != null) {
+                            out.close();
+                        }
+                    } catch (IOException err) {
+                        err.printStackTrace();
+                    }
+                }  
         } catch (Exception e) {
             e.printStackTrace();
         }
+        } catch (Exception e) {
+        }
+      
        
     }
     

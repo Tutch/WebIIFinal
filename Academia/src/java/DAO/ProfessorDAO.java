@@ -27,6 +27,7 @@ public class ProfessorDAO {
                 Transaction trans = session.beginTransaction();
                 session.save(a);
                 trans.commit();
+                session.close();
                 return true;
             }
         } catch (Exception e) {
@@ -42,6 +43,7 @@ public class ProfessorDAO {
             if(session !=null){
                 Query query =session.createQuery("from Professor");
                 resultado = query.list();
+                session.close();
                 return resultado;
             }
         } catch (Exception e) {
@@ -61,6 +63,7 @@ public class ProfessorDAO {
                 Transaction trans = session.beginTransaction();
                 session.saveOrUpdate(a);
                 trans.commit();
+                session.close();
                 return true;
             }
         } catch (Exception e) {
@@ -76,6 +79,7 @@ public class ProfessorDAO {
                 Transaction tx = session.beginTransaction();
                 session.delete(a);
                 tx.commit();
+                session.close();
                 return true;
             }
         } catch (Exception e) {
@@ -92,6 +96,7 @@ public class ProfessorDAO {
                 Transaction tx = session.beginTransaction();
                 Query query = session.createQuery("from Aluno A WHERE A.instrutor=" + a.getCodigo());
                 alunos = query.list();
+                session.close();
                 return alunos;
             }
         } catch (Exception e) {
@@ -111,6 +116,7 @@ public class ProfessorDAO {
                         return professor;
                     }
                 }
+                session.close();
             }
         } catch (Exception e) {
             e.printStackTrace();

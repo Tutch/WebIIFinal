@@ -24,6 +24,7 @@ public class ExercicioFichaDAO {
                 Transaction trans = session.beginTransaction();
                 session.save(ef);
                 trans.commit();
+                session.close();
                 return true;
             }
         } catch (Exception e) {
@@ -39,6 +40,7 @@ public class ExercicioFichaDAO {
             if(session !=null){
                 Query query =session.createQuery("from Aluno");
                 resultado = query.list();
+                session.close();
                 return resultado;
             }
         } catch (Exception e) {
@@ -53,6 +55,7 @@ public class ExercicioFichaDAO {
                 Transaction trans = session.beginTransaction();
                 session.saveOrUpdate(ef);
                 trans.commit();
+                session.close();
                 return true;
             }
         } catch (Exception e) {
@@ -68,6 +71,7 @@ public class ExercicioFichaDAO {
                 Transaction tx = session.beginTransaction();
                 session.delete(ef);
                 tx.commit();
+                session.close();
                 return true;
             }
         } catch (Exception e) {

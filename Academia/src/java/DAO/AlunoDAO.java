@@ -25,6 +25,7 @@ public class AlunoDAO {
                 Transaction trans = session.beginTransaction();
                 session.save(a);
                 trans.commit();
+                session.close();
                 return true;
             }
         } catch (Exception e) {
@@ -55,6 +56,7 @@ public class AlunoDAO {
                 Transaction trans = session.beginTransaction();
                 session.saveOrUpdate(a);
                 trans.commit();
+                session.close();
                 return true;
             }
         } catch (Exception e) {
@@ -70,6 +72,7 @@ public class AlunoDAO {
                 Transaction tx = session.beginTransaction();
                 session.delete(a);
                 tx.commit();
+                session.close();
                 return true;
             }
         } catch (Exception e) {
@@ -84,8 +87,10 @@ public class AlunoDAO {
                 Transaction tx = session.beginTransaction();
                 Query query = session.createQuery("from Ficha F WHERE F.aluno=" + a.getCodigo());
                 List<Ficha> fichas = query.list();
+                session.close();
                 return fichas;
             }
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -105,6 +110,7 @@ public class AlunoDAO {
                         return aluno;
                     }
                 }
+                session.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
