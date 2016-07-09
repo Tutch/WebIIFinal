@@ -58,6 +58,12 @@
         <managed-bean-scope>request</managed-bean-scope>
 </managed-bean>
 
+<managed-bean>
+        <managed-bean-name>BeanCadastroFicha</managed-bean-name>
+        <managed-bean-class>managedBeans.BeanCadastroFicha</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
+
 
 <navigation-rule>
     <from-view-id>/professorAlterarDados.xhtml</from-view-id>
@@ -139,10 +145,14 @@
 </navigation-rule>
 
 <navigation-rule>
-    <from-view-id>/alunoVerFicha.xhtml</from-view-id>
+    <from-view-id>/cadastrarFicha.xhtml</from-view-id>
     <navigation-case>
-        <from-outcome>index</from-outcome>
-        <to-view-id>index.xhtml</to-view-id>
+        <from-outcome>sucesso</from-outcome>
+        <to-view-id>sucessoCadastroProfessor.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+        <from-outcome>erro</from-outcome>
+        <to-view-id>erroCadastroProfessor.xhtml</to-view-id>
     </navigation-case>
 </navigation-rule>
 </faces-config>

@@ -40,7 +40,7 @@ public class FichaDAO {
         try {
             Session session = BaseDAO.openSession();
             if(session !=null){
-                Query query =session.createQuery("from Professor");
+                Query query =session.createQuery("from Ficha");
                 resultado = query.list();
                 return resultado;
             }

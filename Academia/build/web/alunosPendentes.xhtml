@@ -13,7 +13,7 @@
             
             <h2>Alunos Pendentes:</h2>
 
-            <h:selectOneMenu id="selectCar" value="#{AceitarAlunoBean.alunoAtual}">
+            <h:selectOneMenu id="selectAluno" value="#{AceitarAlunoBean.alunoAtual}">
                 <f:selectItems value="#{AceitarAlunoBean.alunosPendentes}" />
             </h:selectOneMenu>            
             <p:commandButton value="Cadastrar" action="#{AceitarAlunoBean.aceitaAluno}"></p:commandButton>
