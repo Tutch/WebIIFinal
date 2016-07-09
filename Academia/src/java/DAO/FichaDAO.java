@@ -27,6 +27,7 @@ public class FichaDAO {
                 Transaction trans = session.beginTransaction();
                 session.save(a);
                 trans.commit();
+                session.close();
                 return true;
             }
         } catch (Exception e) {
@@ -42,6 +43,7 @@ public class FichaDAO {
             if(session !=null){
                 Query query =session.createQuery("from Ficha");
                 resultado = query.list();
+                session.close();
                 return resultado;
             }
         } catch (Exception e) {
@@ -59,6 +61,7 @@ public class FichaDAO {
                 Transaction trans = session.beginTransaction();
                 session.saveOrUpdate(up);
                 trans.commit();
+                session.close();
                 return true;
             }
         } catch (Exception e) {
@@ -74,6 +77,7 @@ public class FichaDAO {
                 Transaction tx = session.beginTransaction();
                 session.delete(a);
                 tx.commit();
+                session.close();
                 return true;
             }
         } catch (Exception e) {
@@ -96,6 +100,7 @@ public class FichaDAO {
                 for(ExercicioFicha ef:exerciciosCode){
                     exercicios.add(ef.getCodigoExercicio());
                 }
+                session.close();
                 return exercicios;
             }
         } catch (Exception e) {

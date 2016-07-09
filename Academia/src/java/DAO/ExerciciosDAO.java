@@ -25,6 +25,7 @@ public class ExerciciosDAO {
                 Transaction trans = session.beginTransaction();
                 session.save(a);
                 trans.commit();
+                session.close();
                 return true;
             }
         } catch (Exception e) {
@@ -40,6 +41,7 @@ public class ExerciciosDAO {
             if(session !=null){
                 Query query =session.createQuery("from Exercicios");
                 resultado = query.list();
+                session.close();
                 return resultado;
             }
         } catch (Exception e) {
@@ -54,6 +56,7 @@ public class ExerciciosDAO {
                 Transaction trans = session.beginTransaction();
                 session.saveOrUpdate(a);
                 trans.commit();
+                session.close();
                 return true;
             }
         } catch (Exception e) {
@@ -69,6 +72,7 @@ public class ExerciciosDAO {
                 Transaction tx = session.beginTransaction();
                 session.delete(a);
                 tx.commit();
+                session.close();
                 return true;
             }
         } catch (Exception e) {
