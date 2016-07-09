@@ -13,7 +13,10 @@ import util.FilterInput;
 import javax.annotation.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import util.FilterInput;
 /**
@@ -30,6 +33,9 @@ public class CadastrarProfessorBean extends BeanChecadorProfessor implements Ser
 
     public CadastrarProfessorBean() {
         super();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession sessao = (HttpSession) facesContext.getExternalContext().getSession(false);
+        sessao.setAttribute("msg", null);
     }
     
     
@@ -90,33 +96,75 @@ public class CadastrarProfessorBean extends BeanChecadorProfessor implements Ser
         return false;
     }
     public String enviar(){
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
+        HttpSession sessao = (HttpSession) facesContext.getExternalContext().getSession(false);        
+        
         if(check(this.nome)&&check(this.password)&&check(this.confirmaSenha)&&check(this.email)&&check(this.cpf)){
             if(FilterInput.noDangerousCharacters(nome) && FilterInput.noDangerousCharacters(password) && FilterInput.noDangerousCharacters(email)){
                 if(!(password.equals(confirmaSenha)&&password.length()>5)){
-                    setMsg("erro");
+                    sessao.setAttribute("msg", "Erro ao cadastrar Professor!");
+                    try {
+                        response.sendRedirect("../faces/cadastroProfessor.xhtml");
+                    } catch (IOException ex) {
+                        Logger.getLogger(CadastrarProfessorBean.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     return "erro";
                 }
                 if(cpf.length()!=11){
-                    setMsg("erro");
+                    sessao.setAttribute("msg", "Erro ao cadastrar Professor!");
+                    try {
+                        response.sendRedirect("../faces/cadastroProfessor.xhtml");
+                    } catch (IOException ex) {
+                        Logger.getLogger(CadastrarProfessorBean.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     return "erro";
                 }
                 try{
                     Long.parseLong(cpf);
                 }catch(Exception e){
-                    setMsg("erro");
+                    sessao.setAttribute("msg", "Erro ao cadastrar Professor!");
+                    try {
+                        response.sendRedirect("../faces/cadastroProfessor.xhtml");
+                    } catch (IOException ex) {
+                        Logger.getLogger(CadastrarProfessorBean.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     return "erro";
                 }
                 if(!DAO.ProfessorDAO.create(new Professor(nome, cpf, email, password))){
-                    setMsg("erro");
+                    sessao.setAttribute("msg", "Erro ao cadastrar Professor!");
+                    try {
+                        response.sendRedirect("../faces/cadastroProfessor.xhtml");
+                    } catch (IOException ex) {
+                        Logger.getLogger(CadastrarProfessorBean.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     return "erro";
                 }
+                    sessao.setAttribute("msg", "Professor Cadastrado com sucesso!");
+                    try {
+                        response.sendRedirect("../faces/cadastroProfessor.xhtml");
+                    } catch (IOException ex) {
+                        Logger.getLogger(CadastrarProfessorBean.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 return "professorCadastrado";
             }else{
-                setMsg("erro");
+                    sessao.setAttribute("msg", "Erro ao cadastrar Professor!");
+                    try {
+                        response.sendRedirect("../faces/cadastroProfessor.xhtml");
+                    } catch (IOException ex) {
+                        Logger.getLogger(CadastrarProfessorBean.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 return "erro";
             }
         }
-        setMsg("erro");
+        sessao.setAttribute("msg", "Erro ao cadastrar Professor!");
+        try {
+            response.sendRedirect("../faces/cadastroProfessor.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(CadastrarProfessorBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return "erro";
     }
+    
 }
