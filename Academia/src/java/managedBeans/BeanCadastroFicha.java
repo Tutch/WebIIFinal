@@ -5,9 +5,15 @@ import DAO.ExercicioFichaDAO;
 import java.io.Serializable;
 import java.util.ArrayList;
 import Entidades.*;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import others.AlertClass;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -102,6 +108,7 @@ public class BeanCadastroFicha implements Serializable{
         exerciciosSelecionados= new ArrayList<String>();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
+        AlertClass.limparMsg();
         if(session!=null){
             Object o = session.getAttribute("user");
             if(o instanceof Entidades.Professor){
@@ -144,6 +151,7 @@ public class BeanCadastroFicha implements Serializable{
         }
         Ficha f= new Ficha(descricao, alunoAEnviar, professor);
         if(!DAO.FichaDAO.create(f)){
+            AlertClass.redirecionaMsg("Erro ao cadastrar ficha!","../faces/cadastrarFicha.xhtml");
             return "erro";
         }
         List<Ficha> fichas = DAO.FichaDAO.read();
@@ -151,12 +159,14 @@ public class BeanCadastroFicha implements Serializable{
             for(Exercicios e: exerciciosEscolhidos){
                 ExercicioFicha ef = new ExercicioFicha(fichas.get(fichas.size()-1), e);
                 if(!ExercicioFichaDAO.create(ef)){
+                    AlertClass.redirecionaMsg("Erro ao cadastrar ficha!","../faces/cadastrarFicha.xhtml");
                     return "erro";
                 }
             }
         }
         System.out.println("descricao: "+ descricao);
         System.out.println("codigo professor: "+professor.getCodigo().longValue());
+        AlertClass.redirecionaMsg("Ficha cadastrada com sucesso!","../faces/cadastrarFicha.xhtml");
         return "sucesso";
     }
     
