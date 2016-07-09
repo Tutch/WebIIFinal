@@ -41,7 +41,7 @@
         </script>
     </h:head>
     <h:body>
-        <h:outputText  id="alerta" value="#{requestScope['msg']}" rendered="#{requestScope['msg']!=null}"/>
+        <h:outputText  id="alerta" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>
         <h:form id="formCadastroProfessor">
             
             <h2>Cadastrar Professor</h2>
