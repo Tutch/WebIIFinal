@@ -5,22 +5,27 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
+    <h:outputStylesheet library="css" name="custom.css"  />
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
     <h:body>
-        <h:link outcome="listarAlunosProfessor" value ="Ver alunos"></h:link>
-           <br/>
+        <form>
+           <h2>Menu</h2>
+           <h:link outcome="listarAlunosProfessor" value ="Ver alunos"></h:link>
+
            <h:link outcome="professorAlterarDados" value ="Alterar Dados Cadastrais"></h:link>
-           <br/>
+
            <h:link outcome="alunosPendentes" value ="Aceitar alunos pendentes"></h:link>
-           <br/>
+
            <h:link outcome="cadastrarExercicio" value ="Cadastrar Exercicios"></h:link>
-           <br/>
+
            <h:link outcome="cadastroProfessor" value ="Cadastrar Novo Professor"></h:link>
-           <br/>
+
            <h:link outcome="fichaAluno" value ="Cadastrar Nova Ficha"></h:link>
-           <br/>
+
            <h:link outcome="relatorioGeral" value ="Gerar Relatório Geral"></h:link>
-           <br/>
-           <h:commandButton value="logout" action="#{AuthenticateBean.logout}"></h:commandButton>
+
+           <h:commandButton class="exit" value="Logout" action="#{AuthenticateBean.logout}"></h:commandButton>
+           </form>
     </h:body>
 </html>
 

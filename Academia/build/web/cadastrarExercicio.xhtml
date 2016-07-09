@@ -7,16 +7,25 @@
     
     <h:head>
         <title>Cadastrar Exercício</title>
+        <h:outputStylesheet library="css" name="custom.css"  />
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
     </h:head>
     <h:body>
-        <h2>Cadastro de Exercícios</h2>
+        
         <h:form>
-            <p:inputText label="GG" placeholder="Nome" required="true" value="#{ExerciciosBean.nome}"></p:inputText><br/><br/>
-            <p:inputTextarea placeholder="Descrição" required="true" value="#{ExerciciosBean.descricao}"></p:inputTextarea><br/>
-            <h:selectOneMenu value="#{ExerciciosBean.musculo}"><br/>
+            <h2>Cadastro de Exercícios</h2>
+            <div>
+                <p:inputText label="GG" placeholder="Nome" required="true" value="#{ExerciciosBean.nome}"/>
+            </div>
+            <div>
+                <p:inputTextarea placeholder="Descrição" required="true" value="#{ExerciciosBean.descricao}"/>
+            </div>
+            <h:selectOneMenu value="#{ExerciciosBean.musculo}">
                 <f:selectItems value="#{ExerciciosBean.gruposMusculo}"/>
-            </h:selectOneMenu><br/><br/>
-            <p:commandButton value="Enviar" action="#{ExerciciosBean.cadastrar}"></p:commandButton>
+            </h:selectOneMenu>
+            <br/>
+            
+            <p:commandButton value="Enviar Exercício" action="#{ExerciciosBean.cadastrar}"/>
         </h:form>
     </h:body>
 </html>

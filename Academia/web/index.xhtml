@@ -26,13 +26,13 @@
         <h:form id="mainPageForm">
             <h2>Efetuar Login</h2>
 
-            <p:inputText placeholder="Login" required="true" value="#{AuthenticateBean.login}">
-                
-            </p:inputText><br/>
-
-            <p:password placeholder="Senha" required="password" value="#{AuthenticateBean.password}">
-                
-            </p:password><br/>
+            <div>
+                <p:inputText placeholder="Login" required="true" value="#{AuthenticateBean.login}"/>
+            </div>    
+            <div>
+                <p:password placeholder="Senha" required="password" value="#{AuthenticateBean.password}"/>
+            </div>
+  
             <p:commandButton value="Login" action="#{AuthenticateBean.authenticate}"></p:commandButton>
         </h:form>
     </h:body>
