@@ -131,16 +131,4 @@
         <to-view-id>../caracteresInvalidos.xhtml</to-view-id>
     </navigation-case>
 </navigation-rule>
-
-<navigation-rule>
-    <from-view-id>/cadastrarFicha.xhtml</from-view-id>
-    <navigation-case>
-        <from-outcome>sucesso</from-outcome>
-        <to-view-id>sucessoCadastroProfessor.xhtml</to-view-id>
-    </navigation-case>
-    <navigation-case>
-        <from-outcome>erro</from-outcome>
-        <to-view-id>erroCadastroProfessor.xhtml</to-view-id>
-    </navigation-case>
-</navigation-rule>
 </faces-config>
