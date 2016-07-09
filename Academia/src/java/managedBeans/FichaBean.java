@@ -106,6 +106,7 @@ public class FichaBean implements Serializable{
                 pdfWriter.createTableExercicios(document, exercicios);
                 document.close();
                 
+                
                 File file = new File(filePath);
                 HttpServletResponse response = (HttpServletResponse) context.getResponse();
                 
