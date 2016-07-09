@@ -5,14 +5,14 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Login</title>
-        <h:outputStylesheet library="css" name="custom.css"  />
+        <h:outputStylesheet library="css" name="style.css"  />
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>
             $('document').ready(function() {
                 var a = $('#alerta').length;
                 var b = Number(a);
-                if(b==0){
+                if(b===0){
                     return;
                 }else{
                     textou = $('#alerta').text();

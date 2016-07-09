@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  */
 public class BeanChecadorProfessor {
     public BeanChecadorProfessor() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
+        /*FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
         if(session!=null){
             Object o = session.getAttribute("user");
@@ -44,6 +44,6 @@ public class BeanChecadorProfessor {
                     Logger.getLogger(BeanChecadorAluno.class.getName()).log(Level.SEVERE, null, ex);
                 }
         }
-        System.out.println("terminou checagem");
+        System.out.println("terminou checagem");*/
     }
 }

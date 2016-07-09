@@ -6,20 +6,27 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Cadastrar Ficha:</title>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
     </h:head>
     <h:body>
         <h:form id="formCadastroFicha">
-            
+            <h2>Cadastro de Ficha</h2>
             <h:selectOneMenu label="Aluno" id="selectAluno" value="#{BeanCadastroFicha.alunoAtual}">
                 <f:selectItems value="#{BeanCadastroFicha.alunos}" />
-            </h:selectOneMenu> 
+            </h:selectOneMenu> <br/>
             
-            <h:selectManyCheckbox value="#{BeanCadastroFicha.exerciciosSelecionados}">
-                <f:selectItems value="#{BeanCadastroFicha.exerciciosDisponiveis}" />
-            </h:selectManyCheckbox>
-            
-            <p:inputText placeholder="Comentários/Descrição" id="nome" required="true" value="#{BeanCadastroFicha.descricao}"></p:inputText><br/>
-            
+            <div class="table-wrapper">
+                <div class="table-scroll">
+                    <h:selectManyCheckbox value="#{BeanCadastroFicha.exerciciosSelecionados}">
+                        <f:selectItems value="#{BeanCadastroFicha.exerciciosDisponiveis}" />
+                    </h:selectManyCheckbox>
+                </div>
+            </div>
+            <div>
+                <p:inputTextarea placeholder="Comentários/Descrição" id="nome" required="true" value="#{BeanCadastroFicha.descricao}"/>
+            </div>
+            <br/>
             <p:commandButton value="Cadastrar" action="#{BeanCadastroFicha.cadastraFicha}"></p:commandButton>
         </h:form>
     </h:body>

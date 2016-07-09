@@ -5,7 +5,6 @@ import DAO.ExercicioFichaDAO;
 import java.io.Serializable;
 import java.util.ArrayList;
 import Entidades.*;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -95,7 +94,7 @@ public class BeanCadastroFicha implements Serializable{
     
     
     
-    public BeanCadastroFicha(){
+    public BeanCadastroFicha(){    
         professor=null;
         alunosDoProf = new ArrayList<Aluno>();
         alunos = new ArrayList<String>();
@@ -124,7 +123,7 @@ public class BeanCadastroFicha implements Serializable{
                 if(e.getDescricao()==null){
                     exerciciosDisponiveis.add(e.getCodigo() +" -"+ e.getNome() + " (" +e.getMusculo()+")");
                 }else{
-                    exerciciosDisponiveis.add(e.getCodigo() +" -"+ e.getNome() + " (" +e.getMusculo()+") "+"Descrição: "+e.getDescricao());
+                    exerciciosDisponiveis.add(e.getCodigo() +" -"+ e.getNome() + " (" +e.getMusculo()+")");
                 }
             }
         }else{
