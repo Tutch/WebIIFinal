@@ -5,17 +5,20 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>TODO supply a title</title>
+        <title>Confirmar Alunos</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
     </h:head>
     <h:body>
-        <h:form id="formCadastroProfessor">
-            
-            <h2>Alunos Pendentes:</h2>
+        <h:form id="formCadastroProfessor">            
+            <h2>Alunos Pendentes</h2>
 
-            <h:selectOneMenu id="selectAluno" value="#{AceitarAlunoBean.alunoAtual}">
+            <h:selectOneMenu id="selectAluno" class="full-select" value="#{AceitarAlunoBean.alunoAtual}">
                 <f:selectItems value="#{AceitarAlunoBean.alunosPendentes}" />
-            </h:selectOneMenu>            
+            </h:selectOneMenu>
+            
+            <br/><br/>
             <p:commandButton value="Cadastrar" action="#{AceitarAlunoBean.aceitaAluno}"></p:commandButton>
         </h:form>
     </h:body>

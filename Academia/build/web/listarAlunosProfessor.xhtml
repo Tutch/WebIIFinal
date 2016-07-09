@@ -5,24 +5,31 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <h:outputStylesheet library="css" name="custom.css"  />
+        <h:outputStylesheet library="css" name="style.css"  />
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
         <title>Listar Alunos</title>
     </h:head>
     <h:body>
-        <h:dataTable value="#{ListarAlunosBean.listaAlunos}" var = "l" styleClass="order-Table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
-            <h:column>
-                <!-- column header -->
-                <f:facet name="header">Aluno</f:facet>
-                <!-- row record -->
-                #{l.getNome()}
-            </h:column>
-            
-            <h:column>
-                <f:facet name="header">Email Aluno</f:facet>
-                    #{l.getEmail()}
-            </h:column>
-        </h:dataTable>>
         <h:form>
+        <h2>Seus Alunos</h2>
+        <div class="table-wrapper">
+            <div class="table-scroll">
+                <h:dataTable value="#{ListarAlunosBean.listaAlunos}" var = "l" styleClass="order-Table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
+                    <h:column>
+                        <!-- column header -->
+                        <f:facet name="header">Aluno</f:facet>
+                        <!-- row record -->
+                        #{l.getNome()}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Email</f:facet>
+                            #{l.getEmail()}
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </div>
+            <br/>
             <p:commandButton value="Gerar PDF" immediate="true" action="#{ListarAlunosBean.printToPDF}"/>
         </h:form>
     </h:body>

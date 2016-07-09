@@ -4,8 +4,10 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Alterar Dados de Cadastro</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
         <script>
             $('document').ready(function() {
                 var a = $('#alerta').length;
@@ -38,22 +40,23 @@
     </h:head>
     <h:body>
          <h:outputText  id="alerta" value="#{requestScope['msg']}" rendered="#{requestScope['msg']!=null}"/>
-        <h:form id="formCadastroProfessor">
-            
+        <h:form id="formCadastroProfessor">        
             <h2>Alterar Dados</h2>
 
-            <p:inputText id="nome" required="true" value="#{AlterarProfessorBean.nome}">
-            </p:inputText><br/>
-                        
-            <p:inputText id="email" required="true" value="#{AlterarProfessorBean.email}" >
-            </p:inputText><br/>
-
-            <p:password placeholder="Nova Senha" id="senha" required="password" value="#{AlterarProfessorBean.password}">    
-            </p:password><br/>
+            <div>
+                <p:inputText placeholder="Novo nome" id="nome" required="true" value="#{AlterarProfessorBean.nome}"/>
+            </div>
+            <div>            
+                <p:inputText placeholder="Novo email" id="email" required="true" value="#{AlterarProfessorBean.email}"/>
+            </div>
+            <div>
+                <p:password placeholder="Nova Senha" id="senha" required="password" value="#{AlterarProfessorBean.password}"/>    
+            </div>
+            <div>
+                <p:password placeholder="Senha novamente" id="confirmaSenha" required="password" value="#{AlterarProfessorBean.confirmaSenha}"/>
+            </div>
             
-            <p:password placeholder="Senha novamente" id="confirmaSenha" required="password" value="#{AlterarProfessorBean.confirmaSenha}">
-            </p:password><br/>
-            
+            <br/>
             <p:commandButton value="Cadastrar" onclick="return valida();" action="#{AlterarProfessorBean.enviar}"></p:commandButton>
         </h:form>
     </h:body>

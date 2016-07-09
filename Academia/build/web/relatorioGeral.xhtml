@@ -6,31 +6,38 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Relatorio Geral</title>
-        <h:outputStylesheet library="css" name="custom.css"  />
+        <h:outputStylesheet library="css" name="style.css"  />
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
     </h:head>
     <h:body>
-        
-        <h:dataTable value="#{RelatorioGeralBean.listaAlunos}" var = "l" styleClass="order-Table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
-            <h:column>
-                <!-- column header -->
-                <f:facet name="header">Aluno</f:facet>
-                <!-- row record -->
-                #{l.getNome()}
-            </h:column>
+        <form>
+            <h2>Relatório Geral</h2>
             
-            <h:column>
-                <f:facet name="header">Email Aluno</f:facet>
-                    #{l.getEmail()}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Professor</f:facet>
-                    #{l.getInstrutor().getNome()}
-            </h:column>
-        </h:dataTable>
-        <p:chart type="bar" model="#{RelatorioGeralBean.barModel}" style="height:300px"/>
-        <h:form>
-            <p:commandButton value="Gerar PDF" immediate="true" action="#{RelatorioGeralBean.printToPDF}"/>
-        </h:form>
+            <div class="table-wrapper">
+                <div class="table-scroll">
+                    <h:dataTable value="#{RelatorioGeralBean.listaAlunos}" var = "l" styleClass="order-Table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
+                        <h:column>
+                            <!-- column header -->
+                            <f:facet name="header">Aluno</f:facet>
+                            <!-- row record -->
+                            #{l.getNome()}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Email</f:facet>
+                                #{l.getEmail()}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Professor</f:facet>
+                                #{l.getInstrutor().getNome()}
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </div>
+                <p:chart type="bar" model="#{RelatorioGeralBean.barModel}" style="height:300px"/>
+                
+                <p:commandButton value="Gerar PDF" immediate="true" action="#{RelatorioGeralBean.printToPDF}"/>
+        </form>
     </h:body>
 </html>
 

@@ -5,35 +5,51 @@ body {
   height: 100%;
   margin: 0;
   padding: 0; }
+  @media screen and (max-width: 900px) {
+    body {
+      background-color: white; } }
 
 form {
   background-color: white;
-  width: 60%;
-  max-width: 500px;
+  width: 20%;
   min-width: 340px;
   margin: 0 auto;
-  margin-top: 14%;
-  border-radius: 4px;
+  margin-top: 5%;
   padding: 40px;
   border-radius: 6px; }
+  @media screen and (max-width: 900px) {
+    form {
+      width: 100%; } }
+
+.jqplot-table-legend {
+  display: none; }
 
 table {
   margin: 0% 0% 5% 0%; }
 
-td {
+.full-td {
   width: 100%;
   margin-top: 2%;
   clear: both;
   float: left; }
 
+.full-select {
+  width: 100%;
+  font-size: 18px; }
+
+.order-table-header {
+  text-align: left !important;
+  margin-bottom: 2%; }
+
 .table-wrapper {
+  border-color: transparent !important;
   position: relative;
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important; }
 
 .table-scroll {
-  height: 220px;
+  height: 140px;
   overflow: auto;
   margin-top: 20px; }
 

@@ -5,11 +5,8 @@
  */
 package managedBeans;
 
-import DAO.FichaDAO;
 import DAO.ProfessorDAO;
 import Entidades.Aluno;
-import Entidades.Exercicios;
-import Entidades.Ficha;
 import Entidades.Professor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;

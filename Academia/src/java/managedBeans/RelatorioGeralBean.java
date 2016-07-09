@@ -19,6 +19,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.faces.context.FacesContext;
@@ -43,16 +44,62 @@ public class RelatorioGeralBean {
     private BarChartModel barModel;
 
     public RelatorioGeralBean(){
-        FacesContext context = FacesContext.getCurrentInstance();
+   /*     FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest(); 
         Professor professor = (Professor)request.getSession().getAttribute("user");
         listaAlunos = AlunoDAO.read();
         listaProfessores = ProfessorDAO.read();
         listaFichas = FichaDAO.read();
         listaExercicios = ExerciciosDAO.read();
+    */
+
+   
+         Aluno a;
+         a = new Aluno("Marcos Teste", "123456789", 'M', false, "Rua do teste", null, "Email Teste", "teste");
         
+         Exercicios b = new Exercicios();
+         b.setNome("Supino Birl2");
+         b.setDescricao("biiiirl");
+         b.setMusculo("Biceps");
+            
+         Professor p = new Professor("Teste prof", "484654654l","sadsda", "1234");
+         
+         a.setAtestado(true);
+         a.setInstrutor(p);
+         
+         Ficha f;
+         f = new Ficha("Crescer pra carai", a, p);
+         
+        listaAlunos = new ArrayList<Aluno>();
+        listaProfessores = new ArrayList<Professor>();
+        listaExercicios = new ArrayList<Exercicios>();
+        listaFichas = new ArrayList<Ficha>();
+        
+        listaAlunos.add(a);
+        listaAlunos.add(a);
+        listaAlunos.add(a);
+        listaAlunos.add(a);
+        listaAlunos.add(a);
+        listaAlunos.add(a);
+        
+        listaExercicios.add(b);
+        listaExercicios.add(b);
+        listaExercicios.add(b);
+        
+        listaProfessores.add(p);
+        listaProfessores.add(p);
+        
+        listaFichas.add(f);
+        listaFichas.add(f);
+        listaFichas.add(f);
+   
         createBarModel();
     }
+    
+    
+    
+    
+    
 
     public BarChartModel getBarModel() {
         return barModel;
@@ -93,7 +140,7 @@ public class RelatorioGeralBean {
     
     private BarChartModel initBarModel() {
         BarChartModel model = new BarChartModel();
- 
+        
         ChartSeries alunos = new ChartSeries();
         alunos.setLabel("Alunos");
         alunos.set("Atual", listaAlunos.size());
@@ -131,7 +178,7 @@ public class RelatorioGeralBean {
     private void createBarModel() {
         barModel = initBarModel();
          
-        barModel.setTitle("Bar Chart");
+        barModel.setTitle("Gráfico do Relatório");
         barModel.setLegendPosition("ne");
          
         Axis xAxis = barModel.getAxis(AxisType.X);

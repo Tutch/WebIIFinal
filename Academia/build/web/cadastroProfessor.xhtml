@@ -4,13 +4,15 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>TODO supply a title</title>
+        <title>Cadastro de Professor</title>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>
             $('document').ready(function() {
                 var a = $('#alerta').length;
                 var b = Number(a);
-                if(b==0){
+                if(b===0){
                     return;
                 }else{
                     textou = $('#alerta').text();
@@ -20,19 +22,19 @@
             
             function valida(){
                 var elementos = document.getElementsByTagName("INPUT"); 
-                if(elementos[1].value.trim()=="" || elementos[2].value.trim()=="" || elementos[3].value.trim()=="" || elementos[4].value.trim()=="" || elementos[5].value.trim()=="") {
+                if(elementos[1].value.trim()==="" || elementos[2].value.trim()==="" || elementos[3].value.trim()==="" || elementos[4].value.trim()==="" || elementos[5].value.trim()==="") {
                     alert("Preencha todos os campos!");
                     return false;
                 }
-                if(elementos[4].value!=elementos[5].value){
+                if(elementos[4].value!==elementos[5].value){
                     alert("A senha e a confirmação não conferem!");
                     return false
                 }
-                if(elementos[2].value.length!=11){
+                if(elementos[2].value.length!==11){
                     alert("Insira um CPF válido!");
                     return false;
                 }
-                if(elementos[3].value.indexOf("@")==-1 || elementos[3].value.indexOf(".com")==-1){
+                if(elementos[3].value.indexOf("@")===-1 || elementos[3].value.indexOf(".com")===-1){
                     alert("Insira um E-mail válido!")
                     return false;
                 }
@@ -43,24 +45,24 @@
     <h:body>
         <h:outputText  id="alerta" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>
         <h:form id="formCadastroProfessor">
-            
             <h2>Cadastrar Professor</h2>
 
-            <p:inputText placeholder="Nome" id="nome" required="true" value="#{CadastrarProfessorBean.nome}">
-            </p:inputText><br/>
-            
-            <p:inputText placeholder="CPF" id="cpf" required="true" value="#{CadastrarProfessorBean.cpf}" maxlength="11" onkeyup="this.value=this.value.replace(/[^\d]/,'')">
-            </p:inputText><br/>
-            
-            <p:inputText placeholder="E-mail" id="email" required="true" value="#{CadastrarProfessorBean.email}">
-            </p:inputText><br/>
-
-            <p:password placeholder="Senha" id="senha" required="password" value="#{CadastrarProfessorBean.password}">    
-            </p:password><br/>
-            
-            <p:password placeholder="Senha novamente" id="confirmaSenha" required="password" value="#{CadastrarProfessorBean.confirmaSenha}">
-            </p:password><br/>
-            
+            <div>
+                <p:inputText placeholder="Nome" id="nome" required="true" value="#{CadastrarProfessorBean.nome}"/>
+            </div> 
+            <div>
+            <p:inputText placeholder="CPF" id="cpf" required="true" value="#{CadastrarProfessorBean.cpf}" maxlength="11" onkeyup="this.value=this.value.replace(/[^\d]/,'')"/>
+            </div>
+            <div>
+            <p:inputText placeholder="E-mail" id="email" required="true" value="#{CadastrarProfessorBean.email}"/>
+            </div>
+            <div>
+            <p:password placeholder="Senha" id="senha" required="password" value="#{CadastrarProfessorBean.password}"/>    
+            </div>
+            <div>
+            <p:password placeholder="Senha novamente" id="confirmaSenha" required="password" value="#{CadastrarProfessorBean.confirmaSenha}"/>
+            </div>
+            <br/>
             <p:commandButton value="Cadastrar" onclick="return valida();" action="#{CadastrarProfessorBean.enviar}"></p:commandButton>
         </h:form>
     </h:body>
