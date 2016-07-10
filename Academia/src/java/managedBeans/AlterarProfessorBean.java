@@ -7,21 +7,30 @@ package managedBeans;
 
 import DAO.ProfessorDAO;
 import Entidades.Professor;
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import others.AlertClass;
 import util.FilterInput;
 
 /**
  *
  * @author Yuri
  */
-public class AlterarProfessorBean {
+public class AlterarProfessorBean extends BeanChecadorProfessor implements Serializable {
     private String nome;
     private String email;
     private String password;
     private String confirmaSenha;
     private String msg;
+
+    public AlterarProfessorBean() {
+        super();
+        AlertClass.limparMsg();
+    }
+    
+    
     
     @PostConstruct
     public void init(){
@@ -87,13 +96,16 @@ public class AlterarProfessorBean {
 
                 ProfessorDAO.update(professor);
 
+                AlertClass.redirecionaMsg("Dados alterados com suceso!", "../faces/professorAlterarDados.xhtml");
                 return "sucesso";
             }else{
+                AlertClass.redirecionaMsg("Erro ao alterar dados!", "../faces/professorAlterarDados.xhtml");
                 return "falhou";
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }       
+        }  
+        AlertClass.redirecionaMsg("Erro ao alterar dados!", "../faces/professorAlterarDados.xhtml");
         return "falhou";
     }
        

@@ -27,10 +27,11 @@ import others.pdfWriter;
  *
  * @author Yuri
  */
-public class ListarAlunosBean {
+public class ListarAlunosBean extends BeanChecadorProfessor{
     private List<Aluno> listaAlunos;
 
     public ListarAlunosBean(){
+        super();
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest(); 
         Professor professor = (Professor)request.getSession().getAttribute("user");

@@ -15,7 +15,6 @@
             <h2>Escolha sua ficha</h2>
             <h:selectOneMenu class="full-select" value="#{FichaBean.fichaSelecionada}">
                 <f:ajax event="change" execute="@this" />
-                <f:selectItem itemValue="#{null}" itemLabel="--select--" noSelectionOption="true"/>
                 <f:selectItems value="#{FichaBean.fichasNomes}" />
             </h:selectOneMenu><br/><br/>
             

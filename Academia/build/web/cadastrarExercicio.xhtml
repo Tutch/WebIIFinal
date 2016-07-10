@@ -9,9 +9,22 @@
         <title>Cadastrar Exercício</title>
         <h:outputStylesheet library="css" name="style.css"  />
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+            $('document').ready(function() {
+                var a = $('#alerta').length;
+                var b = Number(a);
+                if(b===0){
+                    return;
+                }else{
+                    textou = $('#alerta').text();
+                    alert(textou);
+                }
+            });
+        </script>
     </h:head>
     <h:body>
-        
+        <h:outputText  id="alerta" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>
         <h:form>
             <h2>Cadastro de Exercícios</h2>
             <div>
@@ -25,7 +38,7 @@
             </h:selectOneMenu>
             <br/>
             
-            <p:commandButton value="Enviar Exercício" action="#{ExerciciosBean.cadastrar}"/>
+            <h:commandButton value="Enviar Exercício" action="#{ExerciciosBean.cadastrar}"/>
         </h:form>
     </h:body>
 </html>

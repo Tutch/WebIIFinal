@@ -33,7 +33,6 @@ public class AuthenticateBean implements Serializable{
     private String login, password;
     
     public AuthenticateBean(){
-        System.out.println("sabosta checou!");
         FacesContext facesContext = FacesContext.getCurrentInstance();
         String path = facesContext.getExternalContext().getRequestContextPath();
         System.out.println(path);

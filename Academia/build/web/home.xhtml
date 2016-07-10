@@ -8,12 +8,13 @@
     </h:head>
     <h:body>
        Home Run!
+       <h:outputText  value="#{BeanMenuAluno.stringCheck_naoApagar}" style="display:none"/> 
        <h:form>
            <h:link outcome="alunoVerFicha" value ="Ver Ficha"></h:link>
            <br/>
            <h:link outcome="alunoAlterarDados" value ="Alterar Dados Cadastrais"></h:link>
            <br/>
-           <h:commandButton value="logout" action="#{AuthenticateBean.logout}"></h:commandButton>
+           <h:commandButton value="logout" action="#{AuthenticateBean.logout}"/>
        </h:form>
     </h:body>
 </html>

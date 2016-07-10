@@ -12,17 +12,20 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import others.AlertClass;
 
 /**
  *
  * @author Sergio Marinho
  */
-public class AceitarAlunoBean implements Serializable{
+public class AceitarAlunoBean extends BeanChecadorProfessor implements Serializable{
     private ArrayList<String> alunosPendentes; 
     private List<Aluno> alunos;
     private String alunoAtual;
 
     public AceitarAlunoBean() {
+        super();
+        AlertClass.limparMsg();
         alunoAtual="";
         alunos = DAO.AlunoDAO.read();
         alunosPendentes = new ArrayList<String>();
@@ -88,16 +91,22 @@ public class AceitarAlunoBean implements Serializable{
             alunoEscolhido.setAtestado(true);
             boolean rolou=DAO.AlunoDAO.update(alunoEscolhido);
             if(rolou){
+                AlertClass.redirecionaMsg("Aluno aceito com sucesso! agora esse aluno é seu aluno!", "../faces/alunosPendentes.xhtml");
                 return "alunoAceito";
             }
         }
+        AlertClass.redirecionaMsg("Erro ao aceitar aluno!", "../faces/alunosPendentes.xhtml");
         return "erroAlunoAceito";
     }
     public String getCpf(){
-         String retorno="";
-         retorno = alunoAtual.substring(alunoAtual.indexOf(" (CPF:"));
-         retorno = retorno.replace(" (CPF:", "");
-         retorno = retorno.replace(")", "");
+        String retorno=""; 
+        try{    
+            retorno = alunoAtual.substring(alunoAtual.indexOf(" (CPF:"));
+            retorno = retorno.replace(" (CPF:", "");
+            retorno = retorno.replace(")", "");
+         }catch(Exception e){
+             AlertClass.redirecionaMsg("Erro, nenhum aluno está esperando aceitação!", "../faces/alunosPendentes.xhtml");
+         }
          return retorno;
     }
     public Professor getProfessor(){

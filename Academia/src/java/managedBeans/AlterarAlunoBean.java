@@ -7,26 +7,31 @@ package managedBeans;
 
 import DAO.AlunoDAO;
 import Entidades.Aluno;
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import others.AlertClass;
 import util.FilterInput;
 
 /**
  *
  * @author Yuri
  */
-public class AlterarAlunoBean {
+public class AlterarAlunoBean extends BeanChecadorAluno implements Serializable{
     private String nome;
     private String email;
     private String password;
     private String confirmaSenha;
     private String msg;
 
+    public AlterarAlunoBean(){
+        super();
+        AlertClass.limparMsg();
+    }
     
     @PostConstruct
     public void init(){
-       System.out.println("entrei aqui");
        FacesContext context = FacesContext.getCurrentInstance();
        HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest(); 
        Aluno aluno = (Aluno)request.getSession().getAttribute("user");
@@ -87,14 +92,17 @@ public class AlterarAlunoBean {
                 aluno.setPassword(password);
 
                 AlunoDAO.update(aluno);
-
+                
+                AlertClass.redirecionaMsg("Dados alterados com sucesso!", "../faces/alunoAlterarDados.xhtml");
                 return "sucesso";
             }else{
+                AlertClass.redirecionaMsg("Erro ao alterar dados de alunos!", "../faces/alunoAlterarDados.xhtml");
                 return "falhou";
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }       
+        }
+        AlertClass.redirecionaMsg("Erro ao alterar dados de alunos!", "../faces/alunoAlterarDados.xhtml");
         return "falhou";
     }
     

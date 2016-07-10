@@ -12,7 +12,7 @@
             $('document').ready(function() {
                 var a = $('#alerta').length;
                 var b = Number(a);
-                if(b==0){
+                if(b===0){
                     return;
                 }else{
                     textou = $('#alerta').text();
@@ -39,7 +39,7 @@
         </script>
     </h:head>
     <h:body>
-         <h:outputText  id="alerta" value="#{requestScope['msg']}" rendered="#{requestScope['msg']!=null}"/>
+         <h:outputText  id="alerta" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>
         <h:form id="formCadastroProfessor">        
             <h2>Alterar Dados</h2>
 

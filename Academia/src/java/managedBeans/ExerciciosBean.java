@@ -7,9 +7,11 @@ package managedBeans;
 
 import DAO.ExerciciosDAO;
 import Entidades.Exercicios;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.annotation.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import others.AlertClass;
 import util.FilterInput;
 
 /**
@@ -18,13 +20,15 @@ import util.FilterInput;
  */
 //@ManagedBean
 //@SessionScoped
-public class ExerciciosBean {
+public class ExerciciosBean extends BeanChecadorProfessor implements Serializable{
     private Exercicios exercicioSelecionado;
 
     private ArrayList<String> gruposMusculo;
     private String nome, descricao, musculo;
 
     public ExerciciosBean(){
+        super();
+        AlertClass.limparMsg();
         gruposMusculo = new ArrayList<>();
         gruposMusculo.add("Biceps");
         gruposMusculo.add("Triceps");
@@ -87,13 +91,20 @@ public class ExerciciosBean {
             ex.setDescricao(descricao);
             
             try{
-                ExerciciosDAO.create(ex);
-                return "ExercicioCadastrado";
+                boolean rolou=ExerciciosDAO.create(ex);
+                if(rolou){
+                    AlertClass.redirecionaMsg("Exercicio cadastrado com sucesso!", "../faces/cadastrarExercicio.xhtml");
+                    return "ExercicioCadastrado";
+                }else{
+                    AlertClass.redirecionaMsg("Erro ao cadastrar exercicio!", "../faces/cadastrarExercicio.xhtml");
+                    return "ExercicioCadastrado";
+                }
             }catch(Exception e){
+                AlertClass.redirecionaMsg("Erro ao cadastrar exercicio!", "../faces/cadastrarExercicio.xhtml");
                 return "Failed";
             }
         }
-        
+        AlertClass.redirecionaMsg("Erro ao cadastrar exercício, insira apenas letras e números!", "../faces/cadastrarExercicio.xhtml");
         return "caracteresInvalidos";
     }
 }

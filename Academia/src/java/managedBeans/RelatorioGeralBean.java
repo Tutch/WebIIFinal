@@ -41,7 +41,7 @@ import others.pdfWriter;
  *
  * @author Yuri
  */
-public class RelatorioGeralBean {
+public class RelatorioGeralBean extends BeanChecadorProfessor {
     private List<Aluno> listaAlunos;
     private List<Professor> listaProfessores;
     private List<Exercicios> listaExercicios;
@@ -50,6 +50,7 @@ public class RelatorioGeralBean {
     private BarChartModel barModel;
 
     public RelatorioGeralBean(){
+        super();
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest(); 
         Professor professor = (Professor)request.getSession().getAttribute("user");

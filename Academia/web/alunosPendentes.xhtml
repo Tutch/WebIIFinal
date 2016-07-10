@@ -10,7 +10,20 @@
         <h:outputStylesheet library="css" name="style.css"  />
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
     </h:head>
+    <script>
+            $('document').ready(function() {
+                var a = $('#alerta').length;
+                var b = Number(a);
+                if(b===0){
+                    return;
+                }else{
+                    textou = $('#alerta').text();
+                    alert(textou);
+                }
+            });
+    </script>
     <h:body>
+        <h:outputText  id="alerta" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>
         <h:form id="formCadastroProfessor">            
             <h2>Alunos Pendentes</h2>
 
@@ -19,7 +32,7 @@
             </h:selectOneMenu>
             
             <br/><br/>
-            <p:commandButton value="Cadastrar" action="#{AceitarAlunoBean.aceitaAluno}"></p:commandButton>
+            <h:commandButton value="Cadastrar" action="#{AceitarAlunoBean.aceitaAluno}"></h:commandButton>
         </h:form>
     </h:body>
 </html>

@@ -37,7 +37,7 @@ import others.pdfWriter;
  *
  * @author Yuri
  */
-public class FichaBean implements Serializable{
+public class FichaBean extends BeanChecadorAluno implements Serializable{
     String fichaSelecionada;
     List<String> fichasNomes = new ArrayList<String>();
     List<Ficha> fichas;
@@ -68,6 +68,7 @@ public class FichaBean implements Serializable{
     
     
     public FichaBean(){
+        super();
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest(); 
         Aluno aluno = (Aluno)request.getSession().getAttribute("user");

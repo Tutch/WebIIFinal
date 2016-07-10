@@ -63,72 +63,49 @@
         <managed-bean-class>managedBeans.BeanCadastroFicha</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
 </managed-bean>
+<managed-bean>
+        <managed-bean-name>BeanMenuAluno</managed-bean-name>
+        <managed-bean-class>managedBeans.BeanMenuAluno</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
+<managed-bean>
+        <managed-bean-name>BeanMenuProfessor</managed-bean-name>
+        <managed-bean-class>managedBeans.BeanMenuProfessor</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
 
 
 <navigation-rule>
-    <from-view-id>/professorAlterarDados.xhtml</from-view-id>
-    <navigation-case>
-        <from-outcome>sucesso</from-outcome>
-        <to-view-id>sucessoCadastroProfessor.xhtml</to-view-id>
-    </navigation-case>
-    <navigation-case>
-        <from-outcome>falhou</from-outcome>
-        <to-view-id>erroCadastroProfessor.xhtml</to-view-id>
-    </navigation-case>
-</navigation-rule>
-<navigation-rule>
-    <from-view-id>/alunoAlterarDados.xhtml</from-view-id>
-    <navigation-case>
-        <from-outcome>sucesso</from-outcome>
-        <to-view-id>sucessoCadastroProfessor.xhtml</to-view-id>
-    </navigation-case>
-    <navigation-case>
-        <from-outcome>falhou</from-outcome>
-        <to-view-id>erroCadastroProfessor.xhtml</to-view-id>
-    </navigation-case>
-</navigation-rule>
-<navigation-rule>
-    <from-view-id>/alunosPendentes.xhtml</from-view-id>
-    <navigation-case>
-        <from-outcome>alunoAceito</from-outcome>
-        <to-view-id>alunoAceito.xhtml</to-view-id>
-    </navigation-case>
-    <navigation-case>
-        <from-outcome>erroAlunoAceito</from-outcome>
-        <to-view-id>erroAlunoAceito.xhtml</to-view-id>
-    </navigation-case>
-</navigation-rule>
-
-<navigation-rule>
-    <from-view-id>/index.xhtml</from-view-id>
+    <from-view-id>index.xhtml</from-view-id>
     <navigation-case>
         <from-outcome>Authenticated</from-outcome>
-        <to-view-id>/home.xhtml</to-view-id>
+        <to-view-id>home.xhtml</to-view-id>
     </navigation-case>
     <navigation-case>
         <from-outcome>AuthenticatedProfessor</from-outcome>
-        <to-view-id>/homeProfessor.xhtml</to-view-id>
+        <to-view-id>homeProfessor.xhtml</to-view-id>
     </navigation-case>
     <navigation-case>
         <from-outcome>index</from-outcome>
-        <to-view-id>../index.xhtml</to-view-id>
+        <to-view-id>index.xhtml</to-view-id>
     </navigation-case>
     <navigation-case>
         <from-outcome>Failed</from-outcome>
         <to-view-id>erroLogin.xhtml</to-view-id>
-    </navigation-case>
+    </navigation-case>    
+</navigation-rule>
+<navigation-rule>
+    <from-view-id>home.xhtml</from-view-id>
     <navigation-case>
-        <from-outcome>CadastrarExercicio</from-outcome>
-        <to-view-id>cadastrarExercicio.xhtml</to-view-id>
+        <from-outcome>index</from-outcome>
+        <to-view-id>index.xhtml</to-view-id>
     </navigation-case>
+</navigation-rule>
+<navigation-rule>
+    <from-view-id>homeProfessor.xhtml</from-view-id>
     <navigation-case>
-        <from-outcome>ExercicioCadastrado</from-outcome>
-        <to-view-id>../home.xhtml</to-view-id>
-    </navigation-case>
-    
-    <navigation-case>
-        <from-outcome>caracteresInvalidos</from-outcome>
-        <to-view-id>../caracteresInvalidos.xhtml</to-view-id>
+        <from-outcome>index</from-outcome>
+        <to-view-id>index.xhtml</to-view-id>
     </navigation-case>
 </navigation-rule>
 </faces-config>

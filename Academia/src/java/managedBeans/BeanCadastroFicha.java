@@ -24,7 +24,7 @@ import others.AlertClass;
  *
  * @author Sergio Marinho
  */
-public class BeanCadastroFicha implements Serializable{
+public class BeanCadastroFicha extends BeanChecadorProfessor implements Serializable{
     private List<Aluno> alunosDoProf;
     private ArrayList<String> alunos;
     private Professor professor;
@@ -101,6 +101,7 @@ public class BeanCadastroFicha implements Serializable{
     
     
     public BeanCadastroFicha(){    
+        super();
         professor=null;
         alunosDoProf = new ArrayList<Aluno>();
         alunos = new ArrayList<String>();
