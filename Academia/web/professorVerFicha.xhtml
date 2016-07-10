@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Ver ficha alunos</title>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
+    </h:head>
+    <h:body>
+        <!-- Isso é um stub, a parte que adiciona o exercicio na ficha do aluno -->
+        <h:form>
+            <h2>Escolha o Aluno</h2>
+            <h:selectOneMenu class="full-select" value="#{ProfessorFichaBean.alunoSelecionado}" onchange="submit()" valueChangeListener = "#{ProfessorFichaBean.getFichasAluno}">
+                <f:selectItems value="#{ProfessorFichaBean.alunosNomes}" />
+            </h:selectOneMenu><br/><br/>
+            <h2>Escolha a Ficha</h2>
+            <h:selectOneMenu class="full-select" value="#{ProfessorFichaBean.fichaSelecionada}">
+                <f:ajax event="change" execute="@this" />
+                <f:selectItems value="#{ProfessorFichaBean.fichasNomes}" />
+            </h:selectOneMenu><br/><br/>
+            <h:commandButton value="Gerar PDF" immediate="true" action="#{ProfessorFichaBean.printFicha}"/>
+        </h:form>
+    </h:body>
+</html>
+

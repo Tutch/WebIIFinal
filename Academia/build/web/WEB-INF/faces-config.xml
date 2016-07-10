@@ -73,6 +73,12 @@
         <managed-bean-class>managedBeans.BeanMenuProfessor</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
 </managed-bean>
+<managed-bean>
+        <managed-bean-name>ProfessorFichaBean</managed-bean-name>
+        <managed-bean-class>managedBeans.ProfessorFichaBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+</managed-bean>
+
 
 
 <navigation-rule>
