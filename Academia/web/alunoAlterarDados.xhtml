@@ -20,18 +20,30 @@
                 }
             });
             
+            function dismiss(){
+                var alerta = document.getElementById("alerta");
+                alerta.style.display = "none";
+            }
+            
             function valida(){
                 var elementos = document.getElementsByTagName("INPUT"); 
-                if(elementos[1].value.trim()=="" || elementos[2].value.trim()=="" || elementos[3].value.trim()=="" || elementos[4].value.trim()=="") {
-                    alert("Preencha todos os campos!");
+                var alerta = document.getElementById("alerta");
+                var mensagem = document.getElementById("alertaMensagem");
+        
+                if(elementos[1].value.trim()==="" || elementos[2].value.trim()==="" || elementos[3].value.trim()==="" || elementos[4].value.trim()==="") {
+                    alerta.style.display = "block";
+                    mensagem.innerHTML = "Preencha todos os campos!";
+                    
                     return false;
                 }
-                if(elementos[3].value!=elementos[4].value){
-                    alert("A senha e a confirmação não conferem!");
+                if(elementos[3].value!==elementos[4].value){
+                    alerta.style.display = "block";
+                    mensagem.innerHTML = "A senha e a confirmação não conferem!";
                     return false
                 }
-                if(elementos[2].value.indexOf("@")==-1 || elementos[2].value.indexOf(".com")==-1){
-                    alert("Insira um E-mail válido!")
+                if(elementos[2].value.indexOf("@")===-1 || elementos[2].value.indexOf(".com")===-1){
+                    alerta.style.display = "block";
+                    mensagem.innerHTML = "Insira um E-mail válido!";
                     return false;
                 }
                 return true;
@@ -39,8 +51,17 @@
         </script>
     </h:head>
     <h:body>
-         <h:outputText  id="alerta" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>
-        <h:form id="formCadastroProfessor">
+        <!--<h:outputText  id="alerta" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>-->
+        
+        <div id="alerta">
+            <div>
+                <span><p>Alerta</p></span>
+                <p id="alertaMensagem"></p>
+                <button onclick="return dismiss();">OK</button>
+            </div>
+        </div>
+        
+         <h:form id="formCadastroProfessor">
             <h2>Alterar Dados</h2>
 
             <div>

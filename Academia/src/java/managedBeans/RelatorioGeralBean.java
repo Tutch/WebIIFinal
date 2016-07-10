@@ -34,7 +34,6 @@ import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
-import org.primefaces.model.chart.HorizontalBarChartModel;
 import others.pdfWriter;
 
 /**
@@ -58,14 +57,9 @@ public class RelatorioGeralBean extends BeanChecadorProfessor {
         listaProfessores = ProfessorDAO.read();
         listaFichas = FichaDAO.read();
         listaExercicios = ExerciciosDAO.read();
-    
+        
         createBarModel();
     }
-    
-    
-    
-    
-    
 
     public BarChartModel getBarModel() {
         return barModel;
@@ -135,11 +129,12 @@ public class RelatorioGeralBean extends BeanChecadorProfessor {
     
     private BarChartModel initBarModel() {
         BarChartModel model = new BarChartModel();
+        model.setAnimate(true);
         
         ChartSeries alunos = new ChartSeries();
         alunos.setLabel("Alunos");
         alunos.set("Atual", listaAlunos.size());
- 
+        
         ChartSeries professores = new ChartSeries();
         professores.setLabel("Professores");
         professores.set("Atual", listaProfessores.size());

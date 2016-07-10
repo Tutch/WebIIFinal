@@ -10,7 +10,7 @@
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
     </h:head>
     <h:body>
-        <form>
+        <form id="relatorioGeral">
             <h2>Relatório Geral</h2>
             
             <div class="table-wrapper">
@@ -35,6 +35,17 @@
                 </div>
             </div>
                 <p:chart type="bar" model="#{RelatorioGeralBean.barModel}" style="height:300px"/>
+                <div id="chartLegenda">
+                    <div>
+                        <p><span class="corAluno"/>Quantidade de alunos</p>
+                        <p><span class="corProfessor"/>Quantidade de Professores</p>
+                    </div>
+                    <div>
+                        <p><span class="corExerc"/>Quantidade de Exercicios</p>
+                        <p><span class="corFicha"/>Quantidade de Fichas</p>/
+                    </div>
+                </div>
+                
                 
                 <p:commandButton value="Gerar PDF" immediate="true" action="#{RelatorioGeralBean.printToPDF}"/>
         </form>
