@@ -7,20 +7,18 @@
     
     <h:head>
         <title>Ficha do Aluno</title>
-        <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>
-        <h2>Adicionar Exercício</h2>
     </h:head>
     <h:body>
         <!-- Isso é um stub, a parte que adiciona o exercicio na ficha do aluno -->
-        
+        <h2>Adicionar Exercício</h2>
         <h:form>
             <div class="formHeader">
-                <h2>Adicionar Exercício</h2>
+                <h2>Cadastro de Ficha</h2>
                 <a href="homeProfessor.xhtml">Menu</a>
             </div>
             <h:selectOneMenu value="#{ExerciciosBean.exercicioSelecionado.nome}"><br/>
                 <f:selectItems value="#{ExerciciosBean.exerciciosNoSistema}"/>
-            </h:selectOneMenu><br/>
+            </h:selectOneMenu><br/><br/>
             <p:commandButton value="Enviar" action="#{ExerciciosBean.adicionarExercicioNaFicha(ficha)}"></p:commandButton>
         </h:form>
     </h:body>
