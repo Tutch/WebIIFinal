@@ -253,7 +253,7 @@ input[type="submit"] {
   border-color: transparent;
   border-radius: 4px;
   padding: 2% 0% 2% 0%;
-  margin-top: 10%;
+  margin-top: 6%;
   cursor: pointer; }
 
 input[type="submit"]:hover {
@@ -297,6 +297,7 @@ input[type="submit"]:hover {
   left: 0;
   position: fixed;
   font-size: 18px; }
+
   #alerta span {
     width: 100%;
     text-align: left;
@@ -317,6 +318,13 @@ input[type="submit"]:hover {
     width: 400px;
     height: 200px;
     text-align: center; }
+    
+  
+  @media screen and (max-width: 900px) {
+    #alerta div{
+      top: 20%;
+      transform: translate(-20%, -50%);} }
+  
   #alerta #alertaMensagem {
     margin-top: 10%; }
   #alerta button {

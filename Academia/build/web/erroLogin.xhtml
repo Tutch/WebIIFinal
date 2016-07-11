@@ -4,10 +4,16 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
         <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>
     </h:head>
     <h:body>
-        Parece que você entrou com um login ou senha incorretos ):
+        <form>
+            <p class="text-center">Parece que você entrou com um login ou senha incorretos. Tente novamente!</p>
+            <br/>
+            <a class="exit" href="index.xhtml">Retornar à tela inicial</a>
+        </form>
     </h:body>
 </html>
 
