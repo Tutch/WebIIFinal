@@ -12,15 +12,16 @@
         <!-- Isso é um stub, a parte que adiciona o exercicio na ficha do aluno -->
         <h:form>
             <h2>Escolha o Aluno</h2>
-            <h:selectOneMenu class="full-select" value="#{ProfessorFichaBean.alunoSelecionado}" onchange="submit()" valueChangeListener = "#{ProfessorFichaBean.getFichasAluno}">
-                <f:selectItems value="#{ProfessorFichaBean.alunosNomes}" />
+            <h:selectOneMenu id ="combo2" class="full-select" value="#{ProfessorFichaBean.alunoSelecionado}" onchange="submit()" valueChangeListener = "#{ProfessorFichaBean.getFichasAluno}" required="true">
+                <f:selectItem noSelectionOption="Selecione" itemValue = "Selecione um aluno"/>
+                <f:selectItems value="#{ProfessorFichaBean.alunosNomes}"/>
             </h:selectOneMenu><br/><br/>
             <h2>Escolha a Ficha</h2>
-            <h:selectOneMenu class="full-select" value="#{ProfessorFichaBean.fichaSelecionada}">
-                <f:ajax event="change" execute="@this" />
+            <h:selectOneMenu id="combo" class="full-select" value="#{ProfessorFichaBean.fichaSelecionada}" required="true" onchange="submit()">
+                <f:selectItem noSelectionOption="Selecione" itemValue = "Selecione a ficha"/>
                 <f:selectItems value="#{ProfessorFichaBean.fichasNomes}" />
             </h:selectOneMenu><br/><br/>
-            <h:commandButton value="Gerar PDF" immediate="true" action="#{ProfessorFichaBean.printFicha}"/>
+            <h:commandButton value="Gerar PDF" immediate="true" action="#{ProfessorFichaBean.printFicha(ProfessorFichaBean.fichaSelecionada,ProfessorFichaBean.alunoSelecionado)}"/>
         </h:form>
     </h:body>
 </html>

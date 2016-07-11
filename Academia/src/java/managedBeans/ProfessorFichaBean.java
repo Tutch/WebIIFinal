@@ -47,7 +47,6 @@ public class ProfessorFichaBean {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest(); 
         Professor professor = (Professor)request.getSession().getAttribute("user");
-        System.out.println(request.getSession().getAttribute("user") instanceof Aluno);
         alunos = ProfessorDAO.getAllAlunos(professor);
         if(alunos.size() > 0 ){
             for(Aluno aluno:alunos){
@@ -55,10 +54,12 @@ public class ProfessorFichaBean {
             }
         }
     }
-    
+    public void getFichasFicha(ValueChangeEvent event) throws MalformedURLException{
+        fichaSelecionada = (String) event.getNewValue();
+    }
     public void getFichasAluno(ValueChangeEvent event) throws MalformedURLException{
-        alunoSelecionado = (String) event.getNewValue();
-        fichas = AlunoDAO.getFicha(getAlunoFromString());
+        setAlunoSelecionado((String)event.getNewValue());
+        fichas = AlunoDAO.getFicha(getAlunoFromString(alunoSelecionado));
         if(fichas.size() > 0 ){
             for(Ficha ficha:fichas){
                 fichasNomes.add(ficha.getDescricao());
@@ -113,33 +114,37 @@ public class ProfessorFichaBean {
         this.alunos = alunos;
     }
     
-    public Aluno getAlunoFromString(){
-        System.out.println(alunoSelecionado);
+    public Aluno getAlunoFromString(String alunoString){
+        System.out.println("String qual é " + alunoSelecionado);
         for(Aluno aluno:alunos){
-               if(alunoSelecionado.hashCode() == aluno.getNome().hashCode()){
+               if(alunoString.hashCode() == aluno.getNome().hashCode()){
                    return aluno;
                }
         }
         return null;
     }
     
-    public Ficha getFichaFromString(){
+    public Ficha getFichaFromString(String fichaString){
+        System.out.println("String qual é " + fichaSelecionada);
         for(Ficha ficha:fichas){
-            if(ficha.getDescricao().hashCode() == fichaSelecionada.hashCode()){
+            System.out.println("ficha " + ficha.getDescricao() + "FichaSelecionada " + fichaString + " eval" + (ficha.getDescricao().hashCode() == fichaString.hashCode()));
+            if(ficha.getDescricao().hashCode() == fichaString.hashCode()){
                return ficha;
             }
         }
         return null;
     }
     
-    public void printFicha(){
+    public void printFicha(String fichaSelecionada, String alunoSelecionado){
         try {
             ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
             HttpServletRequest request = (HttpServletRequest)context.getRequest();
-            Aluno aluno = getAlunoFromString();
-            Ficha fichaEscolhida = getFichaFromString();
+            Professor professor = (Professor)request.getSession().getAttribute("user");
+            Aluno aluno = getAlunoFromString(alunoSelecionado);
+            Ficha fichaEscolhida = getFichaFromString(fichaSelecionada);
+            System.out.println("Ficha " + fichaEscolhida + "Aluno " + aluno);
             List<Exercicios> exercicios = FichaDAO.getAllExercicios(fichaEscolhida);
-            String filePath = System.getProperty("user.home") + "\\Desktop\\ficha" + aluno.getNome() +" "+ fichaEscolhida.getDescricao() + ".pdf" ;
+            String filePath = System.getProperty("user.home") + "\\Desktop\\ficha" + professor.getNome() +" "+ fichaEscolhida.getDescricao() + ".pdf" ;
             try {
                 Document document = new Document();
                 PdfWriter.getInstance(document, new FileOutputStream(filePath));
@@ -182,9 +187,10 @@ public class ProfessorFichaBean {
             e.printStackTrace();
         }
         } catch (Exception e) {
+            e.printStackTrace();
         }
-      
-       
+        setAlunoSelecionado(null);
+        setFichaSelecionada(null);
     }
     
 }
