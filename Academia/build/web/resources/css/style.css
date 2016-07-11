@@ -7,7 +7,8 @@ body {
   padding: 0; }
   @media screen and (max-width: 900px) {
     body {
-      background-color: white; } }
+      background-color: white;
+      width: 85%;} }
 
 #relatorioGeral {
   width: 32%; }

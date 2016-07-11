@@ -5,6 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Ver ficha alunos</title>
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>
         <h:outputStylesheet library="css" name="style.css"  />
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
     </h:head>
@@ -15,8 +16,6 @@
                 <h2>Escolha o aluno</h2>
                 <a href="homeProfessor.xhtml">Menu</a>
             </div>
-            <h:selectOneMenu class="full-select" value="#{ProfessorFichaBean.alunoSelecionado}" onchange="submit()" valueChangeListener = "#{ProfessorFichaBean.getFichasAluno}">
-                <f:selectItems value="#{ProfessorFichaBean.alunosNomes}" />
             <h:selectOneMenu id ="combo2" class="full-select" value="#{ProfessorFichaBean.alunoSelecionado}" onchange="submit()" valueChangeListener = "#{ProfessorFichaBean.getFichasAluno}" required="true">
                 <f:selectItem noSelectionOption="Selecione" itemValue = "Selecione um aluno"/>
                 <f:selectItems value="#{ProfessorFichaBean.alunosNomes}"/>
