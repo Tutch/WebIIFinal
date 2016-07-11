@@ -24,10 +24,24 @@
                 }
             });
         </script>
+        <script>
+            function dismiss(){
+                var alerta = document.getElementById("alerta");
+                alerta.style.display = "none";
+            }
+        </script>
     </h:head>
     <h:body>
-        <h:outputText  id="alertamsg" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>
-        <h:outputText  value="#{BeanLogin.stringCheck_naoApagar}" style="display:none"/>
+        <h:outputText  id="alertamsg" value="#{requestScope['msg']}" rendered="#{requestScope['msg']!=null}" style="display:none"/>
+        
+        <div id="alerta">
+            <div>
+                <span><p>Alerta</p></span>
+                <p id="alertaMensagem"></p>
+                <button onclick="return dismiss();">OK</button>
+            </div>
+        </div><h:outputText  value="#{BeanLogin.stringCheck_naoApagar}" style="display:none"/>
+        
         <div id="alerta">
             <div>
                 <span><p>Alerta</p></span>

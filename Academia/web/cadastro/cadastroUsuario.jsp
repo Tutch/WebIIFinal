@@ -17,9 +17,6 @@
         <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css"/>
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
         <script>
-            <%if(request.getAttribute("msg")!=null){%>
-                alert("<%=request.getAttribute("msg")%>");    
-            <%}%>
             function dismiss(){
                 var alerta = document.getElementById("alerta");
                 alerta.style.display = "none";
@@ -99,10 +96,12 @@
         </script>
     </head>
     <body>
-        <div id="alerta">
+        <div id="alerta" <%if(request.getAttribute("msg")!=null){%>style="display:block"<%}%>>
             <div>
                 <span><p>Alerta</p></span>
-                <p id="alertaMensagem"></p>
+                <p id="alertaMensagem">
+                <%if(request.getAttribute("msg")!=null){%><%=request.getAttribute("msg")%><%}%>
+                </p>
                 <button onclick="return dismiss();">OK</button>
             </div>
         </div>

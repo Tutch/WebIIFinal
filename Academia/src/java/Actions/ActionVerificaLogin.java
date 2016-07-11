@@ -158,8 +158,10 @@ public class ActionVerificaLogin extends ActionSupport{
             while ((data = reader.readLine()) != null) {
                 content += data + "\n";
             }
-            if(content.contains("true")){
-                setMsg("usuário cadastrado com sucesso!Aguarde a confirmação de um professor!");
+            System.out.println("o content é: "+ content);
+            if(content.indexOf("true")>-1){
+                System.out.println("vai retornar verdadeiro");
+                setMsg("Usuário cadastrado com sucesso!Aguarde a confirmação de um professor!");
                 return "sucesso";
             }
             setMsg("Erro ao cadastrar Usuário!");
