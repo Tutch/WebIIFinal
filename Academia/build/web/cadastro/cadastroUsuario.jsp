@@ -110,7 +110,7 @@
         <s:form name="form" action="verificaLogin" onsubmit="return validaForm()">
             <div class="formHeader">
                 <h2>Cadastrar Usuário</h2>
-                <a href="../faces/index.xhtml">Início</a>
+                <a href="../index.xhtml">Início</a>
             </div>
             <div>
                 <s:textfield name="nome" placeholder="Nome"/>

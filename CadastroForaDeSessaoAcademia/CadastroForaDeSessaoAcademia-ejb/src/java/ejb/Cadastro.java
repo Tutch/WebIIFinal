@@ -24,6 +24,7 @@ public class Cadastro implements CadastroLocal {
             e.printStackTrace();
             return false;
         }
+        System.out.println("retornando verdadeiro");
         return true;
     }
     // Add business logic below. (Right-click in editor and choose

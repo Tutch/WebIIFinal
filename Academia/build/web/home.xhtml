@@ -11,12 +11,12 @@
     </h:head>
     <h:body>
        <h:outputText  value="#{BeanMenuAluno.stringCheck_naoApagar}" style="display:none"/> 
-       <form>
+       <h:form>
            <h2>Menu</h2>
            <h:link outcome="alunoVerFicha" value ="Ver Ficha"></h:link>
            <h:link outcome="alunoAlterarDados" value ="Alterar Dados Cadastrais"></h:link>
-           <h:commandButton class="exit" value="Logout" action="#{AuthenticateBean.logout}"/>
-       </form>
+           <h:commandButton class="exit" value="Logout" immediate="true" action="#{AuthenticateBean.logout}"/>
+       </h:form>
     </h:body>
 </html>
 

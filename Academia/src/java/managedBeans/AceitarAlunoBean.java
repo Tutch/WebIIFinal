@@ -91,11 +91,11 @@ public class AceitarAlunoBean extends BeanChecadorProfessor implements Serializa
             alunoEscolhido.setAtestado(true);
             boolean rolou=DAO.AlunoDAO.update(alunoEscolhido);
             if(rolou){
-                AlertClass.redirecionaMsg("Aluno aceito com sucesso! agora esse aluno é seu aluno!", "../faces/alunosPendentes.xhtml");
+                AlertClass.redirecionaMsg("Aluno aceito com sucesso! agora esse aluno é seu aluno!", "alunosPendentes.xhtml");
                 return "alunoAceito";
             }
         }
-        AlertClass.redirecionaMsg("Erro ao aceitar aluno!", "../faces/alunosPendentes.xhtml");
+        AlertClass.redirecionaMsg("Erro ao aceitar aluno!", "alunosPendentes.xhtml");
         return "erroAlunoAceito";
     }
     public String getCpf(){
@@ -105,7 +105,7 @@ public class AceitarAlunoBean extends BeanChecadorProfessor implements Serializa
             retorno = retorno.replace(" (CPF:", "");
             retorno = retorno.replace(")", "");
          }catch(Exception e){
-             AlertClass.redirecionaMsg("Erro, nenhum aluno está esperando aceitação!", "../faces/alunosPendentes.xhtml");
+             AlertClass.redirecionaMsg("Erro, nenhum aluno está esperando aceitação!", "alunosPendentes.xhtml");
          }
          return retorno;
     }

@@ -93,16 +93,16 @@ public class AlterarAlunoBean extends BeanChecadorAluno implements Serializable{
 
                 AlunoDAO.update(aluno);
                 
-                AlertClass.redirecionaMsg("Dados alterados com sucesso!", "../faces/alunoAlterarDados.xhtml");
+                AlertClass.redirecionaMsg("Dados alterados com sucesso!", "alunoAlterarDados.xhtml");
                 return "sucesso";
             }else{
-                AlertClass.redirecionaMsg("Erro ao alterar dados de alunos!", "../faces/alunoAlterarDados.xhtml");
+                AlertClass.redirecionaMsg("Erro ao alterar dados de alunos!", "alunoAlterarDados.xhtml");
                 return "falhou";
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        AlertClass.redirecionaMsg("Erro ao alterar dados de alunos!", "../faces/alunoAlterarDados.xhtml");
+        AlertClass.redirecionaMsg("Erro ao alterar dados de alunos!", "alunoAlterarDados.xhtml");
         return "falhou";
     }
     

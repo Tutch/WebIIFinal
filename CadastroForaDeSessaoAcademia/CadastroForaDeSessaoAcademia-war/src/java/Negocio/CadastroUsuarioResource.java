@@ -56,24 +56,31 @@ public class CadastroUsuarioResource {
     @Path("cadastrar")
     public String casdastrarUsuario(@FormParam("nome") String nome,@FormParam("cpf") String cpf,@FormParam("endereco") String endereco,@FormParam("password") String password,@FormParam("sexo") String sexo,@FormParam("nascimento") String nascimento,@FormParam("email") String email){     
         if(nome==null || nome.trim().equalsIgnoreCase("")){
+            System.out.println("caso 1");
             return "<raiz><msg>false</msg></raiz>";
         }
         if(cpf==null || cpf.trim().equalsIgnoreCase("") || cpf.length()!=11){
+            System.out.println("caso 2");
             return "<raiz><msg>false</msg></raiz>";
         }
         if(endereco==null || endereco.trim().equalsIgnoreCase("")){
+            System.out.println("caso 3");
             return "<raiz><msg>false</msg></raiz>";
         }
         if(password==null || password.trim().equalsIgnoreCase("")){
+            System.out.println("caso 4");
             return "<raiz><msg>false</msg></raiz>";
         }
         if(sexo==null || sexo.trim().equalsIgnoreCase("") || (sexo.charAt(0)!='M' && sexo.charAt(0)!='F')){
+            System.out.println("caso 5");
             return "<raiz><msg>false</msg></raiz>";
         }
         if(nascimento==null || nascimento.trim().equalsIgnoreCase("")){
+            System.out.println("caso 6");
             return "<raiz><msg>false</msg></raiz>";
         }
         if(email==null || email.trim().equalsIgnoreCase("")){
+            System.out.println("caso 7");
             return "<raiz><msg>false</msg></raiz>";
         }
         nome=retiraXSS(nome);
@@ -89,12 +96,19 @@ public class CadastroUsuarioResource {
             mes = Integer.parseInt(nascimento.substring(2, 4));
             ano = Integer.parseInt(nascimento.substring(4));
         }catch(Exception e){
+            System.out.println("caso 8");
             return "<raiz><msg>false</msg></raiz>";
         }
         Date data = new Date(ano, mes, dia);
         Aluno a = new Aluno(nome, cpf, sexoChar, false, endereco, data, email, password);
         boolean result=cadastro1.cadastraAluno(a);
-        return "<raiz><msg>"+result+"</msg></raiz>";
+        System.out.println("caso 9");
+        if(result){
+            return "<raiz><msg>true</msg></raiz>";
+        }
+        else{
+            return "<raiz><msg>false</msg></raiz>";
+        }
     }
     
     @GET
@@ -102,7 +116,7 @@ public class CadastroUsuarioResource {
     @Path("testa")
     public String testa(){
         java.sql.Date data = new Date(1994, 12, 22);
-        Aluno a = new Aluno("yuriboy", "04785014596", 'M', false, "casa do caralho", data, "meninoyuri@gmail.com", "242424");
+        Aluno a = new Aluno("yuriboy", "04785014596", 'M', false, "casa", data, "meninoyuri@gmail.com", "242424");
         return "<raiz><msg>"+cadastro1.cadastraAluno(a)+"</msg></raiz>";
     }
     

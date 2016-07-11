@@ -96,16 +96,16 @@ public class AlterarProfessorBean extends BeanChecadorProfessor implements Seria
 
                 ProfessorDAO.update(professor);
 
-                AlertClass.redirecionaMsg("Dados alterados com suceso!", "../faces/professorAlterarDados.xhtml");
+                AlertClass.redirecionaMsg("Dados alterados com suceso!", "professorAlterarDados.xhtml");
                 return "sucesso";
             }else{
-                AlertClass.redirecionaMsg("Erro ao alterar dados!", "../faces/professorAlterarDados.xhtml");
+                AlertClass.redirecionaMsg("Erro ao alterar dados!", "professorAlterarDados.xhtml");
                 return "falhou";
             }
         } catch (Exception e) {
             e.printStackTrace();
         }  
-        AlertClass.redirecionaMsg("Erro ao alterar dados!", "../faces/professorAlterarDados.xhtml");
+        AlertClass.redirecionaMsg("Erro ao alterar dados!", "professorAlterarDados.xhtml");
         return "falhou";
     }
        

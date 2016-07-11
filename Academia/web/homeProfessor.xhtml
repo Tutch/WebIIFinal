@@ -12,7 +12,7 @@
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
     <h:body>
         <h:outputText  value="#{BeanMenuProfessor.stringCheck_naoApagar}" style="display:none"/> 
-        <form>
+        <h:form>
            <h2>Menu</h2>
            <h:link outcome="listarAlunosProfessor" value ="Ver alunos"></h:link>
 
@@ -30,8 +30,8 @@
 
            <h:link outcome="relatorioGeral" value ="Gerar Relatório Geral"></h:link>
 
-           <h:commandButton class="exit" value="Logout" action="#{AuthenticateBean.logout}"/>
-           </form>
+           <h:commandButton class="exit" value="Logout" immediate="true" action="#{AuthenticateBean.logout}"/>
+           </h:form>
     </h:body>
 </html>
 

@@ -64,6 +64,7 @@ public class ProfessorFichaBean extends BeanChecadorProfessor implements Seriali
     public void getFichasAluno(ValueChangeEvent event) throws MalformedURLException{
         setAlunoSelecionado((String)event.getNewValue());
         fichas = AlunoDAO.getFicha(getAlunoFromString(alunoSelecionado));
+        fichasNomes.clear();
         if(fichas!=null){
             if(fichas.size() > 0 ){
                 for(Ficha ficha:fichas){

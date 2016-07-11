@@ -63,20 +63,37 @@ public class AuthenticateBean{
     public String logout(){
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
             System.out.println("Invalidou");
+            HttpServletResponse response = (HttpServletResponse)FacesContext.getCurrentInstance().getExternalContext().getResponse();
+            try {
+                    response.sendRedirect("index.xhtml");
+                } catch (IOException ex) {
+                    Logger.getLogger(AuthenticateBean.class.getName()).log(Level.SEVERE, null, ex);
+                }
             return "index";
     }
     
     public String authenticate(){        
         if(FilterInput.noDangerousCharacters(login) && FilterInput.noDangerousCharacters(password)){
             FacesContext context = FacesContext.getCurrentInstance();
+            HttpServletResponse response = (HttpServletResponse)context.getExternalContext().getResponse();
             aluno = AlunoDAO.authenticateUser(login, password);
             if( aluno != null){
                 context.getExternalContext().getSessionMap().put("user", aluno);
+                try {
+                    response.sendRedirect("home.xhtml");
+                } catch (IOException ex) {
+                    Logger.getLogger(AuthenticateBean.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 return "Authenticated";
             }else{
                 professor = ProfessorDAO.authenticateUser(login, password);
                 if(professor != null){
                     context.getExternalContext().getSessionMap().put("user", professor);
+                    try {
+                        response.sendRedirect("homeProfessor.xhtml");
+                    } catch (IOException ex) {
+                        Logger.getLogger(AuthenticateBean.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     return "AuthenticatedProfessor";
                 }else{
                     return "Failed";

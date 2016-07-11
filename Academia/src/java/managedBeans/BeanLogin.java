@@ -41,7 +41,7 @@ public class BeanLogin implements Serializable{
                 HttpServletResponse response = (HttpServletResponse)facesContext.getExternalContext().getResponse();
                 try {
                     System.out.println("redirecionando professor");
-                    response.sendRedirect("../faces/homeProfessor.xhtml");
+                    response.sendRedirect("homeProfessor.xhtml");
                 } catch (IOException ex) {
                     System.out.println("problema ao redirecionar");
                     Logger.getLogger(BeanChecadorAluno.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,7 +51,7 @@ public class BeanLogin implements Serializable{
                 HttpServletResponse response = (HttpServletResponse)facesContext.getExternalContext().getResponse();
                 try {
                     System.out.println("redirecionando aluno");
-                    response.sendRedirect("../faces/home.xhtml");
+                    response.sendRedirect("home.xhtml");
                 } catch (IOException ex) {
                     System.out.println("problema ao redirecionar");
                     Logger.getLogger(BeanChecadorAluno.class.getName()).log(Level.SEVERE, null, ex);

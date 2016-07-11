@@ -29,7 +29,7 @@ public class BeanChecadorAluno {
                 HttpServletResponse response = (HttpServletResponse)facesContext.getExternalContext().getResponse();
                 try {
                     System.out.println("redirecionando não aluno");
-                    response.sendRedirect("../faces/index.xhtml");
+                    response.sendRedirect("index.xhtml");
                 } catch (IOException ex) {
                     System.out.println("problema ao redirecionar");
                     Logger.getLogger(BeanChecadorAluno.class.getName()).log(Level.SEVERE, null, ex);
@@ -39,7 +39,7 @@ public class BeanChecadorAluno {
             HttpServletResponse response = (HttpServletResponse)facesContext.getExternalContext().getResponse();
                 try {
                     System.out.println("redirecionando não aluno");
-                    response.sendRedirect("../faces/index.xhtml");
+                    response.sendRedirect("index.xhtml");
                 } catch (IOException ex) {
                     System.out.println("problema ao redirecionar");
                     Logger.getLogger(BeanChecadorAluno.class.getName()).log(Level.SEVERE, null, ex);

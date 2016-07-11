@@ -93,14 +93,14 @@ public class ExerciciosBean extends BeanChecadorProfessor implements Serializabl
             try{
                 boolean rolou=ExerciciosDAO.create(ex);
                 if(rolou){
-                    AlertClass.redirecionaMsg("Exercicio cadastrado com sucesso!", "../faces/cadastrarExercicio.xhtml");
+                    AlertClass.redirecionaMsg("Exercicio cadastrado com sucesso!", "cadastrarExercicio.xhtml");
                     return "ExercicioCadastrado";
                 }else{
-                    AlertClass.redirecionaMsg("Erro ao cadastrar exercicio!", "../faces/cadastrarExercicio.xhtml");
+                    AlertClass.redirecionaMsg("Erro ao cadastrar exercicio!", "cadastrarExercicio.xhtml");
                     return "ExercicioCadastrado";
                 }
             }catch(Exception e){
-                AlertClass.redirecionaMsg("Erro ao cadastrar exercicio!", "../faces/cadastrarExercicio.xhtml");
+                AlertClass.redirecionaMsg("Erro ao cadastrar exercicio!", "cadastrarExercicio.xhtml");
                 return "Failed";
             }
         }

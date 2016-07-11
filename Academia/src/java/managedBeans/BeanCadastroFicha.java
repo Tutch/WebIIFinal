@@ -152,7 +152,7 @@ public class BeanCadastroFicha extends BeanChecadorProfessor implements Serializ
         }
         Ficha f= new Ficha(descricao, alunoAEnviar, professor);
         if(!DAO.FichaDAO.create(f)){
-            AlertClass.redirecionaMsg("Erro ao cadastrar ficha!","../faces/cadastrarFicha.xhtml");
+            AlertClass.redirecionaMsg("Erro ao cadastrar ficha!","cadastrarFicha.xhtml");
             return "erro";
         }
         List<Ficha> fichas = DAO.FichaDAO.read();
@@ -160,14 +160,14 @@ public class BeanCadastroFicha extends BeanChecadorProfessor implements Serializ
             for(Exercicios e: exerciciosEscolhidos){
                 ExercicioFicha ef = new ExercicioFicha(fichas.get(fichas.size()-1), e);
                 if(!ExercicioFichaDAO.create(ef)){
-                    AlertClass.redirecionaMsg("Erro ao cadastrar ficha!","../faces/cadastrarFicha.xhtml");
+                    AlertClass.redirecionaMsg("Erro ao cadastrar ficha!","cadastrarFicha.xhtml");
                     return "erro";
                 }
             }
         }
         System.out.println("descricao: "+ descricao);
         System.out.println("codigo professor: "+professor.getCodigo().longValue());
-        AlertClass.redirecionaMsg("Ficha cadastrada com sucesso!","../faces/cadastrarFicha.xhtml");
+        AlertClass.redirecionaMsg("Ficha cadastrada com sucesso!","cadastrarFicha.xhtml");
         return "sucesso";
     }
     
