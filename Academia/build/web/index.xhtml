@@ -10,19 +10,30 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>
             $('document').ready(function() {
-                var a = $('#alerta').length;
+                var alerta = document.getElementById("alerta");
+                var mensagem = document.getElementById("alertaMensagem");
+                var a = $('#alertamsg').length;
                 var b = Number(a);
                 if(b===0){
                     return;
                 }else{
-                    textou = $('#alerta').text();
-                    alert(textou);
+                    textou = $('#alertamsg').text();
+                    mensagem.innerHTML = textou;
+                    alerta.style.display = "block";
                 }
             });
         </script>
     </h:head>
     <h:body>
-        <h:outputText  id="alerta" value="#{requestScope['msg']}" rendered="#{requestScope['msg']!=null}" style="display:none"/>
+        <h:outputText  id="alertamsg" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>
+        
+        <div id="alerta">
+            <div>
+                <span><p>Alerta</p></span>
+                <p id="alertaMensagem"></p>
+                <button onclick="return dismiss();">OK</button>
+            </div>
+        </div>
         
         <h:form id="mainPageForm">
             <h2>Efetuar Login</h2>
@@ -35,8 +46,8 @@
             </div>
   
             <p:commandButton value="Login" action="#{AuthenticateBean.authenticate}"></p:commandButton>
+            <a class="btnLink" href="../cadastro/cadastroUsuario.jsp">Novo Usuário</a>
         </h:form>
-        <a href="../cadastro/cadastroUsuario.jsp"><button>NOVO USUARIO</button></a>
     </h:body>
 </html>
 

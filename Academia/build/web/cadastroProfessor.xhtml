@@ -10,13 +10,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>
             $('document').ready(function() {
-                var a = $('#alerta').length;
+                var alerta = document.getElementById("alerta");
+                var mensagem = document.getElementById("alertaMensagem");
+                var a = $('#alertamsg').length;
                 var b = Number(a);
                 if(b===0){
                     return;
                 }else{
-                    textou = $('#alerta').text();
-                    alert(textou);
+                    textou = $('#alertamsg').text();
+                    mensagem.innerHTML = textou;
+                    alerta.style.display = "block";
                 }
             });
             
@@ -55,12 +58,20 @@
         </script>
     </h:head>
     <h:body>
-        <!--<h:outputText  id="alerta" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>-->
+        <h:outputText  id="alertamsg" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>
         
         <div id="alerta">
             <div>
                 <span><p>Alerta</p></span>
                 <p id="alertaMensagem"></p>
+                <button onclick="return dismiss();">OK</button>
+            </div>
+        </div>
+        
+        <div id="alerta" rendered="#{sessionScope['msg']!=null}">
+            <div>
+                <span><p>Alerta</p></span>
+                <p id="alertaMensagem">#{sessionScope['msg']}</p>
                 <button onclick="return dismiss();">OK</button>
             </div>
         </div>

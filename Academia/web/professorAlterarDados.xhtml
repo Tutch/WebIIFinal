@@ -10,13 +10,16 @@
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
         <script>
             $('document').ready(function() {
-                var a = $('#alerta').length;
+                var alerta = document.getElementById("alerta");
+                var mensagem = document.getElementById("alertaMensagem");
+                var a = $('#alertamsg').length;
                 var b = Number(a);
                 if(b===0){
                     return;
                 }else{
-                    textou = $('#alerta').text();
-                    alert(textou);
+                    textou = $('#alertamsg').text();
+                    mensagem.innerHTML = textou;
+                    alerta.style.display = "block";
                 }
             });
             
@@ -50,7 +53,8 @@
         </script>
     </h:head>
     <h:body>
-        <!--<h:outputText  id="alerta" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>-->
+        <h:outputText  id="alertamsg" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>
+        
         <div id="alerta">
             <div>
                 <span><p>Alerta</p></span>
@@ -60,7 +64,10 @@
         </div>
         
         <h:form id="formCadastroProfessor">        
-            <h2>Alterar Dados</h2>
+            <div class="formHeader">
+                <h2>Alterar Dados</h2>
+                <a href="homeProfessor.xhtml">Menu</a>
+            </div>
 
             <div>
                 <p:inputText placeholder="Novo nome" id="nome" required="true" value="#{AlterarProfessorBean.nome}"/>

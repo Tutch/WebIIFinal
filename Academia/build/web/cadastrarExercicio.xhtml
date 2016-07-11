@@ -12,21 +12,70 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>
             $('document').ready(function() {
-                var a = $('#alerta').length;
+                var alerta = document.getElementById("alerta");
+                var mensagem = document.getElementById("alertaMensagem");
+                var a = $('#alertamsg').length;
                 var b = Number(a);
                 if(b===0){
                     return;
                 }else{
-                    textou = $('#alerta').text();
-                    alert(textou);
+                    textou = $('#alertamsg').text();
+                    mensagem.innerHTML = textou;
+                    alerta.style.display = "block";
                 }
             });
         </script>
+        <script>
+            function dismiss(){
+                var alerta = document.getElementById("alerta");
+                alerta.style.display = "none";
+            }
+            
+            function valida(){
+                var elementos = document.getElementsByTagName("INPUT"); 
+                var alerta = document.getElementById("alerta");
+                var mensagem = document.getElementById("alertaMensagem");
+
+                if(elementos[1].value.trim()==="" || elementos[2].value.trim()==="" || elementos[3].value.trim()==="" || elementos[4].value.trim()==="" || elementos[5].value.trim()==="") {
+                    alerta.style.display = "block";
+                    mensagem.innerHTML = "Preencha todos os campos!"; 
+                    return false;
+                }
+                if(elementos[4].value!==elementos[5].value){
+                    alerta.style.display = "block";
+                    mensagem.innerHTML = "A senha e a confirmação não conferem!";              
+                    return false;
+                }
+                if(elementos[2].value.length!==11){
+                    alerta.style.display = "block";
+                    mensagem.innerHTML = "Insira um CPF válido!";
+                    return false;
+                }
+                if(elementos[3].value.indexOf("@")===-1 || elementos[3].value.indexOf(".com")===-1){
+                    alerta.style.display = "block";
+                    mensagem.innerHTML = "Insira um E-mail válido!";
+                    return false;
+                }
+                return true;
+            }
+        </script>
     </h:head>
     <h:body>
-        <h:outputText  id="alerta" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>
+        <h:outputText  id="alertamsg" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>
+        
+        <div id="alerta">
+            <div>
+                <span><p>Alerta</p></span>
+                <p id="alertaMensagem"></p>
+                <button onclick="return dismiss();">OK</button>
+            </div>
+        </div>
+        
         <h:form>
-            <h2>Cadastro de Exercícios</h2>
+            <div class="formHeader">
+                <h2>Cadastro de Exercícios</h2>
+                <a href="homeProfessor.xhtml">Menu</a>
+            </div>
             <div>
                 <p:inputText label="GG" placeholder="Nome" required="true" value="#{ExerciciosBean.nome}"/>
             </div>

@@ -24,6 +24,21 @@ form {
     form {
       width: 100%; } }
 
+.formHeader {
+  width: 100%;
+  height: 50px;
+  border: 0;
+  margin: 0;
+  padding-left: 0;
+  border-color: transparent; }
+  .formHeader h2 {
+    float: left;
+    width: 80%; }
+  .formHeader a {
+    margin-top: 0;
+    float: right;
+    width: 20%; }
+
 .corAluno {
   background-color: #4bb2c5; }
 
@@ -205,10 +220,18 @@ form a {
   border-radius: 4px;
   padding: 8px 0px 8px 0px;
   text-decoration: none; }
+  form a:hover {
+    background-color: #74cccf; }
 
 .exit {
-  background-color: #d15454 !important;
-  margin-top: 52px !important; }
+  background-color: #d15454 !important; }
+  .exit:hover {
+    background-color: #dc7c7c !important; }
+
+.label {
+  padding: 3% 0% 3% 0%;
+  font-weight: 700;
+  color: #5c5c5c; }
 
 input[type="text"]:focus {
   margin: -8px 0px -8px -10px !important;
@@ -248,6 +271,20 @@ input[type="submit"]:hover {
   font-weight: 300;
   border-radius: 4px;
   text-align: center !important; }
+
+.btnLink {
+  font-size: 16px;
+  font-weight: 300;
+  background-color: #84cc6a !important;
+  width: 100%;
+  color: white;
+  border-color: transparent;
+  border-radius: 4px;
+  padding: 2% 0% 2% 0%;
+  margin-top: 2%;
+  cursor: pointer; }
+  .btnLink:hover {
+    background-color: #a3d990 !important; }
 
 #alerta {
   display: none;

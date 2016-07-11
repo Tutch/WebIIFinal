@@ -11,7 +11,10 @@
     </h:head>
     <h:body>
         <h:form>
-        <h2>Seus Alunos</h2>
+        <div class="formHeader">
+                <h2>Seus Alunos</h2>
+                <a href="homeProfessor.xhtml">Menu</a>
+            </div>
         <div class="table-wrapper">
             <div class="table-scroll">
                 <h:dataTable value="#{ListarAlunosBean.listaAlunos}" var = "l" styleClass="order-Table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">

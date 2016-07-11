@@ -12,20 +12,35 @@
     </h:head>
     <script>
             $('document').ready(function() {
-                var a = $('#alerta').length;
+                var alerta = document.getElementById("alerta");
+                var mensagem = document.getElementById("alertaMensagem");
+                var a = $('#alertamsg').length;
                 var b = Number(a);
                 if(b===0){
                     return;
                 }else{
-                    textou = $('#alerta').text();
-                    alert(textou);
+                    textou = $('#alertamsg').text();
+                    mensagem.innerHTML = textou;
+                    alerta.style.display = "block";
                 }
             });
     </script>
     <h:body>
-        <h:outputText  id="alerta" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>
+        <h:outputText  id="alertamsg" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>
+        
+        <div id="alerta">
+            <div>
+                <span><p>Alerta</p></span>
+                <p id="alertaMensagem"></p>
+                <button onclick="return dismiss();">OK</button>
+            </div>
+        </div>
+        
         <h:form id="formCadastroProfessor">            
-            <h2>Alunos Pendentes</h2>
+            <div class="formHeader">
+                <h2>Alunos Pendentes</h2>
+                <a href="homeProfessor.xhtml">Menu</a>
+            </div>
 
             <h:selectOneMenu id="selectAluno" class="full-select" value="#{AceitarAlunoBean.alunoAtual}">
                 <f:selectItems value="#{AceitarAlunoBean.alunosPendentes}" />

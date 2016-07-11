@@ -4,6 +4,7 @@ $exitColor: #D15454;
 $backgroundColor: #262626;
 $lightGrey: #5c5c5c;
 $modalBackgroundColor: white;
+$prettyGreen: #84CC6A;
 $corAluno: #4bb2c5;
 $corProfessor:#eaa228;
 $corFicha:#579575;
@@ -38,6 +39,27 @@ form{
     @media screen and (max-width : 900px){
 		  width: 100%;
 	  }
+}
+
+.formHeader{
+  width: 100%;
+  height: 50px;
+  border: 0;
+  margin:0;
+  padding-left: 0;
+  border-color: transparent;
+
+  h2{
+    float: left;
+    width: 80%;
+  }
+
+  a{
+    margin-top: 0;
+    float:right;
+    width: 20%;
+  }
+
 }
 
 .corAluno{
@@ -261,11 +283,24 @@ form a{
   border-radius: 4px;
   padding: 8px 0px 8px 0px;
   text-decoration: none;
+
+  &:hover{
+    background-color: lighten($btnColor, 10%);
+  }
 }
 
 .exit{
     background-color: $exitColor !important;
-    margin-top: 52px !important;
+
+    &:hover{
+      background-color: lighten($exitColor, 10%) !important;
+    }
+}
+
+.label{
+  padding: 3% 0% 3% 0%;
+  font-weight: 700;
+  color: $lightGrey;
 }
 
 input[type="text"]:focus{
@@ -312,6 +347,24 @@ input[type="submit"]:hover{
     border-radius: 4px;
     text-align: center !important;  
 }
+
+.btnLink{
+  font-size: 16px;
+  font-weight: 300;
+  background-color: $prettyGreen !important;
+  width: 100%;
+  color: white;
+  border-color: transparent;
+  border-radius: 4px;
+  padding: 2% 0% 2% 0%;
+  margin-top: 2%;
+  cursor: pointer; 
+
+  &:hover{
+    background-color: lighten($prettyGreen, 10%) !important;;
+  }
+}
+
 
 
 #alerta{

@@ -5,16 +5,16 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="style.css"  />
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
     </h:head>
     <h:body>
-       Home Run!
        <h:outputText  value="#{BeanMenuAluno.stringCheck_naoApagar}" style="display:none"/> 
        <h:form>
+           <h2>Menu</h2>
            <h:link outcome="alunoVerFicha" value ="Ver Ficha"></h:link>
-           <br/>
            <h:link outcome="alunoAlterarDados" value ="Alterar Dados Cadastrais"></h:link>
-           <br/>
-           <h:commandButton value="logout" action="#{AuthenticateBean.logout}"/>
+           <h:commandButton class="exit" value="Logout" action="#{AuthenticateBean.logout}"/>
        </h:form>
     </h:body>
 </html>

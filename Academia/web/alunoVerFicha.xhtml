@@ -12,7 +12,10 @@
     <h:body>
         <!-- Isso é um stub, a parte que adiciona o exercicio na ficha do aluno -->
         <h:form>
-            <h2>Escolha sua ficha</h2>
+            <div class="formHeader">
+                <h2>Escolha sua Ficha</h2>
+                <a href="home.xhtml">Menu</a>
+            </div>
             <h:selectOneMenu class="full-select" value="#{FichaBean.fichaSelecionada}">
                 <f:ajax event="change" execute="@this" />
                 <f:selectItems value="#{FichaBean.fichasNomes}" />
