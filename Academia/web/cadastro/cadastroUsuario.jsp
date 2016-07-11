@@ -108,7 +108,7 @@
         </div>
         
         <s:form name="form" action="verificaLogin" onsubmit="return validaForm()">
-            <h2>Menu</h2>
+            <h2>Cadastrar Usuário</h2>
             <div>
                 <s:textfield name="nome" placeholder="Nome"/>
             </div> 

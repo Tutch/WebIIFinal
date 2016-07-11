@@ -26,45 +26,14 @@ import util.FilterInput;
  *
  * @author Yuri
  */
-public class AuthenticateBean implements Serializable{
+public class AuthenticateBean{
     private Aluno aluno;
     private Professor professor;
     private boolean isAuthenticated;
     private String login, password;
     
     public AuthenticateBean(){
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        String path = facesContext.getExternalContext().getRequestContextPath();
-        System.out.println(path);
-        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
-        if(session!=null){
-            Object o = session.getAttribute("user");
-            if(o instanceof Entidades.Professor){
-                HttpServletResponse response = (HttpServletResponse)facesContext.getExternalContext().getResponse();
-                try {
-                    System.out.println("redirecionando professor");
-                    response.sendRedirect("../Academia/faces/homeProfessor.xhtml");
-                } catch (IOException ex) {
-                    System.out.println("problema ao redirecionar");
-                    Logger.getLogger(BeanChecadorAluno.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            else if(o instanceof Entidades.Aluno){
-                HttpServletResponse response = (HttpServletResponse)facesContext.getExternalContext().getResponse();
-                try {
-                    System.out.println("redirecionando aluno");
-                    response.sendRedirect("../Academia/faces/home.xhtml");
-                } catch (IOException ex) {
-                    System.out.println("problema ao redirecionar");
-                    Logger.getLogger(BeanChecadorAluno.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            else{
-                System.out.println("instancia de nenhum dos dois");
-            }
-        }else{
-            System.out.println("sem sessao");
-        }
+        
     }
 
     public boolean isIsAuthenticated() {

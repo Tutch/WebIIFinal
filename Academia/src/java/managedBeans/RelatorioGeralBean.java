@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ import others.pdfWriter;
  *
  * @author Yuri
  */
-public class RelatorioGeralBean extends BeanChecadorProfessor {
+public class RelatorioGeralBean extends BeanChecadorProfessor implements Serializable{
     private List<Aluno> listaAlunos;
     private List<Professor> listaProfessores;
     private List<Exercicios> listaExercicios;
@@ -78,6 +79,7 @@ public class RelatorioGeralBean extends BeanChecadorProfessor {
     }
     
     public void printToPDF(){
+       System.out.println("criando relatorio geral");
        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
        HttpServletRequest request = (HttpServletRequest)context.getRequest(); 
        Professor professor = (Professor)request.getSession().getAttribute("user");
@@ -96,7 +98,7 @@ public class RelatorioGeralBean extends BeanChecadorProfessor {
             
             File file = new File(filePath);
             HttpServletResponse response = (HttpServletResponse) context.getResponse();
-            
+
             response.reset();
             response.setHeader("Content-Disposition", "attachment;filename=RelatorioGeral.pdf");
             response.setContentLength((int) file.length());
@@ -125,6 +127,7 @@ public class RelatorioGeralBean extends BeanChecadorProfessor {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
     }
     
     private BarChartModel initBarModel() {

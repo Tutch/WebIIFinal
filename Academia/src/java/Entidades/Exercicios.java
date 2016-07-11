@@ -5,6 +5,7 @@
  */
 package Entidades;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,7 @@ import javax.persistence.SequenceGenerator;
  * @author Yuri
  */
 @Entity
-public class Exercicios {
+public class Exercicios implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "exercicio_sequence_generator")
     @SequenceGenerator(name = "exercicio_sequence_generator", sequenceName = "exercicio_id_seq", allocationSize = 1)

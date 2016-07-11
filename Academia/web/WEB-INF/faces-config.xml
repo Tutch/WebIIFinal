@@ -6,6 +6,11 @@
 <managed-bean>
         <managed-bean-name>AuthenticateBean</managed-bean-name>
         <managed-bean-class>managedBeans.AuthenticateBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+</managed-bean>
+<managed-bean>
+        <managed-bean-name>BeanLogin</managed-bean-name>
+        <managed-bean-class>managedBeans.BeanLogin</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
 </managed-bean>
 <managed-bean>
@@ -26,7 +31,7 @@
 <managed-bean>
         <managed-bean-name>ExerciciosBean</managed-bean-name>
         <managed-bean-class>managedBeans.ExerciciosBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-scope>request</managed-bean-scope>
 </managed-bean>
 <managed-bean>
         <managed-bean-name>CadastrarProfessorBean</managed-bean-name>

@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,25 +29,28 @@ import javax.faces.event.ValueChangeEvent;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import others.AlertClass;
 import others.pdfWriter;
 
 /**
  *
  * @author Yuri
  */
-public class ProfessorFichaBean {
+public class ProfessorFichaBean extends BeanChecadorProfessor implements Serializable{
     String fichaSelecionada;
     String alunoSelecionado;
     List<String> alunosNomes = new ArrayList<>();
     List<String> fichasNomes = new ArrayList<>();
     List<Ficha> fichas;
     List<Aluno> alunos;
+    Professor profUser;
 
     public ProfessorFichaBean(){
         super();
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest(); 
         Professor professor = (Professor)request.getSession().getAttribute("user");
+        profUser=professor;
         alunos = ProfessorDAO.getAllAlunos(professor);
         if(alunos.size() > 0 ){
             for(Aluno aluno:alunos){
@@ -60,9 +64,11 @@ public class ProfessorFichaBean {
     public void getFichasAluno(ValueChangeEvent event) throws MalformedURLException{
         setAlunoSelecionado((String)event.getNewValue());
         fichas = AlunoDAO.getFicha(getAlunoFromString(alunoSelecionado));
-        if(fichas.size() > 0 ){
-            for(Ficha ficha:fichas){
-                fichasNomes.add(ficha.getDescricao());
+        if(fichas!=null){
+            if(fichas.size() > 0 ){
+                for(Ficha ficha:fichas){
+                    fichasNomes.add(ficha.getDescricao());
+                }
             }
         }        
     }
@@ -71,6 +77,10 @@ public class ProfessorFichaBean {
     }
 
     public void setFichaSelecionada(String fichaSelecionada) {
+        if(fichaSelecionada==null){
+            fichaSelecionada="";
+            return;
+        }
         this.fichaSelecionada = fichaSelecionada;
     }
 
@@ -79,6 +89,10 @@ public class ProfessorFichaBean {
     }
 
     public void setAlunoSelecionado(String alunoSelecionado) {
+        if(alunoSelecionado==null){
+            alunoSelecionado="";
+            return;
+        }
         this.alunoSelecionado = alunoSelecionado;
     }
 
@@ -136,6 +150,9 @@ public class ProfessorFichaBean {
     }
     
     public void printFicha(String fichaSelecionada, String alunoSelecionado){
+        /*if(fichaSelecionada==null|| alunoSelecionado==null || fichaSelecionada.equals("Selecione a ficha") || alunoSelecionado.equals("Selecione um aluno")){
+            AlertClass.redirecionaMsg("Erro, selecione uma ficha válida!", "../faces/professorVerFicha.xhtml");
+        }*/
         try {
             ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
             HttpServletRequest request = (HttpServletRequest)context.getRequest();
@@ -149,7 +166,7 @@ public class ProfessorFichaBean {
                 Document document = new Document();
                 PdfWriter.getInstance(document, new FileOutputStream(filePath));
                 document.open();
-                pdfWriter.addTitlePage(document, fichaEscolhida.getDescricao(), aluno.getNome());
+                pdfWriter.addTitlePage(document, fichaEscolhida.getDescricao(), profUser.getNome());
                 document.add(Chunk.NEWLINE);
                 pdfWriter.createTableExercicios(document, exercicios);
                 document.close();

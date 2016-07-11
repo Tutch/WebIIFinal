@@ -5,6 +5,7 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Login</title>
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>
         <h:outputStylesheet library="css" name="style.css"  />
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -26,7 +27,7 @@
     </h:head>
     <h:body>
         <h:outputText  id="alertamsg" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>
-        
+      
         <div id="alerta">
             <div>
                 <span><p>Alerta</p></span>
@@ -46,8 +47,8 @@
             </div>
   
             <p:commandButton value="Login" action="#{AuthenticateBean.authenticate}"></p:commandButton>
-            <a class="btnLink" href="../cadastro/cadastroUsuario.jsp">Novo Usuário</a>
+            <a class="btnLink" href="../Academia/cadastro/cadastroUsuario.jsp">Novo Usuário</a>
         </h:form>
-    </h:body>
+        </h:body>
 </html>
 

@@ -44,9 +44,7 @@ public class pdfWriter {
 
 
 
-  // iText allows to add metadata to the PDF which can be viewed in your Adobe
-  // Reader
-  // under File -> Properties
+  
   private static void addMetaData(Document document) {
     document.addTitle("My first PDF");
     document.addSubject("Using iText");
@@ -71,7 +69,7 @@ public class pdfWriter {
     
     document.add(preface);
     addEmptyLine(preface, 3);
-    // Start a new page
+    
   }
 
   public static void addTitlePage(Document document, String title, String user)
@@ -204,7 +202,11 @@ public class pdfWriter {
     for(Aluno aluno:alunos){
         table.addCell(aluno.getNome());
         table.addCell(aluno.getEmail());
-        table.addCell(aluno.getInstrutor().getNome());
+        if(aluno.getInstrutor()!=null){
+            table.addCell(aluno.getInstrutor().getNome());
+        }else{
+            table.addCell("Aguarda aceitação");
+        }
     }
 
     document.add(table);

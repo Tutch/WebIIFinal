@@ -6,6 +6,7 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Relatorio Geral</title>
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>
         <h:outputStylesheet library="css" name="style.css"  />
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'></link>
     </h:head>
@@ -49,8 +50,9 @@
                     </div>
                 </div>
                 
-                
-                <p:commandButton value="Gerar PDF" immediate="true" action="#{RelatorioGeralBean.printToPDF}"/>
+                <h:form>
+                    <p:commandButton value="Gerar PDF" immediate="true" action="#{RelatorioGeralBean.printToPDF}"/>
+                </h:form>
         </form>
     </h:body>
 </html>

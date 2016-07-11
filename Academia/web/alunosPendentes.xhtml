@@ -25,6 +25,11 @@
                     alerta.style.display = "block";
                 }
             });
+            
+            function dismiss(){
+                var alerta = document.getElementById("alerta");
+                alerta.style.display = "none";
+            }
     </script>
     <h:body>
         <h:outputText  id="alertamsg" value="#{sessionScope['msg']}" rendered="#{sessionScope['msg']!=null}" style="display:none"/>

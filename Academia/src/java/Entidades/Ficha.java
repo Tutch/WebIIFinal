@@ -5,6 +5,7 @@
  */
 package Entidades;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,7 @@ import javax.persistence.SequenceGenerator;
  * @author Yuri
  */
 @Entity
-public class Ficha {
+public class Ficha implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ficha_sequence_generator")
     @SequenceGenerator(name = "ficha_sequence_generator", sequenceName = "ficha_id_seq", allocationSize = 1)
